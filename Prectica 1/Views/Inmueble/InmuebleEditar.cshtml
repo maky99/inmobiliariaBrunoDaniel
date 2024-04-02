@@ -1,0 +1,92 @@
+@model Prectica_1.Models.Inmueble
+@{
+    ViewData["Title"] = "Lista de Personas PEPE";
+}
+<div class="text-center">
+    <h1 class="display-3">Editando Inmueble</h1>
+</div>
+
+<div class="container">
+    <div class="col-md-6 mx-auto">
+        <form asp-action="Editada" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <input type="hidden" asp-for="id_inmueble" />
+            <div class="form-group">
+                <label asp-for="tipoDebien" class="control-label">tipo_de_bien</label>
+                <select asp-for="tipoDebien" class="form-control">
+                    <option value="" disabled selected>Seleccione una opción</option>
+                    <option value="Terreno">Terreno</option>
+                    <option value="Edificio">Edificio</option>
+                    <option value="Apartamento">Apartamento</option>
+                    <option value="Casa">Casa</option>
+                    <option value="Fábrica">Fábrica</option>
+                    <option value="Local">Local</option>
+                    <option value="Mina">Mina</option>
+                    <option value="Parcela">Parcela</option>
+                </select>
+                <span asp-validation-for="tipoDebien" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tipoDeUso" class="control-label">tipo_de_uso</label>
+                <select asp-for="tipoDeUso" class="form-control">
+                    <option value="" disabled selected>Seleccione un uso de inmueble</option>
+                    <option value="Residencial">Residencial</option>
+                    <option value="Comercial">Comercial</option>
+                    <option value="Industrial">Industrial</option>
+                    <option value="Educativo">Educativo</option>
+                    <option value="Salud">Salud</option>
+                    <option value="Recreacional">Recreacional</option>
+                    <option value="Hotelero/Turístico">Hotelero/Turístico</option>
+                    <option value="Religioso">Religioso</option>
+                    <option value="Agrícola">Agrícola</option>
+                    <option value="Gobierno/Administrativo">Gobierno/Administrativo</option>
+                </select>
+                <span asp-validation-for="tipoDeUso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ubicacion" class="control-label">ubicacion</label>
+                <input asp-for="ubicacion" class="form-control" />
+                <span asp-validation-for="ubicacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="condicion" class="control-label">condicion</label>
+                <input asp-for="condicion" class="form-control" />
+                <span asp-validation-for="condicion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="costo" class="control-label">costo</label>
+                <input asp-for="costo" class="form-control" />
+                <span asp-validation-for="costo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="detalle" class="control-label">detalle</label>
+                <input asp-for="detalle" class="form-control" />
+                <span asp-validation-for="detalle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="estado" class="control-label">ESTADO</label>
+                <select asp-for="estado" class="form-control">
+                    <option value="" disabled selected>Seleccione una opción</option>
+                    <option value="0">Alquila</option>
+                    <option value="1">Vende</option>
+                    <option value="2">Venta / Alquila</option>
+                </select>
+                <span asp-validation-for="estado" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="id_propietario" class="control-label">id_propietario</label>
+                <input asp-for="id_propietario" class="form-control" />
+                <span asp-validation-for="id_propietario" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="id_inquilino" class="control-label">id_inquilino</label>
+                <input asp-for="id_inquilino" class="form-control" />
+                <span asp-validation-for="id_inquilino" class="text-danger"></span>
+            </div>
+            <div class="mt-3">
+                <button type="submit " value="Editada" class="btn btn-primary btn-sm">Guardar</button>
+                <a href="InmuebleIndex" class="btn btn-primary btn-sm">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>

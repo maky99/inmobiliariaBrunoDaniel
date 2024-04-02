@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">estoy en PropietarioView</h1>
+    
+</div>
+<div>
+    <div class="container my-4">
+    <div class="row">
+        <div class="col-sm-12 col-sm-12 col-lg-12 col-xl-12">
+            <table id="datatable_users" class="table table">
+                <thead>
+                    <tr>
+                        <!-- Aquí son las cabeceras de la tabla -->
+                        <th class="centrado">#</th>
+                        <th class="centrado">ID</th>
+                        <th class="centrado">Apellido</th>
+                        <th class="centrado">Nombre</th>
+                        <th class="centrado">Dni</th>
+                        <th class="centrado">Direcciion</th>
+                        <th class="centrado">Estado</th>
+                        <!-- Para usar los iconos, creo estas 2 cabeceras -->
+                        <th class="centrado">Editar</th>
+                    </tr>
+                </thead>
+
+                <!-- El cuerpo de la tabla se llena dinámicamente desde lo que leo en JS. El ID lo referencio en el JS. -->
+                 <tbody id="tableBody_users">
+                        <tr>
+                            <td class="centrado">1</td>
+                            <td class="centrado">1</td>
+                            <td class="centrado">Apellido1</td>
+                            <td class="centrado">Nombre1</td>
+                            <td class="centrado">DNI1</td>
+                            <td class="centrado">Dirección1</td>
+                            <td class="centrado">Activo</td>
+                            <td class="centrado">
+                                <a asp-action="Editar" class="btn btn-primary">Editar</a> |
+                                <a asp-action="Eliminar" class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                        <!-- Aquí puedes agregar más filas dinámicamente según los datos -->
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<a asp-action="Create" class="btn btn-success">Crear nuevo</a>
+@* <i class="fa-solid fa-pen-to-square"></i> <a asp-action="Editar">Editar</a> |
+<i class="fa-solid fa-trash"></i> <a asp-action="Eliminar">Eliminar</a> *@
+
+</div>
+
+

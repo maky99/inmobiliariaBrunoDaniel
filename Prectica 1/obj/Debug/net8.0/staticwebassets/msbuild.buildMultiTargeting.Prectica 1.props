@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Prectica 1.props" />
+</Project>

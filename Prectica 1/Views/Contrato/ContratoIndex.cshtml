@@ -1,0 +1,39 @@
+﻿@model Prectica_1.Models.Contrato
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-3">Formulario Contrato</h1>
+</div>
+<div class="container">
+    <div class="col-md-6 mx-auto">
+        <form asp-action="GuardarDatos" method="post">
+            <div class="form-group">
+                <label asp-for="desde">Desde</label>
+                <input asp-for="desde" class="form-control" type="date" />
+                <span asp-validation-for="desde" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="hasta">Hasta</label>
+                <input asp-for="hasta" class="form-control" type="date" />
+                <span asp-validation-for="hasta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="detalle">Detalle</label>
+                <input asp-for="detalle" class="form-control" />
+                <span asp-validation-for="detalle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="finalizacion_anticipada">Finalización Anticipada</label>
+                <input asp-for="finalizacion_anticipada" class="form-control" type="date" />
+                <span asp-validation-for="finalizacion_anticipada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="monto">Monto</label>
+                <input asp-for="monto" class="form-control" type="number" step="any" />
+                <span asp-validation-for="monto" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</div>

@@ -22,7 +22,8 @@ public class RepositorioPropietario
         {
             var sql = @$"SELECT {nameof(Propietario.id_propietario)}, {nameof(Propietario.dni)},{nameof(Propietario.apellido)},{nameof(Propietario.nombre)},{nameof(Propietario.telefono)},{nameof(Propietario.email)},{nameof(Propietario.estado)}
                 FROM propietario
-                ORDER BY apellido";
+                 WHERE {nameof(Propietario.estado)} = 1
+             ORDER BY {nameof(Propietario.apellido)}";
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();
@@ -32,7 +33,7 @@ public class RepositorioPropietario
                     {
                         propietario.Add(new Propietario
                         {
-                            id_propietario= reader.GetInt32("id_propietario"),
+                            id_propietario = reader.GetInt32("id_propietario"),
                             dni = reader.GetInt32("dni"),
                             apellido = reader.GetString("apellido"),
                             nombre = reader.GetString("nombre"),
@@ -137,7 +138,7 @@ public class RepositorioPropietario
                                 apellido = reader.GetString("apellido"),
                                 nombre = reader.GetString("nombre"),
                                 telefono = reader.GetInt32("telefono"),
-                                email=reader.GetString("email"),
+                                email = reader.GetString("email"),
                                 estado = reader.GetInt32("estado")
                             });
                         }
@@ -150,7 +151,7 @@ public class RepositorioPropietario
                                 apellido = "apellido",
                                 nombre = "nombre",
                                 telefono = 99,
-                                email="email",
+                                email = "email",
                                 estado = 0
                             });
                         }
@@ -160,6 +161,41 @@ public class RepositorioPropietario
             }
         }
         return propi;
+    }
+
+    public List<Propietario> PropietarioMuestra()
+    {
+
+        var propietario = new List<Propietario>();
+        using (var connection = new MySqlConnection(ConnectionString))
+        {
+            var sql = @$"SELECT {nameof(Propietario.id_propietario)}, {nameof(Propietario.dni)},{nameof(Propietario.apellido)},{nameof(Propietario.nombre)},{nameof(Propietario.telefono)},{nameof(Propietario.email)},{nameof(Propietario.estado)}
+                 FROM propietario
+                WHERE {nameof(Propietario.estado)} = 1
+             ORDER BY {nameof(Propietario.apellido)}";
+            using (var command = new MySqlCommand(sql, connection))
+            {
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        propietario.Add(new Propietario
+                        {
+                            id_propietario = reader.GetInt32("id_propietario"),
+                            dni = reader.GetInt32("dni"),
+                            apellido = reader.GetString("apellido"),
+                            nombre = reader.GetString("nombre"),
+                            telefono = reader.GetInt32("telefono"),
+                            email = reader.GetString("email"),
+                            estado = reader.GetInt32("estado")
+                        });
+                    }
+                }
+                connection.Close();
+            }
+        }
+        return propietario;
     }
 
 }

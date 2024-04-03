@@ -1,9 +1,9 @@
 @model Prectica_1.Models.Inmueble
 @{
-    ViewData["Title"] = "Lista de Personas PEPE";
+    ViewData["Title"] = "Nuevo Inmueble";
 }
 <div class="text-center">
-    <h1 class="display-3">Inmueble</h1>
+    <h1 class="display-3">Nuevo Inmueble</h1>
 </div>
 
 <div class="container">
@@ -72,21 +72,36 @@
                 </select>
                 <span asp-validation-for="estado" class="text-danger"></span>
             </div>
-             <div class="form-group">
-                <label asp-for="id_propietario" class="control-label">id_propietario</label>
-                <input asp-for="id_propietario" class="form-control" />
+            <div class="form-group">
+                <label asp-for="id_propietario" class="control-label">Propietario</label>
+                <div class="input-group">
+                    <input asp-for="id_propietario" class="form-control" readonly />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" onclick="buscarPropietario()">Buscar</button>
+                    </span>
+                </div>
                 <span asp-validation-for="id_propietario" class="text-danger"></span>
-            </div>
-             <div class="form-group">
-                <label asp-for="id_inquilino" class="control-label">id_inquilino</label>
-                <input asp-for="id_inquilino" class="form-control" />
-                <span asp-validation-for="id_inquilino" class="text-danger"></span>
             </div>
             <div class="mt-3">
                 <button type="submit " value="create" class="btn btn-primary btn-sm">Guardar</button>
-                <a href="PrpietarioIndex" class="btn btn-primary btn-sm">Cancelar</a>
+                <a href="InmuebleIndex" class="btn btn-primary btn-sm">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
 
+<script>
+    function buscarPropietario() {
+        // Abre la ventana emergente
+        var ventana = window.open('@Url.Action("PropietarioMuestra", "Propietario")', '_blank', 'width=1000,height=600');
+
+        // Define una función que se ejecutará cuando se seleccione un propietario en la ventana emergente
+        ventana.seleccionarPropietario = function (idPropietario, nombrePropietario) {
+
+            // Establece el valor seleccionado en el campo id_propietario en la ventana principal
+            document.getElementById("id_propietario").value = idPropietario;
+            // Cierra la ventana emergente
+            ventana.close();
+        };
+    }
+</script>

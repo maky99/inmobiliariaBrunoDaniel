@@ -15,7 +15,7 @@ public class PropietarioController : Controller
     {
         _logger = logger;
     }
-     
+
     public IActionResult PropietarioIndex()
     {
         RepositorioPropietario ri = new RepositorioPropietario();
@@ -82,6 +82,12 @@ public class PropietarioController : Controller
             return RedirectToAction(nameof(EditarPropietario), new { numero = propietario.id_propietario });
         }
 
+    }
+    public IActionResult PropietarioMuestra()
+    {
+        RepositorioPropietario ri = new RepositorioPropietario();
+        var lista = ri.PropietarioMuestra();
+        return View(lista);
     }
 
 

@@ -74,12 +74,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9cQnVzY2FOdWV2YVByb3BpZXRhcmlvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/MAKY/Documents/GitHub/inmobiliariaBrunoDaniel/Prectica 1/Views/Propietario/Editar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9cRWRpdGFyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/MAKY/Documents/GitHub/inmobiliariaBrunoDaniel/Prectica 1/Views/Propietario/EditarPropietario.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9cRWRpdGFyUHJvcGlldGFyaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MAKY/Documents/GitHub/inmobiliariaBrunoDaniel/Prectica 1/Views/Propietario/EditarPropietario2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9cRWRpdGFyUHJvcGlldGFyaW8yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/MAKY/Documents/GitHub/inmobiliariaBrunoDaniel/Prectica 1/Views/Propietario/EliminaPropietario.cshtml]
@@ -92,6 +92,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/MAKY/Documents/GitHub/inmobiliariaBrunoDaniel/Prectica 1/Views/Propietario/PropietarioIndex.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9cUHJvcGlldGFyaW9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MAKY/Documents/GitHub/inmobiliariaBrunoDaniel/Prectica 1/Views/Propietario/PropietarioMuestra.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9cUHJvcGlldGFyaW9NdWVzdHJhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/MAKY/Documents/GitHub/inmobiliariaBrunoDaniel/Prectica 1/Views/Shared/Error.cshtml]

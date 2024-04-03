@@ -1,73 +1,76 @@
 @model List<Prectica_1.Models.Inmueble>
 @{
-    ViewData["Title"] = "Lista de Personas PEPE";
+    ViewData["Title"] = "Lista de Inmuebles";
 }
 
 </div>
 <div class="text-center">
     <h1 class="display-3">Inmueble</h1>
-    <div>
+    <div class="mb-3">
         <a asp-action="InmuebleNuevo" class="btn btn-success">Nuevo Registro</a>
     </div>
-    <div>
-        <input type="text" id="inputBusqueda" placeholder="Buscar..." onkeyup="filtrarTabla()">
+    <div class="mb-3">
+        <input type=" text" id="inputBusqueda" placeholder="Buscar..." onkeyup="filtrarTabla()">
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                @* <th>ID</th> *@
-                <th>TIPO DE BIEN</th>
-                <th>TIPO DE USO</th>
-                <th>UBICACION</th>
-                <th>CONDICION</th>
-                <th>COSTO</th>
-                <th>DETALLE</th>
-                <th>ESTADO</th>
-                <th>idPropietario</th>
-                <th>idinquilino</th>
-                <th>Accion</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
                 <tr>
-                    @* <td>@item.id</td> *@
-                    <td>@item.tipoDebien</td>
-                    <td>@item.tipoDeUso</td>
-                    <td>@item.ubicacion</td>
-                    <td>@item.condicion</td>
-                    <td>@item.costo</td>
-                    <td>@item.detalle</td>
-                    <td>
-                        @switch (item.estado)
-                        {
-                            case 0:
-                                <span>Alquila</span>
-                                break;
-                            case 1:
-                                <span>Venta</span>
-                                break;
-                            case 2:
-                                <span>Venta / Alquila</span>
-                                break;
-                        }
-                    <td>
+                    @* <th>ID</th> *@
+                    <th>TIPO DE BIEN</th>
+                    <th>TIPO DE USO</th>
+                    <th>UBICACION</th>
+                    <th>CONDICION</th>
+                    <th>COSTO</th>
+                    <th>DETALLE</th>
+                    <th>ESTADO</th>
+                    <th>idPropietario</th>
+                    <th>idinquilino</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @* <td>@item.id</td> *@
+                        <td>@item.tipoDebien</td>
+                        <td>@item.tipoDeUso</td>
+                        <td>@item.ubicacion</td>
+                        <td>@item.condicion</td>
+                        <td>@item.costo</td>
+                        <td>@item.detalle</td>
+                        <td>
+                            @switch (item.estado)
+                            {
+                                case 0:
+                                    <span>Alquila</span>
+                                    break;
+                                case 1:
+                                    <span>Venta</span>
+                                    break;
+                                case 2:
+                                    <span>Venta / Alquila</span>
+                                    break;
+                            }
+                        <td>
                         <td>@item.id_propietario</td>
                         <td>@item.id_inquilino</td>
                         <!-- Enlace para editar -->
-                        <a href="InmuebleEditar?numero=@item.id_inmueble" class="btn btn-primary">
-                            <i class="fa-solid fa-pen-to-square"></i> Editar
-                        </a>
-                        <!-- Enlace para eliminar -->
-                        <a href="#" onclick="confirmarEliminar(@item.id_inmueble)" class="btn btn-danger">
-                            <i class="fa-solid fa-trash"></i> Eliminar
-                        </a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                        <td>
+                            <a href="InmuebleEditar?numero=@item.id_inmueble" class="btn btn-primary">
+                                <i class="fa-solid fa-pen-to-square"></i> Editar
+                            </a>
+                            <!-- Enlace para eliminar -->
+                            <a href="#" onclick="confirmarEliminar(@item.id_inmueble)" class="btn btn-danger">
+                                <i class="fa-solid fa-trash"></i> Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
 
 
@@ -76,13 +79,9 @@
 
         function confirmarEliminar(id) {
             if (confirm('¿Estás seguro de que quieres eliminar este inmueble?')) {
-                window.location.href = 'EliminaInmueble?numero='+id;
+                window.location.href = 'EliminaInmueble?numero=' + id;
             }
         }
-
-
-
-
         function filtrarTabla() {
             var input, filtro, tabla, filas, celdas, texto;
             input = document.getElementById("inputBusqueda");

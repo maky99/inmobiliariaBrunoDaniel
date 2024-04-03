@@ -54,7 +54,7 @@ public class RepositorioInmueble
     {
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            var sql = $"INSERT INTO inmueble(tipoDebien,tipoDeUso,ubicacion,condicion,costo,detalle,estado,id_propietario,id_inquilino) VALUES  ('{inmueble.tipoDebien}','{inmueble.tipoDeUso}','{inmueble.ubicacion}','{inmueble.condicion}','{inmueble.costo}','{inmueble.detalle}','{inmueble.estado}','{inmueble.id_propietario}','{inmueble.id_inquilino}')";
+            var sql = $"INSERT INTO inmueble(tipoDebien,tipoDeUso,ubicacion,condicion,costo,detalle,estado,id_propietario,id_inquilino) VALUES  ('{inmueble.tipoDebien}','{inmueble.tipoDeUso}','{inmueble.ubicacion}','{inmueble.condicion}','{inmueble.costo}','{inmueble.detalle}','{inmueble.estado}','{inmueble.id_propietario}',1)";
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();

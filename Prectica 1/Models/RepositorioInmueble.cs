@@ -21,8 +21,8 @@ public class RepositorioInmueble
         using (var connection = new MySqlConnection(ConnectionString))
         {
             var sql = @$"SELECT {nameof(Inmueble.id_inmueble)}, {nameof(Inmueble.tipoDebien)},{nameof(Inmueble.tipoDeUso)},{nameof(Inmueble.ubicacion)},{nameof(Inmueble.condicion)},{nameof(Inmueble.costo)},{nameof(Inmueble.detalle)},{nameof(Inmueble.estado)},{nameof(Inmueble.id_propietario)},{nameof(Inmueble.id_inquilino)}	
-                FROM inmueble
-                ORDER BY costo";
+                FROM inmueble";
+            //ORDER BY costo";
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();
@@ -33,15 +33,15 @@ public class RepositorioInmueble
                         inmueble.Add(new Inmueble
                         {
                             id_inmueble = reader.GetInt32("id_inmueble"),
-                            tipoDebien = reader.GetString("tipo_de_bien"),
-                            tipoDeUso = reader.GetString("tipo_de_uso"),
+                            tipoDebien = reader.GetString("tipoDebien"),
+                            tipoDeUso = reader.GetString("tipoDeUso"),
                             ubicacion = reader.GetString("ubicacion"),
                             condicion = reader.GetString("condicion"),
                             costo = reader.GetDouble("costo"),
                             detalle = reader.GetString("detalle"),
                             estado = reader.GetInt32("estado"),
-                            id_propietario=reader.GetInt32("id_propietario"),
-                            id_inquilino=reader.GetInt32("id_inquilino")
+                            id_propietario = reader.GetInt32("id_propietario"),
+                            id_inquilino = reader.GetInt32("id_inquilino")
                         });
                     }
                 }
@@ -88,8 +88,8 @@ public class RepositorioInmueble
                             costo = reader.GetDouble("costo"),
                             detalle = reader.GetString("detalle"),
                             estado = reader.GetInt32("estado"),
-                            id_propietario=reader.GetInt32("id_propietario"),
-                            id_inquilino=reader.GetInt32("id_inquilino")
+                            id_propietario = reader.GetInt32("id_propietario"),
+                            id_inquilino = reader.GetInt32("id_inquilino")
                         });
                     }
                 }
@@ -126,10 +126,10 @@ public class RepositorioInmueble
             var sql = "DELETE FROM inmueble WHERE id_inmueble = @Id";
             using (var comando = new MySqlCommand(sql, connection))
             {
-            comando.Parameters.AddWithValue("@Id", id); // Agregar el parámetro @Id y asignarle el valor id
-            connection.Open();
-            comando.ExecuteNonQuery();
-            connection.Close();
+                comando.Parameters.AddWithValue("@Id", id); // Agregar el parámetro @Id y asignarle el valor id
+                connection.Open();
+                comando.ExecuteNonQuery();
+                connection.Close();
             }
         }
     }

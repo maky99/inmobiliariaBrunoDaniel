@@ -79,7 +79,14 @@ public class PropietarioController : Controller
         }
         else
         {
-            return RedirectToAction(nameof(EditarPropietario), new { numero = propietario.id_propietario });
+            if (propietario.estado == 1)
+            {
+                return RedirectToAction(nameof(EditarPropietario), new { numero = propietario.id_propietario });
+            }
+            else
+            {
+                return RedirectToAction(nameof(EditarPropietario2), new { numero = propietario.id_propietario });
+            }
         }
 
     }
@@ -89,6 +96,11 @@ public class PropietarioController : Controller
         var lista = ri.PropietarioMuestra();
         return View(lista);
     }
+    public IActionResult EditarPropietario2(int numero)
+    {
+        RepositorioPropietario rp = new RepositorioPropietario();
+        var propietario = rp.ObtenerPropietarioPorId(numero);
 
-
+        return View(propietario);
+    }
 }

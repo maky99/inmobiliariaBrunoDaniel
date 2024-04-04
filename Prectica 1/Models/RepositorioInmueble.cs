@@ -21,9 +21,6 @@ public class RepositorioInmueble
         var inmueble = new List<Inmueble>();
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            // var sql = @$"SELECT {nameof(Inmueble.id_inmueble)}, {nameof(Inmueble.tipoDebien)},{nameof(Inmueble.tipoDeUso)},{nameof(Inmueble.ubicacion)},{nameof(Inmueble.condicion)},{nameof(Inmueble.costo)},{nameof(Inmueble.detalle)},{nameof(Inmueble.estado)},{nameof(Inmueble.id_propietario)}	
-            //   FROM inmueble";
-            //ORDER BY costo";
             var sql = @$"SELECT i.{nameof(Inmueble.id_inmueble)}, i.{nameof(Inmueble.tipoDebien)}, i.{nameof(Inmueble.tipoDeUso)}, i.{nameof(Inmueble.ubicacion)}, i.{nameof(Inmueble.condicion)}, i.{nameof(Inmueble.costo)}, i.{nameof(Inmueble.detalle)}, i.{nameof(Inmueble.estado)}, i.{nameof(Inmueble.id_propietario)},
                      p.apellido AS propietario_apellido, p.nombre AS propietario_nombre
                     FROM inmueble i

@@ -22,7 +22,7 @@ public class RepositorioPropietario
         {
             var sql = @$"SELECT {nameof(Propietario.id_propietario)}, {nameof(Propietario.dni)},{nameof(Propietario.apellido)},{nameof(Propietario.nombre)},{nameof(Propietario.telefono)},{nameof(Propietario.email)},{nameof(Propietario.estado)}
                 FROM propietario
-                 WHERE {nameof(Propietario.estado)} = 1
+                 WHERE {nameof(Propietario.estado)} =1
              ORDER BY {nameof(Propietario.apellido)}";
             using (var command = new MySqlCommand(sql, connection))
             {
@@ -171,8 +171,8 @@ public class RepositorioPropietario
         {
             var sql = @$"SELECT {nameof(Propietario.id_propietario)}, {nameof(Propietario.dni)},{nameof(Propietario.apellido)},{nameof(Propietario.nombre)},{nameof(Propietario.telefono)},{nameof(Propietario.email)},{nameof(Propietario.estado)}
                  FROM propietario
-                WHERE {nameof(Propietario.estado)} = 1
              ORDER BY {nameof(Propietario.apellido)}";
+            //WHERE {nameof(Propietario.estado)} = 1 para que me muestre solo los activos y va arriba del order
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();
@@ -197,8 +197,44 @@ public class RepositorioPropietario
         }
         return propietario;
     }
+    public List<Propietario> GetPropietariosActivos()
+    {
+        var propietariosActivos = new List<Propietario>();
 
+        using (var connection = new MySqlConnection(ConnectionString))
+        {
+            var sql = @"SELECT id_propietario, dni, apellido, nombre, telefono, email, estado
+                        FROM propietario
+                        WHERE estado = 1";
+
+            using (var command = new MySqlCommand(sql, connection))
+            {
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        propietariosActivos.Add(new Propietario
+                        {
+                            id_propietario = reader.GetInt32("id_propietario"),
+                            dni = reader.GetInt32("dni"),
+                            apellido = reader.GetString("apellido"),
+                            nombre = reader.GetString("nombre"),
+                            telefono = reader.GetInt32("telefono"),
+                            email = reader.GetString("email"),
+                            estado = reader.GetInt32("estado")
+                        });
+                    }
+                }
+                connection.Close();
+            }
+        }
+
+        return propietariosActivos;
+    }
 }
+
+
 
 
 

@@ -104,4 +104,7 @@ public class PropietarioController : Controller
 
         return View(propietario);
     }
+
+
 }
+

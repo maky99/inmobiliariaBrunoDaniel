@@ -23,36 +23,39 @@ public class InmuebleController : Controller
         return View(lista);
     }
     public IActionResult InmuebleNuevo()
-    {
-       
+    {RepositorioPropietario rp = new RepositorioPropietario();
+        var lisPro = rp.PropietarioMuestra();
+        ViewData["propietario"] = lisPro;
+
         return View();
     }
 
     public IActionResult AltaNuevoInmueble(Inmueble inmueble)
     {
-       RepositorioInmueble ri = new RepositorioInmueble();
-       ri.GuardarInmueble(inmueble);
+        	
+        RepositorioInmueble ri = new RepositorioInmueble();
+        ri.GuardarInmueble(inmueble);
         return RedirectToAction(nameof(InmuebleIndex));
     }
 
 
-     public IActionResult InmuebleEditar(int numero)
+    public IActionResult InmuebleEditar(int numero)
     {
-        RepositorioInmueble ri=new RepositorioInmueble();
-        var inmueble =ri.ObtenerInmueblePorId(numero);
+        RepositorioInmueble ri = new RepositorioInmueble();
+        var inmueble = ri.ObtenerInmueblePorId(numero);
 
         return View(inmueble);
     }
 
-     public IActionResult Editada(Inmueble inmueble)
+    public IActionResult Editada(Inmueble inmueble)
     {
-         RepositorioInmueble ri=new RepositorioInmueble();
-         ri.EditaDatosInmueble(inmueble);
+        RepositorioInmueble ri = new RepositorioInmueble();
+        ri.EditaDatosInmueble(inmueble);
         return RedirectToAction(nameof(InmuebleIndex));
     }
-     public IActionResult EliminaInmueble(int numero)
+    public IActionResult EliminaInmueble(int numero)
     {
-        RepositorioInmueble ri=new RepositorioInmueble();
+        RepositorioInmueble ri = new RepositorioInmueble();
         ri.EliminarInmueblePorId(numero);
         return RedirectToAction(nameof(InmuebleIndex));
     }

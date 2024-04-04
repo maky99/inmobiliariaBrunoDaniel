@@ -2,6 +2,7 @@ using System.ComponentModel.Design;
 using System.Configuration;
 using System.Data;
 using System.Reflection.Metadata.Ecma335;
+using Microsoft.AspNetCore.Mvc.Razor;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.X509.SigI;
 using Prectica_1.Models;
@@ -20,9 +21,15 @@ public class RepositorioInmueble
         var inmueble = new List<Inmueble>();
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            var sql = @$"SELECT {nameof(Inmueble.id_inmueble)}, {nameof(Inmueble.tipoDebien)},{nameof(Inmueble.tipoDeUso)},{nameof(Inmueble.ubicacion)},{nameof(Inmueble.condicion)},{nameof(Inmueble.costo)},{nameof(Inmueble.detalle)},{nameof(Inmueble.estado)},{nameof(Inmueble.id_propietario)},{nameof(Inmueble.id_inquilino)}	
-                FROM inmueble";
+            // var sql = @$"SELECT {nameof(Inmueble.id_inmueble)}, {nameof(Inmueble.tipoDebien)},{nameof(Inmueble.tipoDeUso)},{nameof(Inmueble.ubicacion)},{nameof(Inmueble.condicion)},{nameof(Inmueble.costo)},{nameof(Inmueble.detalle)},{nameof(Inmueble.estado)},{nameof(Inmueble.id_propietario)}	
+            //   FROM inmueble";
             //ORDER BY costo";
+            var sql = @$"SELECT i.{nameof(Inmueble.id_inmueble)}, i.{nameof(Inmueble.tipoDebien)}, i.{nameof(Inmueble.tipoDeUso)}, i.{nameof(Inmueble.ubicacion)}, i.{nameof(Inmueble.condicion)}, i.{nameof(Inmueble.costo)}, i.{nameof(Inmueble.detalle)}, i.{nameof(Inmueble.estado)}, i.{nameof(Inmueble.id_propietario)},
+                     p.apellido AS propietario_apellido, p.nombre AS propietario_nombre
+                    FROM inmueble i
+                    INNER JOIN propietario p ON i.{nameof(Inmueble.id_propietario)} = p.{nameof(Propietario.id_propietario)}";
+
+
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();
@@ -41,7 +48,13 @@ public class RepositorioInmueble
                             detalle = reader.GetString("detalle"),
                             estado = reader.GetInt32("estado"),
                             id_propietario = reader.GetInt32("id_propietario"),
-                            id_inquilino = reader.GetInt32("id_inquilino")
+                            dueno = new Propietario
+                            {
+                                id_propietario = reader.GetInt32("id_propietario"),
+                                apellido = reader.GetString("propietario_apellido"),
+                                nombre = reader.GetString("propietario_nombre")
+
+                            }
                         });
                     }
                 }
@@ -54,7 +67,7 @@ public class RepositorioInmueble
     {
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            var sql = $"INSERT INTO inmueble(tipoDebien,tipoDeUso,ubicacion,condicion,costo,detalle,estado,id_propietario,id_inquilino) VALUES  ('{inmueble.tipoDebien}','{inmueble.tipoDeUso}','{inmueble.ubicacion}','{inmueble.condicion}','{inmueble.costo}','{inmueble.detalle}','{inmueble.estado}','{inmueble.id_propietario}',1)";
+            var sql = $"INSERT INTO inmueble(tipoDebien,tipoDeUso,ubicacion,condicion,costo,detalle,estado,id_propietario) VALUES  ('{inmueble.tipoDebien}','{inmueble.tipoDeUso}','{inmueble.ubicacion}','{inmueble.condicion}','{inmueble.costo}','{inmueble.detalle}','{inmueble.estado}','{inmueble.id_propietario}')";
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();
@@ -88,8 +101,7 @@ public class RepositorioInmueble
                             costo = reader.GetDouble("costo"),
                             detalle = reader.GetString("detalle"),
                             estado = reader.GetInt32("estado"),
-                            id_propietario = reader.GetInt32("id_propietario"),
-                            id_inquilino = reader.GetInt32("id_inquilino")
+                            id_propietario = reader.GetInt32("id_propietario")
                         });
                     }
                 }
@@ -106,7 +118,7 @@ public class RepositorioInmueble
              SET tipoDebien = '{inmueble.tipoDebien}', tipoDeUso = '{inmueble.tipoDeUso}',
                 ubicacion = '{inmueble.ubicacion}', condicion = '{inmueble.condicion}', 
                 costo = '{inmueble.costo}', detalle = '{inmueble.detalle}', estado = '{inmueble.estado}',
-                id_propietario='{inmueble.id_propietario}',id_inquilino='{inmueble.id_inquilino}'   
+                id_propietario='{inmueble.id_propietario}'   
              WHERE id_inmueble = {inmueble.id_inmueble} ";
             Console.WriteLine($"SQL query: {sql}");
             using (var comando = new MySqlCommand(sql, connection))

@@ -10,7 +10,8 @@ public class Inmueble
     public double? costo { get; set; }
     public string? detalle { get; set; }
     public int? estado { get; set; }
-    public int id_propietario {get;set;}
-    public int id_inquilino {get;set;}
+    public int id_propietario { get; set; }
+    public Propietario? dueno { get; set; }
+
 
 }

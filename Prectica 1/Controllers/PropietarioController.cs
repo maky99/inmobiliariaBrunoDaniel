@@ -22,6 +22,7 @@ public class PropietarioController : Controller
         var lista = ri.GetPropietario();
         return View(lista);
     }
+
     public IActionResult NuevaPropietario()
     {
         return View();

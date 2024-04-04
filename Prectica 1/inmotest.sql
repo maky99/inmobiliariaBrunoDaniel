@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2024 a las 00:35:09
+-- Tiempo de generación: 04-04-2024 a las 17:47:36
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -28,14 +28,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `contrato` (
-  `id_contato` int(11) NOT NULL,
+  `id_contrato` int(11) NOT NULL,
   `desde` date NOT NULL,
   `hasta` date NOT NULL,
   `detalle` varchar(50) NOT NULL,
   `finalizacionAnticipada` date NOT NULL,
   `monto` double NOT NULL,
   `multa` double NOT NULL,
-  `id_inquilino` int(11) NOT NULL
+  `id_inquilino` int(11) NOT NULL,
+  `id_inmueble` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -53,9 +54,19 @@ CREATE TABLE `inmueble` (
   `costo` double NOT NULL,
   `detalle` text NOT NULL,
   `estado` int(11) NOT NULL,
-  `id_propietario` int(11) NOT NULL,
-  `id_inquilino` int(11) NOT NULL
+  `id_propietario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `inmueble`
+--
+
+INSERT INTO `inmueble` (`id_inmueble`, `tipoDebien`, `tipoDeUso`, `ubicacion`, `condicion`, `costo`, `detalle`, `estado`, `id_propietario`) VALUES
+(24, 'Edificio', 'Comercial', 'centro', 'buena', 20000, 'con baño', 1, 10),
+(25, 'Mina', 'Hotelero/Turístico', 'La Carolina', 'Regular', 800000, 'minas antiguas ', 0, 5),
+(34, 'Terreno', 'Residencial', 'La Carolina', 'Buena', 500000, 'sin cerrar', 0, 1),
+(35, 'Terreno', 'Industrial', 'La florida', 'Regular', 55555000, 'sin luz', 0, 1),
+(36, 'Terreno', 'Comercial', 'San Luis', 'Buena', 400000, 'calle asfaltada', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -64,7 +75,7 @@ CREATE TABLE `inmueble` (
 --
 
 CREATE TABLE `inquilino` (
-  `id` int(11) NOT NULL,
+  `id_inquilino` int(11) NOT NULL,
   `dni` int(11) NOT NULL,
   `apellido` varchar(30) NOT NULL,
   `nombre` varchar(30) NOT NULL,
@@ -77,7 +88,7 @@ CREATE TABLE `inquilino` (
 -- Volcado de datos para la tabla `inquilino`
 --
 
-INSERT INTO `inquilino` (`id`, `dni`, `apellido`, `nombre`, `telefono`, `email`, `estado`) VALUES
+INSERT INTO `inquilino` (`id_inquilino`, `dni`, `apellido`, `nombre`, `telefono`, `email`, `estado`) VALUES
 (1, 12345678, 'García', 'Juan', 555123456, 'juan.garcia@example.com', 1),
 (2, 23456789, 'Martínez', 'María', 555234567, 'maria.martinez@example.com', 0),
 (3, 34567890, 'López', 'José', 555345678, 'jose.lopez@example.com', 1),
@@ -118,7 +129,7 @@ CREATE TABLE `propietario` (
 --
 
 INSERT INTO `propietario` (`id_propietario`, `dni`, `apellido`, `nombre`, `telefono`, `email`, `estado`) VALUES
-(1, 12345678, 'García', 'Juan', '5551234', 'juan.garcia@example.com', 0),
+(1, 12345678, 'García', 'Juan', '5551234', 'juan.garcia@example.com', 1),
 (2, 23456789, 'Martínez', 'María', '5555678', 'maria.martinez@example.com', 0),
 (3, 34567890, 'López', 'José', '5559012', 'jose.lopez@example.com', 0),
 (4, 45678901, 'Rodríguez', 'Ana', '5553456', 'ana.rodriguez@example.com', 0),
@@ -127,7 +138,7 @@ INSERT INTO `propietario` (`id_propietario`, `dni`, `apellido`, `nombre`, `telef
 (7, 78901234, 'González', 'Carlos', '5552345', 'carlos.gonzalez@example.com', 0),
 (8, 89012345, 'Fernández', 'Martín', '5554567', 'martin.fernandez@example.com', 0),
 (9, 90123456, 'Gómez', 'Paula', '5556789', 'paula.gomez@example.com', 0),
-(10, 1234567, 'Díaz', 'Sofía', '5558901', 'sofia.diaz@example.com', 0);
+(10, 1234567, 'Díaz', 'Sofía', '5558901', 'sofia.diaz@example.com', 1);
 
 --
 -- Índices para tablas volcadas
@@ -137,22 +148,22 @@ INSERT INTO `propietario` (`id_propietario`, `dni`, `apellido`, `nombre`, `telef
 -- Indices de la tabla `contrato`
 --
 ALTER TABLE `contrato`
-  ADD PRIMARY KEY (`id_contato`),
-  ADD UNIQUE KEY `id_inquilino` (`id_inquilino`);
+  ADD PRIMARY KEY (`id_contrato`),
+  ADD UNIQUE KEY `id_inquilino` (`id_inquilino`),
+  ADD KEY `fk_contrato_inmueble` (`id_inmueble`);
 
 --
 -- Indices de la tabla `inmueble`
 --
 ALTER TABLE `inmueble`
   ADD PRIMARY KEY (`id_inmueble`),
-  ADD KEY `id_propietario` (`id_propietario`),
-  ADD KEY `id_inquilino` (`id_inquilino`);
+  ADD KEY `id_propietario` (`id_propietario`);
 
 --
 -- Indices de la tabla `inquilino`
 --
 ALTER TABLE `inquilino`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_inquilino`);
 
 --
 -- Indices de la tabla `pago`
@@ -175,19 +186,19 @@ ALTER TABLE `propietario`
 -- AUTO_INCREMENT de la tabla `contrato`
 --
 ALTER TABLE `contrato`
-  MODIFY `id_contato` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_contrato` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `inmueble`
 --
 ALTER TABLE `inmueble`
-  MODIFY `id_inmueble` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_inmueble` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `inquilino`
 --
 ALTER TABLE `inquilino`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_inquilino` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
@@ -203,20 +214,20 @@ ALTER TABLE `pago`
 -- Filtros para la tabla `contrato`
 --
 ALTER TABLE `contrato`
-  ADD CONSTRAINT `contrato_ibfk_1` FOREIGN KEY (`id_inquilino`) REFERENCES `inquilino` (`id`);
+  ADD CONSTRAINT `contrato_ibfk_1` FOREIGN KEY (`id_inquilino`) REFERENCES `inquilino` (`id_inquilino`),
+  ADD CONSTRAINT `fk_contrato_inmueble` FOREIGN KEY (`id_inmueble`) REFERENCES `inmueble` (`id_inmueble`);
 
 --
 -- Filtros para la tabla `inmueble`
 --
 ALTER TABLE `inmueble`
-  ADD CONSTRAINT `inmueble_ibfk_1` FOREIGN KEY (`id_propietario`) REFERENCES `propietario` (`id_propietario`),
-  ADD CONSTRAINT `inmueble_ibfk_2` FOREIGN KEY (`id_inquilino`) REFERENCES `inquilino` (`id`);
+  ADD CONSTRAINT `inmueble_ibfk_1` FOREIGN KEY (`id_propietario`) REFERENCES `propietario` (`id_propietario`);
 
 --
 -- Filtros para la tabla `pago`
 --
 ALTER TABLE `pago`
-  ADD CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`id_contrato`) REFERENCES `contrato` (`id_contato`);
+  ADD CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`id_contrato`) REFERENCES `contrato` (`id_contrato`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

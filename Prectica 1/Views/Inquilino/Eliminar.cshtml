@@ -1,0 +1,54 @@
+@model Prectica_1.Models.Inquilino;
+@{
+    ViewData["Title"] = "Inquilinos editar";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Eliminar Inquilino</h1>
+</DIv>
+<div class="container">
+    <div class="col-md-6 mx-auto">
+        <form asp-action="bajaDeInquilino" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="dni" class="control-label">DNI</label>
+                <input asp-for="dni" class="form-control" readonly />
+                <span asp-validation-for="dni" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apellido" class="control-label">APELLIDO</label>
+                <input asp-for="apellido" class="form-control" readonly />
+                <span asp-validation-for="apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nombre" class="control-label">NOMBRE</label>
+                <input asp-for="nombre" class="form-control" readonly />
+                <span asp-validation-for="nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="telefono" class="control-label">TELEFONO</label>
+                <input asp-for="telefono" class="form-control" readonly />
+                <span asp-validation-for="telefono" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="email" class="control-label">EMAIL</label>
+                <input asp-for="email" class="form-control" readonly />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="estado" class="control-label">ESTADO</label>
+                <select asp-for="estado" class="form-control">
+                    <option value="1">Activo</option>
+                    <option value="0">Desactivo</option>
+                </select>
+                <span asp-validation-for="estado" class="text-danger"></span>
+            </div>
+            <div class="mt-3">
+                <button type="submit " value="elimiarInquilino" class="btn btn-primary btn-sm">Guardar</button>
+                <a href="Index" class="btn btn-primary btn-sm">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>

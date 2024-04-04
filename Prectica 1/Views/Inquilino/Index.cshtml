@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Inquilino>
+@{
+    ViewData["Title"] = "Página Principal";
+}
+
+<div class="text-center">
+    <h1 class="display-3">Inquilino</h1>
+    <div>
+        <a asp-action="Buscar" class="btn btn-success">Nuevo Registro</a>
+    </div>
+    <div>
+        <!-- Campo de búsqueda -->
+        <input type="text" id="inputBusqueda" placeholder="Buscar..." onkeyup="filtrarTabla()">
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                @* <th>ID</th> *@
+                <th>DNI</th>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Estado</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @* <td>@item.id</td> *@
+                    <td>@item.dni</td>
+                    <td>@item.apellido</td>
+                    <td>@item.nombre</td>
+                    <td>@item.telefono</td>
+                    <td>@item.email</td>
+                    <td>
+                        @if (item.estado == 1)
+                        {
+                            <span>Activo</span>
+                        }
+                        else
+                        {
+                            <span>Inactivo</span>
+                        }
+                        @*@item.estado</td>*@
+                    <td>
+                        <!-- Enlace para editar -->
+                        <a href="Inquilino/EditarInquilino?numero=@item.id" class="btn btn-primary">
+                            <i class="fa-solid fa-pen-to-square"></i> Editar
+                        </a>
+                        <!-- Enlace para eliminar -->
+                        <a href="Inquilino/Eliminar?numero=@item.id" class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i> Eliminar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts {
+    <script>
+        function filtrarTabla() {
+            var input, filtro, tabla, filas, celdas, texto;
+            input = document.getElementById("inputBusqueda");
+            filtro = input.value.toUpperCase();
+            tabla = document.querySelector(".table"); // Cambia ".table" al selector correcto de tu tabla
+            filas = tabla.getElementsByTagName("tr");
+
+            // Iterar sobre todas las filas de la tabla
+            for (var i = 0; i < filas.length; i++) {
+                celdas = filas[i].getElementsByTagName("td");
+                // Mostrar la fila si coincide con el filtro, de lo contrario, ocultarla
+                for (var j = 0; j < celdas.length; j++) {
+                    texto = celdas[j].textContent || celdas[j].innerText;
+                    if (texto.toUpperCase().indexOf(filtro) > -1) {
+                        filas[i].style.display = "";
+                        break;
+                    } else {
+                        filas[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+}
+

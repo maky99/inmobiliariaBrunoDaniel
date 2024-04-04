@@ -1,3 +1,4 @@
+using System.Collections;
 using System.ComponentModel.Design;
 using System.Configuration;
 using System.Data;
@@ -12,7 +13,7 @@ namespace System.Configuration;
 public class RepositorioInmueble
 {
     readonly string ConnectionString = "Server = localhost; Port = 3306; Database = inmotest; User=root;";
-
+   
     public RepositorioInmueble() { }
 
     public List<Inmueble> GetInmueble()
@@ -73,39 +74,51 @@ public class RepositorioInmueble
             }
         }
     }
-    public Inmueble ObtenerInmueblePorId(int id)
-    {
-        var inmu = new Inmueble();
-        using (var connection = new MySqlConnection(ConnectionString))
-        {
-            connection.Open();
-            var sql = "SELECT * FROM inmueble WHERE id_inmueble = @Id";
-            using (var comando = new MySqlCommand(sql, connection))
-            {
-                comando.Parameters.AddWithValue("@Id", id);
 
-                using (var reader = comando.ExecuteReader())
+public Inmueble ObtenerInmueblePorId(int id)
+{
+    var inmu = new Inmueble();
+    using (var connection = new MySqlConnection(ConnectionString))
+    {
+        connection.Open();
+        var sql = @$"SELECT i.{nameof(Inmueble.id_inmueble)}, i.{nameof(Inmueble.tipoDebien)}, i.{nameof(Inmueble.tipoDeUso)}, i.{nameof(Inmueble.ubicacion)}, i.{nameof(Inmueble.condicion)}, i.{nameof(Inmueble.costo)}, i.{nameof(Inmueble.detalle)}, i.{nameof(Inmueble.estado)}, i.{nameof(Inmueble.id_propietario)},
+                     p.apellido AS propietario_apellido, p.nombre AS propietario_nombre
+                    FROM inmueble i
+                    INNER JOIN propietario p ON i.{nameof(Inmueble.id_propietario)} = p.{nameof(Propietario.id_propietario)}
+                    WHERE i.{nameof(Inmueble.id_inmueble)} = @Id";
+        using (var comando = new MySqlCommand(sql, connection))
+        {
+            comando.Parameters.AddWithValue("@Id", id);
+
+            using (var reader = comando.ExecuteReader())
+            {
+                if (reader.Read())
                 {
-                    if (reader.Read())
+                    inmu = new Inmueble
                     {
-                        inmu = (new Inmueble
+                        id_inmueble = reader.GetInt32("id_inmueble"),
+                        tipoDebien = reader.GetString("tipoDebien"),
+                        tipoDeUso = reader.GetString("tipoDeUso"),
+                        ubicacion = reader.GetString("ubicacion"),
+                        condicion = reader.GetString("condicion"),
+                        costo = reader.GetDouble("costo"),
+                        detalle = reader.GetString("detalle"),
+                        estado = reader.GetInt32("estado"),
+                        id_propietario = reader.GetInt32("id_propietario"),
+                        dueno =  new Propietario
                         {
-                            id_inmueble = reader.GetInt32("id_inmueble"),
-                            tipoDebien = reader.GetString("tipo_de_bien"),
-                            tipoDeUso = reader.GetString("tipo_de_uso"),
-                            ubicacion = reader.GetString("ubicacion"),
-                            condicion = reader.GetString("condicion"),
-                            costo = reader.GetDouble("costo"),
-                            detalle = reader.GetString("detalle"),
-                            estado = reader.GetInt32("estado"),
-                            id_propietario = reader.GetInt32("id_propietario")
-                        });
-                    }
+                            id_propietario = reader.GetInt32("id_propietario"),
+                            apellido = reader.GetString("propietario_apellido"),
+                            nombre = reader.GetString("propietario_nombre")
+                        }
+                    };
                 }
             }
         }
-        return inmu;
     }
+    return inmu;
+}
+
     public void EditaDatosInmueble(Inmueble inmueble)
     {
         using (var connection = new MySqlConnection(ConnectionString))
@@ -117,7 +130,6 @@ public class RepositorioInmueble
                 costo = '{inmueble.costo}', detalle = '{inmueble.detalle}', estado = '{inmueble.estado}',
                 id_propietario='{inmueble.id_propietario}'   
              WHERE id_inmueble = {inmueble.id_inmueble} ";
-            Console.WriteLine($"SQL query: {sql}");
             using (var comando = new MySqlCommand(sql, connection))
             {
                 connection.Open();

@@ -10,36 +10,36 @@ public class RepositorioInquilino
     public RepositorioInquilino()
     {
     }
-/*
-    public IList<Inquilino> GetInquilinos()
-    {
-        var inquilinos = new List<Inquilino>();
-        using (var conexion = new MySqlConnection(connectionString))
+    /*
+        public IList<Inquilino> GetInquilinos()
         {
-            var consulta = "SELECT * FROM inquilino";
-
-            using (var command = new MySqlCommand(consulta, conexion))
+            var inquilinos = new List<Inquilino>();
+            using (var conexion = new MySqlConnection(connectionString))
             {
-                conexion.Open();
-                using (var reader = command.ExecuteReader())
+                var consulta = "SELECT * FROM inquilino";
+
+                using (var command = new MySqlCommand(consulta, conexion))
                 {
-                    while (reader.Read())
+                    conexion.Open();
+                    using (var reader = command.ExecuteReader())
                     {
-                        inquilinos.Add(new Inquilino
+                        while (reader.Read())
                         {
-                            id = reader.GetInt32(nameof(Inquilino.id)),
-                            nombre = reader.GetString(nameof(Inquilino.nombre)),
-                            apellido = reader.GetString(nameof(Inquilino.apellido)),
-                            dni = reader.GetString(nameof(Inquilino.dni)),
-                            telefono = reader.GetString(nameof(Inquilino.telefono)),
-                            email = reader.GetString(nameof(Inquilino.email))
-                        });
+                            inquilinos.Add(new Inquilino
+                            {
+                                id = reader.GetInt32(nameof(Inquilino.id)),
+                                nombre = reader.GetString(nameof(Inquilino.nombre)),
+                                apellido = reader.GetString(nameof(Inquilino.apellido)),
+                                dni = reader.GetString(nameof(Inquilino.dni)),
+                                telefono = reader.GetString(nameof(Inquilino.telefono)),
+                                email = reader.GetString(nameof(Inquilino.email))
+                            });
+                        }
                     }
                 }
             }
-        }
-        return inquilinos; // Return the list of inquilinos
-    }}*/
+            return inquilinos; // Return the list of inquilinos
+        }}*/
     //forma corta
     public IList<Inquilino> GetInquilinos()
     {
@@ -47,7 +47,7 @@ public class RepositorioInquilino
         var inquilinos = new List<Inquilino>();
         using (var connection = new MySqlConnection(connectionString))
         {
-            var sql = @$"SELECT {nameof(Inquilino.id)}, {nameof(Inquilino.dni)},{nameof(Inquilino.apellido)},{nameof(Inquilino.nombre)},{nameof(Inquilino.telefono)},{nameof(Inquilino.email)},{nameof(Inquilino.estado)}
+            var sql = @$"SELECT {nameof(Inquilino.id_inquilino)}, {nameof(Inquilino.dni)},{nameof(Inquilino.apellido)},{nameof(Inquilino.nombre)},{nameof(Inquilino.telefono)},{nameof(Inquilino.email)},{nameof(Inquilino.estado)}
             FROM inquilino";
             using (var command = new MySqlCommand(sql, connection))
             {
@@ -58,7 +58,7 @@ public class RepositorioInquilino
                     {
                         inquilinos.Add(new Inquilino
                         {
-                            id = reader.GetInt32("id"),
+                            id_inquilino = reader.GetInt32("id_inquilino"),
                             dni = reader.GetInt32("dni"),
                             apellido = reader.GetString("apellido"),
                             nombre = reader.GetString("nombre"),
@@ -72,32 +72,38 @@ public class RepositorioInquilino
         }
         return inquilinos;
     }
-   public void guardarInquilino(Inquilino inquilino){
-    
-    using(var conecction = new MySqlConnection(connectionString)){
-        var sql = $"INSERT INTO inquilino (dni, apellido, nombre, telefono, email, estado) VALUES ('{inquilino.dni}','{inquilino.apellido}','{inquilino.nombre}','{inquilino.telefono}','{inquilino.email}','{inquilino.estado}')";
-        using(var command = new MySqlCommand(sql,conecction)){
-            conecction.Open();
-            command.ExecuteNonQuery();
-            conecction.Close();
+    public void guardarInquilino(Inquilino inquilino)
+    {
+
+        using (var conecction = new MySqlConnection(connectionString))
+        {
+            var sql = $"INSERT INTO inquilino (dni, apellido, nombre, telefono, email, estado) VALUES ('{inquilino.dni}','{inquilino.apellido}','{inquilino.nombre}','{inquilino.telefono}','{inquilino.email}','{inquilino.estado}')";
+            using (var command = new MySqlCommand(sql, conecction))
+            {
+                conecction.Open();
+                command.ExecuteNonQuery();
+                conecction.Close();
+            }
         }
-    }}
-    
-    public Inquilino buscarInquilinoPorDni(int dni){
-        
+    }
+
+    public Inquilino buscarInquilinoPorDni(int dni)
+    {
+
         var inquilino = new Inquilino();
-        using(var connection = new MySqlConnection(connectionString)){
-            string sql= $"SELECT * FROM inquilino WHERE dni = '{dni}'";
+        using (var connection = new MySqlConnection(connectionString))
+        {
+            string sql = $"SELECT * FROM inquilino WHERE dni = '{dni}'";
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();
-                 using (var reader = command.ExecuteReader())
+                using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
                         inquilino = new Inquilino
                         {
-                            id = reader.GetInt32("id"),
+                            id_inquilino = reader.GetInt32("id"),
                             dni = reader.GetInt32("dni"),
                             apellido = reader.GetString("apellido"),
                             nombre = reader.GetString("nombre"),
@@ -112,16 +118,16 @@ public class RepositorioInquilino
         }
         return inquilino;
     }
-    
+
     public Inquilino ObtenerInquilinoPorId(int id)
     {
         var inquilino = new Inquilino();
         using (var connection = new MySqlConnection(connectionString))
-        {   
+        {
             connection.Open();
-            var sql = $"SELECT * FROM inquilino WHERE id = '{id}'";
+            var sql = $"SELECT * FROM inquilino WHERE id_inquilino = '{id}'";
             //var sql = "SELECT * FROM inquilino WHERE id = @Id";
-            Console.WriteLine("SQL"+sql);
+            Console.WriteLine("SQL" + sql);
             using (var comando = new MySqlCommand(sql, connection))
             {
                 comando.Parameters.AddWithValue("@Id", id);
@@ -132,7 +138,7 @@ public class RepositorioInquilino
                     {
                         inquilino = (new Inquilino
                         {
-                            id = reader.GetInt32("id"),
+                            id_inquilino = reader.GetInt32("id"),
                             dni = reader.GetInt32("dni"),
                             apellido = reader.GetString("apellido"),
                             nombre = reader.GetString("nombre"),
@@ -143,11 +149,11 @@ public class RepositorioInquilino
                     }
                 }
             }
-            
+
         }
         return inquilino;
     }
-   
+
     public void EditaDatos(Inquilino inquilino)
     {
         using (var connection = new MySqlConnection(connectionString))
@@ -156,7 +162,7 @@ public class RepositorioInquilino
              SET dni = '{inquilino.dni}', apellido = '{inquilino.apellido}', 
                  nombre = '{inquilino.nombre}', telefono = '{inquilino.telefono}', 
                  email = '{inquilino.email}'
-             WHERE id = {inquilino.id}";
+             WHERE id = {inquilino.id_inquilino}";
             using (var comando = new MySqlCommand(sql, connection))
             {
                 connection.Open();
@@ -165,30 +171,31 @@ public class RepositorioInquilino
             }
         }
     }
-    public void elimiarInquilino(Inquilino inquilino){
+    public void elimiarInquilino(Inquilino inquilino)
     {
-        using (var connection = new MySqlConnection(connectionString))
         {
-            var sql = $@"UPDATE inquilino 
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                var sql = $@"UPDATE inquilino 
              SET dni = '{inquilino.dni}', apellido = '{inquilino.apellido}', 
                  nombre = '{inquilino.nombre}', telefono = '{inquilino.telefono}', 
                  email = '{inquilino.email}',
                  estado = '{inquilino.estado}
-             WHERE id = {inquilino.id}";
-            using (var comando = new MySqlCommand(sql, connection))
-            {
-                connection.Open();
-                comando.ExecuteNonQuery();
-                connection.Close();
+             WHERE id = {inquilino.id_inquilino}";
+                using (var comando = new MySqlCommand(sql, connection))
+                {
+                    connection.Open();
+                    comando.ExecuteNonQuery();
+                    connection.Close();
+                }
             }
         }
     }
-    }
-    }
-
-    
+}
 
 
-    
+
+
+
 
 

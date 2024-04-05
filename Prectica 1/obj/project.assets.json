@@ -1786,24 +1786,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bruno\\.nuget\\packages\\": {}
+    "C:\\Users\\MAKY\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bruno\\Desktop\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj",
+      "projectUniqueName": "C:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj",
       "projectName": "Prectica 1",
-      "projectPath": "C:\\Users\\Bruno\\Desktop\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj",
-      "packagesPath": "C:\\Users\\Bruno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bruno\\Desktop\\inmobiliariaBrunoDaniel\\Prectica 1\\obj\\",
+      "projectPath": "C:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj",
+      "packagesPath": "C:\\Users\\MAKY\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Bruno\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\MAKY\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1816,11 +1824,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1851,7 +1854,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

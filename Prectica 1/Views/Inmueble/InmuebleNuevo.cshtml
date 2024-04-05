@@ -3,7 +3,7 @@
     ViewData["Title"] = "Nuevo Inmueble";
 }
 <div class="text-center">
-    <h1 class="display-3">Nuevo Inmueblea</h1>
+    <h1 class="display-3">Nuevo Inmueble</h1>
 </div>
 
 <div class="container">
@@ -73,17 +73,20 @@
                 <span asp-validation-for="estado" class="text-danger"></span>
             </div>
             <div class="form-group">
-    <label asp-for="id_propietario" class="control-label">Propietario</label>
-    <select asp-for="id_propietario" class="form-control">
-        <option value="" disabled selected>Seleccione un propietario</option>
-        @foreach (var propietario in ViewData["Propietario"] as List<Propietario>)
-        {
-            <option value="@propietario.id_propietario">@propietario.apellido @propietario.nombre</option>
-        }
-    </select>
-    <span asp-validation-for="id_propietario" class="text-danger"></span>
-</div>
-            
+                <label asp-for="id_propietario" class="control-label">Propietario</label>
+                <select asp-for="id_propietario" class="form-control">
+                    <option value="" disabled selected>Seleccione un propietario</option>
+                    @if (ViewData["Propietario"] is List<Propietario> propietarios)
+                    {
+                        foreach (var propietario in propietarios)
+                        {
+                            <option value="@propietario.id_propietario">@propietario.apellido @propietario.nombre</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="id_propietario" class="text-danger"></span>
+            </div>
+
             <div class="mt-3">
                 <button type="submit " value="create" class="btn btn-primary btn-sm">Guardar</button>
                 <a href="InmuebleIndex" class="btn btn-primary btn-sm">Cancelar</a>
@@ -91,30 +94,30 @@
         </form>
     </div>
 </div>
-@* 
+@*
 <div class="form-group">
-                <label asp-for="id_propietario" class="control-label">Propietario</label>
-                <div class="input-group">
-                    <input asp-for="id_propietario" class="form-control" readonly />
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" onclick="buscarPropietario()">Buscar</button>
-                    </span>
-                </div>
-                <span asp-validation-for="id_propietario" class="text-danger"></span>
-            </div>
+<label asp-for="id_propietario" class="control-label">Propietario</label>
+<div class="input-group">
+<input asp-for="id_propietario" class="form-control" readonly />
+<span class="input-group-btn">
+<button class="btn btn-default" type="button" onclick="buscarPropietario()">Buscar</button>
+</span>
+</div>
+<span asp-validation-for="id_propietario" class="text-danger"></span>
+</div>
 
 <script>
-    function buscarPropietario() {
-        // Abre la ventana emergente
-        var ventana = window.open('@Url.Action("PropietarioMuestra", "Propietario")', '_blank', 'width=1000,height=600');
+function buscarPropietario() {
+// Abre la ventana emergente
+var ventana = window.open('@Url.Action("PropietarioMuestra", "Propietario")', '_blank', 'width=1000,height=600');
 
-        // Define una función que se ejecutará cuando se seleccione un propietario en la ventana emergente
-        ventana.seleccionarPropietario = function (idPropietario, nombrePropietario) {
+// Define una función que se ejecutará cuando se seleccione un propietario en la ventana emergente
+ventana.seleccionarPropietario = function (idPropietario, nombrePropietario) {
 
-            // Establece el valor seleccionado en el campo id_propietario en la ventana principal
-            document.getElementById("id_propietario").value = idPropietario;
-            // Cierra la ventana emergente
-            ventana.close();
-        };
-    }
+// Establece el valor seleccionado en el campo id_propietario en la ventana principal
+document.getElementById("id_propietario").value = idPropietario;
+// Cierra la ventana emergente
+ventana.close();
+};
+}
 </script> *@

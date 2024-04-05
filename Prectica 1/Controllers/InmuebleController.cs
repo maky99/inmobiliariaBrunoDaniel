@@ -33,7 +33,7 @@ public class InmuebleController : Controller
 
     public IActionResult AltaNuevoInmueble(Inmueble inmueble)
     {
-        	
+
         RepositorioInmueble ri = new RepositorioInmueble();
         ri.GuardarInmueble(inmueble);
         return RedirectToAction(nameof(InmuebleIndex));
@@ -44,6 +44,10 @@ public class InmuebleController : Controller
     {
         RepositorioInmueble ri = new RepositorioInmueble();
         var inmueble = ri.ObtenerInmueblePorId(numero);
+        RepositorioPropietario rp = new RepositorioPropietario();
+        var propietarios = rp.PropietarioMuestra(); // Cambia esto según cómo obtengas la lista de propietarios en tu aplicación
+
+        ViewData["propietario"] = propietarios;
 
         return View(inmueble);
     }

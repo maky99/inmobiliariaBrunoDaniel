@@ -138,7 +138,7 @@ public class RepositorioInquilino
                     {
                         inquilino = (new Inquilino
                         {
-                            id_inquilino = reader.GetInt32("id"),
+                            id_inquilino = reader.GetInt32("id_inquilino"),
                             dni = reader.GetInt32("dni"),
                             apellido = reader.GetString("apellido"),
                             nombre = reader.GetString("nombre"),

@@ -1,19 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "C:\\Users\\Bruno\\Desktop\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\Bruno\\Desktop\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Bruno\\Desktop\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj",
-        "projectName": "Prectica 1",
-        "projectPath": "C:\\Users\\Bruno\\Desktop\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj",
-        "packagesPath": "C:\\Users\\Bruno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruno\\Desktop\\inmobiliariaBrunoDaniel\\Prectica 1\\obj\\",
-=======
     "D:\\GitHubDiscoMaky\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj": {}
   },
   "projects": {
@@ -25,25 +12,20 @@
         "projectPath": "D:\\GitHubDiscoMaky\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj",
         "packagesPath": "C:\\Users\\Equipo\\.nuget\\packages\\",
         "outputPath": "D:\\GitHubDiscoMaky\\inmobiliariaBrunoDaniel\\Prectica 1\\obj\\",
->>>>>>> acf08ba5473e06a352a7296a2c78a9acba0f45f1
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-<<<<<<< HEAD
-          "C:\\Users\\Bruno\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
           "C:\\Users\\Equipo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> acf08ba5473e06a352a7296a2c78a9acba0f45f1
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-<<<<<<< HEAD
-=======
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
->>>>>>> acf08ba5473e06a352a7296a2c78a9acba0f45f1
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

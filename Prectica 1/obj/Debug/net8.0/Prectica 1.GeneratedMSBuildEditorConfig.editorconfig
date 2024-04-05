@@ -9,138 +9,12 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Prectica_1
 build_property.RootNamespace = Prectica_1
-<<<<<<< HEAD
-build_property.ProjectDir = C:\Users\Bruno\Desktop\inmobiliariaBrunoDaniel\Prectica 1\
-=======
 build_property.ProjectDir = D:\GitHubDiscoMaky\inmobiliariaBrunoDaniel\Prectica 1\
->>>>>>> acf08ba5473e06a352a7296a2c78a9acba0f45f1
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-<<<<<<< HEAD
-build_property.MSBuildProjectDirectory = C:\Users\Bruno\Desktop\inmobiliariaBrunoDaniel\Prectica 1
-build_property._RazorSourceGeneratorDebug = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Contrato/ContratoIndex.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9cQ29udHJhdG9JbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Home/PpropietarioView.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcHJvcGlldGFyaW9WaWV3LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Inmueble/InmuebleEditar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVcSW5tdWVibGVFZGl0YXIuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Inmueble/InmuebleIndex.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVcSW5tdWVibGVJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Inmueble/InmuebleNuevo.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVcSW5tdWVibGVOdWV2by5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Inquilino/agregar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXGFncmVnYXIuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Inquilino/buscar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXGJ1c2Nhci5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Inquilino/EditarInquilino.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXEVkaXRhcklucXVpbGluby5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Inquilino/Eliminar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXEVsaW1pbmFyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Inquilino/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Persona/BuscaNuevaPersona.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYVxCdXNjYU51ZXZhUGVyc29uYS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Persona/Editar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYVxFZGl0YXIuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Persona/EditarPersona.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYVxFZGl0YXJQZXJzb25hLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Persona/EliminaPersona.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYVxFbGltaW5hUGVyc29uYS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Persona/NuevaPersona.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYVxOdWV2YVBlcnNvbmEuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Persona/PersonaIndex.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYVxQZXJzb25hSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Propietario/BuscaNuevaPropietario.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9cQnVzY2FOdWV2YVByb3BpZXRhcmlvLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Propietario/EditarPropietario.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9cRWRpdGFyUHJvcGlldGFyaW8uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Propietario/EditarPropietario2.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9cRWRpdGFyUHJvcGlldGFyaW8yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Propietario/EliminaPropietario.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9cRWxpbWluYVByb3BpZXRhcmlvLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Propietario/NuevaPropietario.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9cTnVldmFQcm9waWV0YXJpby5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Propietario/PropietarioIndex.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9cUHJvcGlldGFyaW9JbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Propietario/PropietarioMuestra.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9cUHJvcGlldGFyaW9NdWVzdHJhLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Shared/_Layout.cshtml]
-=======
 build_property.MSBuildProjectDirectory = D:\GitHubDiscoMaky\inmobiliariaBrunoDaniel\Prectica 1
 build_property._RazorSourceGeneratorDebug = 
 
@@ -170,6 +44,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/GitHubDiscoMaky/inmobiliariaBrunoDaniel/Prectica 1/Views/Inmueble/InmuebleNuevo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVcSW5tdWVibGVOdWV2by5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHubDiscoMaky/inmobiliariaBrunoDaniel/Prectica 1/Views/Inquilino/agregar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXGFncmVnYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHubDiscoMaky/inmobiliariaBrunoDaniel/Prectica 1/Views/Inquilino/buscar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXGJ1c2Nhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHubDiscoMaky/inmobiliariaBrunoDaniel/Prectica 1/Views/Inquilino/EditarInquilino.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXEVkaXRhcklucXVpbGluby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHubDiscoMaky/inmobiliariaBrunoDaniel/Prectica 1/Views/Inquilino/Eliminar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXEVsaW1pbmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHubDiscoMaky/inmobiliariaBrunoDaniel/Prectica 1/Views/Inquilino/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/GitHubDiscoMaky/inmobiliariaBrunoDaniel/Prectica 1/Views/Persona/BuscaNuevaPersona.cshtml]
@@ -241,6 +135,5 @@ build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/GitHubDiscoMaky/inmobiliariaBrunoDaniel/Prectica 1/Views/Shared/_Layout.cshtml]
->>>>>>> acf08ba5473e06a352a7296a2c78a9acba0f45f1
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-0lmmludm0x

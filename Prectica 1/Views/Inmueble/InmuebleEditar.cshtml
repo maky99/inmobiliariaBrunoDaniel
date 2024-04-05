@@ -73,6 +73,18 @@
                 </select>
                 <span asp-validation-for="estado" class="text-danger"></span>
             </div>
+            @* <div class="form-group">
+                <label asp-for="dueno" class="control-label">Dueño</label>
+                <select asp-for="dueno" class="form-control">
+                    <option value="" disabled selected>Seleccione al dueño</option>
+                    @foreach (var propietario in Model.) // Suponiendo que tienes una lista de
+                        propietarios en el modelo
+                    {
+                    <option value="@propietario.id_propietario">@propietario.apellido @propietario.nombre</option>
+                    }
+                </select>
+                <span asp-validation-for="dueno" class="text-danger"></span>
+            </div> *@
             <div class="form-group">
                 <label class="control-label">Dueño</label>
                 <label class="form-control">@Model.dueno?.apellido @Model.dueno?.nombre</label>

@@ -23,7 +23,8 @@ public class InmuebleController : Controller
         return View(lista);
     }
     public IActionResult InmuebleNuevo()
-    {RepositorioPropietario rp = new RepositorioPropietario();
+    {
+        RepositorioPropietario rp = new RepositorioPropietario();
         var lisPro = rp.PropietarioMuestra();
         ViewData["propietario"] = lisPro;
 

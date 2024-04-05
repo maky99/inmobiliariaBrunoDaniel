@@ -87,38 +87,56 @@ public class RepositorioInquilino
         }
     }
 
-    public Inquilino buscarInquilinoPorDni(int dni)
+public Inquilino BuscaNuevoInquilinoPorDNI(int dni)
     {
-
         var inquilino = new Inquilino();
         using (var connection = new MySqlConnection(connectionString))
         {
-            string sql = $"SELECT * FROM inquilino WHERE dni = '{dni}'";
-            using (var command = new MySqlCommand(sql, connection))
+            connection.Open();
+            var sql = "SELECT * FROM inquilino WHERE dni = @dni";
+
+            //pregunto si la consulta no vuelve vacia 
+            if (!string.IsNullOrWhiteSpace(sql))
             {
-                connection.Open();
-                using (var reader = command.ExecuteReader())
+                using (var comando = new MySqlCommand(sql, connection))
                 {
-                    if (reader.Read())
+                    comando.Parameters.AddWithValue("@dni", dni);
+
+                    using (var reader = comando.ExecuteReader())
                     {
-                        inquilino = new Inquilino
+                        if (reader.Read())
                         {
-                            id_inquilino = reader.GetInt32("id"),
-                            dni = reader.GetInt32("dni"),
-                            apellido = reader.GetString("apellido"),
-                            nombre = reader.GetString("nombre"),
-                            telefono = reader.GetInt32("telefono"),
-                            email = reader.GetString("email"),
-                            estado = reader.GetInt32("estado")
-                        };
+                            inquilino = (new Inquilino
+                            {
+                                id_inquilino = reader.GetInt32("id_inquilino"),
+                                dni = reader.GetInt32("dni"),
+                                apellido = reader.GetString("apellido"),
+                                nombre = reader.GetString("nombre"),
+                                telefono = reader.GetInt32("telefono"),
+                                email = reader.GetString("email"),
+                                estado = reader.GetInt32("estado")
+                            });
+                        }
+                        else
+                        {
+                            inquilino = (new Inquilino
+                            {
+                                id_inquilino = 0,
+                                dni = 99,
+                                apellido = "apellido",
+                                nombre = "nombre",
+                                telefono = 99,
+                                email = "email",
+                                estado = 0
+                            });
+                        }
+
                     }
                 }
-
             }
         }
         return inquilino;
     }
-
     public Inquilino ObtenerInquilinoPorId(int id)
     {
         var inquilino = new Inquilino();
@@ -162,7 +180,7 @@ public class RepositorioInquilino
              SET dni = '{inquilino.dni}', apellido = '{inquilino.apellido}', 
                  nombre = '{inquilino.nombre}', telefono = '{inquilino.telefono}', 
                  email = '{inquilino.email}'
-             WHERE id = {inquilino.id_inquilino}";
+             WHERE id_inquilino = {inquilino.id_inquilino}";
             using (var comando = new MySqlCommand(sql, connection))
             {
                 connection.Open();
@@ -181,7 +199,7 @@ public class RepositorioInquilino
                  nombre = '{inquilino.nombre}', telefono = '{inquilino.telefono}', 
                  email = '{inquilino.email}',
                  estado = '{inquilino.estado}
-             WHERE id = {inquilino.id_inquilino}";
+             WHERE id_inquilino = {inquilino.id_inquilino}";
                 using (var comando = new MySqlCommand(sql, connection))
                 {
                     connection.Open();

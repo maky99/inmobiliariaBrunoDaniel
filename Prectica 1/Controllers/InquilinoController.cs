@@ -29,6 +29,13 @@ public class InquilinoController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+ public IActionResult EditarInquilino2(int numero)
+    {
+        RepositorioInquilino ri = new RepositorioInquilino();
+        var inquilino= ri.ObtenerInquilinoPorId;
+
+        return View(inquilino);
+    }
 
     public IActionResult EditarInquilino(int numero){
         RepositorioInquilino rp = new RepositorioInquilino();
@@ -52,8 +59,23 @@ public class InquilinoController : Controller
 
     public IActionResult buscarDNI(int dni){
         RepositorioInquilino ri =  new RepositorioInquilino();
-        ri.buscarInquilinoPorDni(dni);
-        return RedirectToAction(nameof(Index));
+        var inquilino = ri.BuscaNuevoInquilinoPorDNI(dni);
+        
+        if (inquilino.dni == 99)
+        {
+            return RedirectToAction(nameof(NuevoInquilino));
+        }
+        else
+        {
+            if (inquilino.estado == 1)
+            {
+                return RedirectToAction(nameof(EditarInquilino), new { numero = inquilino.id_inquilino });
+            }
+            else
+            {
+                return RedirectToAction(nameof(EditarInquilino2), new { numero = inquilino.id_inquilino });
+            }
+        }
     }
 
 
@@ -72,7 +94,9 @@ public class InquilinoController : Controller
     } 
 
     
-
+    public IActionResult NuevoInquilino(){
+        return View();
+    }
 
 
 

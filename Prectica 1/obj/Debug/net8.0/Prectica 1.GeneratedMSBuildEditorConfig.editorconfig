@@ -58,12 +58,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXEVkaXRhcklucXVpbGluby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Inquilino/editarInquilino2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXGVkaXRhcklucXVpbGlubzIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Inquilino/Eliminar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXEVsaW1pbmFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Inquilino/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Inquilino/NuevoInquilino.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vXE51ZXZvSW5xdWlsaW5vLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Bruno/Desktop/inmobiliariaBrunoDaniel/Prectica 1/Views/Persona/BuscaNuevaPersona.cshtml]

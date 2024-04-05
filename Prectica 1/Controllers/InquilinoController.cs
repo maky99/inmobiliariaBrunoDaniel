@@ -81,10 +81,10 @@ public class InquilinoController : Controller
 
 
 
-    public  IActionResult Eliminar(int id){
+    public IActionResult EliminarInquilino(int numero){
         RepositorioInquilino ri = new RepositorioInquilino();
-        var inquilino = ri.ObtenerInquilinoPorId(id);
-        return  View(inquilino);
+        var inquilino = ri.ObtenerInquilinoPorId(numero);
+        return View(inquilino);
     }    
 
     public IActionResult bajaDeInquilino(Inquilino inquilino){

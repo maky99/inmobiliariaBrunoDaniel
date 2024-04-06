@@ -51,8 +51,26 @@ public class RepositorioPropietario
         }
         return propietario;
     }
+public void GuardarPropietario(Propietario propietario)
+{
+    using (var connection = new MySqlConnection(ConnectionString))
+    {
+        var sql = $"INSERT INTO propietario(dni,apellido,nombre,telefono,email,estado) VALUES  (@Dni,@Apellido,@Nombre,@Telefono,@Email,@Estado)";
+        using (var command = new MySqlCommand(sql, connection))
+        {
+            command.Parameters.AddWithValue("@Dni", propietario.dni);
+            command.Parameters.AddWithValue("@Apellido", propietario.apellido);
+            command.Parameters.AddWithValue("@Nombre", propietario.nombre);
+            command.Parameters.AddWithValue("@Telefono", propietario.telefono);
+            command.Parameters.AddWithValue("@Email", propietario.email);
+            command.Parameters.AddWithValue("@Estado", propietario.estado);
 
-    public void GuardarPropietario(Propietario propietario)
+            connection.Open();
+            command.ExecuteNonQuery();
+        }
+    }
+}
+    public void sdf(Propietario propietario)
     {
         using (var connection = new MySqlConnection(ConnectionString))
         {

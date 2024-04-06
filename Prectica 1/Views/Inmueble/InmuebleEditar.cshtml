@@ -44,9 +44,9 @@
                 <span asp-validation-for="tipoDeUso" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ubicacion" class="control-label">ubicacion</label>
-                <input asp-for="ubicacion" class="form-control" />
-                <span asp-validation-for="ubicacion" class="text-danger"></span>
+                <label asp-for="direccion" class="control-label">Direccion</label>
+                <input asp-for="direccion" class="form-control" />
+                <span asp-validation-for="direccion" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="condicion" class="control-label">condicion</label>
@@ -67,9 +67,9 @@
                 <label asp-for="estado" class="control-label">ESTADO</label>
                 <select asp-for="estado" class="form-control">
                     <option value="" disabled selected>Seleccione una opción</option>
-                    <option value="0">Alquila</option>
-                    <option value="1">Vende</option>
-                    <option value="2">Venta / Alquila</option>
+                     <option value="0">Libre</option>
+                    <option value="1">Alquilado</option>
+                    <option value="2">No Disponible</option>
                 </select>
                 <span asp-validation-for="estado" class="text-danger"></span>
             </div>

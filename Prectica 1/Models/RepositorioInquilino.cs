@@ -87,7 +87,7 @@ public class RepositorioInquilino
         }
     }
 
-public Inquilino BuscaNuevoInquilinoPorDNI(int dni)
+    public Inquilino BuscaNuevoInquilinoPorDNI(int dni)
     {
         var inquilino = new Inquilino();
         using (var connection = new MySqlConnection(connectionString))
@@ -209,6 +209,39 @@ public Inquilino BuscaNuevoInquilinoPorDNI(int dni)
             }
         }
     }
+    public IList<Inquilino> InquilinosAptos()
+    {
+        var inquilinos = new List<Inquilino>();
+        using (var connection = new MySqlConnection(connectionString))
+        {
+            var sql = @$"SELECT {nameof(Inquilino.id_inquilino)}, {nameof(Inquilino.dni)}, {nameof(Inquilino.apellido)}, {nameof(Inquilino.nombre)}, {nameof(Inquilino.telefono)}, {nameof(Inquilino.email)}, {nameof(Inquilino.estado)}
+            FROM inquilino
+            WHERE {nameof(Inquilino.estado)} = 0
+            ORDER BY {nameof(Inquilino.apellido)}"; // 0=Activo
+            using (var command = new MySqlCommand(sql, connection))
+            {
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        inquilinos.Add(new Inquilino
+                        {
+                            id_inquilino = reader.GetInt32("id_inquilino"),
+                            dni = reader.GetInt32("dni"),
+                            apellido = reader.GetString("apellido"),
+                            nombre = reader.GetString("nombre"),
+                            telefono = reader.GetInt32("telefono"),
+                            email = reader.GetString("email"),
+                            estado = reader.GetInt32("estado")
+                        });
+                    }
+                }
+            }
+        }
+        return inquilinos;
+    }
+
 }
 
 

@@ -36,15 +36,22 @@
                     <td>@item.telefono</td>
                     <td>@item.email</td>
                     <td>
-                        @if (item.estado == 1)
+                        @switch (item.estado)
                         {
-                            <span>Activo</span>
+                            case 0:
+                                <span>Inactivo</span>
+                                break;
+                            case 1:
+                                <span>Activo</span>
+                                break;
+                            case 2:
+                                <span>Moroso</span>
+                                break;
+                            case 3:
+                                <span>Desalojado</span>
+                                break;
                         }
-                        else
-                        {
-                            <span>Inactivo</span>
-                        }
-                        @*@item.estado</td>*@
+                    </td>
                     <td>
                         <!-- Enlace para editar -->
                         <a href="Inquilino/EditarInquilino?numero=@item.id_inquilino" class="btn btn-primary">

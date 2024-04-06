@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Lista de Inmuebles";
 }
-
 </div>
 <div class="text-center">
     <h1 class="display-3">Inmueble</h1>
@@ -43,13 +42,13 @@
                             @switch (item.estado)
                             {
                                 case 0:
-                                    <span>Alquila</span>
+                                    <span>Libre</span>
                                     break;
                                 case 1:
-                                    <span>Venta</span>
+                                    <span>Alquilado</span>
                                     break;
                                 case 2:
-                                    <span>Venta / Alquila</span>
+                                    <span>No Disponible</span>
                                     break;
                             }
                         </td>

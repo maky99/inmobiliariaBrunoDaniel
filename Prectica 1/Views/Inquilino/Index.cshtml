@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Inquilino>
 @{
-    ViewData["Title"] = "Página Principal";
+    ViewData["Title"] = "Lista de Inquilinos";
 }
 
 <div class="text-center">
     <h1 class="display-3">Inquilino</h1>
-    <div>
+    <div class="mb-3">
         <a asp-action="Buscar" class="btn btn-success">Nuevo Registro</a>
     </div>
-    <div>
+    <div class="mb-3">
         <!-- Campo de búsqueda -->
         <input type="text" id="inputBusqueda" placeholder="Buscar..." onkeyup="filtrarTabla()">
     </div>

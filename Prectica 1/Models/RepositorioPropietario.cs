@@ -70,21 +70,7 @@ public void GuardarPropietario(Propietario propietario)
         }
     }
 }
-    public void sdf(Propietario propietario)
-    {
-        using (var connection = new MySqlConnection(ConnectionString))
-        {
-            var sql = $"INSERT INTO propietario(dni,apellido,nombre,telefono,email,estado) VALUES  ('{propietario.dni}','{propietario.apellido}','{propietario.nombre}','{propietario.telefono}','{propietario.email}','{propietario.estado}')";
-            using (var command = new MySqlCommand(sql, connection))
-            {
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-        }
-    }
-
-    public Propietario ObtenerPropietarioPorId(int id)
+       public Propietario ObtenerPropietarioPorId(int id)
     {
         var prop = new Propietario();
         using (var connection = new MySqlConnection(ConnectionString))

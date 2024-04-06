@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-04-2024 a las 17:47:36
+-- Tiempo de generación: 06-04-2024 a las 14:50:26
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -57,17 +57,6 @@ CREATE TABLE `inmueble` (
   `id_propietario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `inmueble`
---
-
-INSERT INTO `inmueble` (`id_inmueble`, `tipoDebien`, `tipoDeUso`, `ubicacion`, `condicion`, `costo`, `detalle`, `estado`, `id_propietario`) VALUES
-(24, 'Edificio', 'Comercial', 'centro', 'buena', 20000, 'con baño', 1, 10),
-(25, 'Mina', 'Hotelero/Turístico', 'La Carolina', 'Regular', 800000, 'minas antiguas ', 0, 5),
-(34, 'Terreno', 'Residencial', 'La Carolina', 'Buena', 500000, 'sin cerrar', 0, 1),
-(35, 'Terreno', 'Industrial', 'La florida', 'Regular', 55555000, 'sin luz', 0, 1),
-(36, 'Terreno', 'Comercial', 'San Luis', 'Buena', 400000, 'calle asfaltada', 0, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -117,11 +106,11 @@ CREATE TABLE `pago` (
 CREATE TABLE `propietario` (
   `id_propietario` int(11) NOT NULL,
   `dni` int(11) DEFAULT NULL,
-  `apellido` varchar(50) DEFAULT NULL,
-  `nombre` varchar(50) DEFAULT NULL,
-  `telefono` varchar(20) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `estado` int(20) DEFAULT NULL
+  `apellido` varchar(255) DEFAULT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `telefono` int(11) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -129,16 +118,21 @@ CREATE TABLE `propietario` (
 --
 
 INSERT INTO `propietario` (`id_propietario`, `dni`, `apellido`, `nombre`, `telefono`, `email`, `estado`) VALUES
-(1, 12345678, 'García', 'Juan', '5551234', 'juan.garcia@example.com', 1),
-(2, 23456789, 'Martínez', 'María', '5555678', 'maria.martinez@example.com', 0),
-(3, 34567890, 'López', 'José', '5559012', 'jose.lopez@example.com', 0),
-(4, 45678901, 'Rodríguez', 'Ana', '5553456', 'ana.rodriguez@example.com', 0),
-(5, 56789012, 'Pérez', 'Luis', '5556789', 'luis.perez@example.com', 0),
-(6, 67890123, 'Sánchez', 'Laura', '5557890', 'laura.sanchez@example.com', 0),
-(7, 78901234, 'González', 'Carlos', '5552345', 'carlos.gonzalez@example.com', 0),
-(8, 89012345, 'Fernández', 'Martín', '5554567', 'martin.fernandez@example.com', 0),
-(9, 90123456, 'Gómez', 'Paula', '5556789', 'paula.gomez@example.com', 0),
-(10, 1234567, 'Díaz', 'Sofía', '5558901', 'sofia.diaz@example.com', 1);
+(1, 76789870, 'Pig', 'Pepa', 13326, 'pepa@mala.com', 0),
+(12, 12345678, 'López', 'Juan', 11223344, 'juan.lopez@example.com', 1),
+(13, 23456789, 'Martínez', 'María', 22334455, 'maria.martinez@example.com', 1),
+(14, 34567890, 'García', 'Carlos', 33445566, 'carlos.garcia@example.com', 1),
+(15, 45678901, 'Rodríguez', 'Laura', 44556677, 'laura.rodriguez@example.com', 1),
+(16, 56789012, 'González', 'Pedro', 55667788, 'pedro.gonzalez@example.com', 1),
+(17, 67890123, 'Sánchez', 'Ana', 66778899, 'ana.sanchez@example.com', 1),
+(18, 78901234, 'Pérez', 'Luis', 77889900, 'luis.perez@example.com', 1),
+(19, 89012345, 'Gómez', 'Marta', 88990011, 'marta.gomez@example.com', 1),
+(20, 90123456, 'Martín', 'David', 99001122, 'david.martin@example.com', 1),
+(21, 1234567, 'Fernández', 'Julia', 11223344, 'julia.fernandez@example.com', 1),
+(22, 76789870, 'Pig', 'Pepa', 9899654, 'pepa@mala.com', 0),
+(23, 1234423, 'Pig', 'Jeorch', 8888888, 'jor@pepa.com', 0),
+(24, 34543, 'Alfonzo', 'Daniel', 543345, 'asapo@gmail.com', 0),
+(25, 76789870, 'Alfonzo', 'Daniel', 3453, 'asapo@gmail.com', 0);
 
 --
 -- Índices para tablas volcadas
@@ -207,6 +201,12 @@ ALTER TABLE `pago`
   MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `propietario`
+--
+ALTER TABLE `propietario`
+  MODIFY `id_propietario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -221,7 +221,7 @@ ALTER TABLE `contrato`
 -- Filtros para la tabla `inmueble`
 --
 ALTER TABLE `inmueble`
-  ADD CONSTRAINT `inmueble_ibfk_1` FOREIGN KEY (`id_propietario`) REFERENCES `propietario` (`id_propietario`);
+  ADD CONSTRAINT `inmueble_ibfk_1` FOREIGN KEY (`id_propietario`) REFERENCES `propietario` (`id_propietario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pago`

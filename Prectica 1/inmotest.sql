@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-04-2024 a las 14:50:26
+-- Tiempo de generación: 06-04-2024 a las 16:23:48
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -30,11 +30,13 @@ SET time_zone = "+00:00";
 CREATE TABLE `contrato` (
   `id_contrato` int(11) NOT NULL,
   `desde` date NOT NULL,
+  `meses` int(20) NOT NULL,
   `hasta` date NOT NULL,
   `detalle` varchar(50) NOT NULL,
   `finalizacionAnticipada` date NOT NULL,
   `monto` double NOT NULL,
   `multa` double NOT NULL,
+  `estado` int(20) NOT NULL,
   `id_inquilino` int(11) NOT NULL,
   `id_inmueble` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -92,8 +94,10 @@ INSERT INTO `inquilino` (`id_inquilino`, `dni`, `apellido`, `nombre`, `telefono`
 
 CREATE TABLE `pago` (
   `id_pago` int(11) NOT NULL,
+  `concepto` varchar(255) NOT NULL,
   `importe` double NOT NULL,
   `fecha` date NOT NULL,
+  `estado` int(20) NOT NULL,
   `id_contrato` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

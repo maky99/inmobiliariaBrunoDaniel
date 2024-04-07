@@ -4,7 +4,7 @@
 <div class="text-center">
     <h1 class="display-3">Contratos</h1>
  <div class="mb-3">
-        <a asp-action="NuevoContrato" class="btn btn-success">Nuevo Registro</a>
+        <a asp-action="ContratoNuevo" class="btn btn-success">Nuevo Contrato</a>
     </div>
  <div class="mb-3">
         <!-- Campo de búsqueda -->
@@ -25,54 +25,46 @@
         </thead>
 
         <tbody>
-            @if (Model != null)
-{
             @foreach (var item in Model)
             {
-                    <tr>
-                        <td>@item.inquilino?.apellido</td>
-                       <td>@item.inmueble.dueno?.apellido</td>
-                        <td>
+                            <tr>
+                                <td>@item.inquilino?.apellido</td>
+                               <td>@item.inmueble.dueno?.apellido</td>
+                                <td>
                         @if (item.estado == 0)
                         {
-                                    <span>Inactivo</span>
+                                                     <span>Vigente</span>
                         }
                         else if (item.estado == 1)
                         {
-                                    <span>Activo</span>
+                                                     <span>Renovado</span>
                         }
                         else if (item.estado == 2)
                         {
-                                    <span>Moroso</span>
+                                                    <span>algo</span>
                         }
                         else if (item.estado == 3)
                         {
-                                    <span>Desalojado</span>
+                                                    <span>Desalojado</span>
                         }
-                        </td>
-                        <td>@item.desde</td>
-                        <td>@item.hasta</td>
-                        <td>@item.meses</td>
-                        <td>@item.monto</td>
-                        <td>
-                            <!-- Enlace para editar -->
-                            <a href="#" class="btn btn-primary">
-                                <i class="fa-solid fa-pen-to-square"></i> Editar
-                            </a>
-                            <!-- Enlace para eliminar -->
-                            <a href="#" class="btn btn-danger">
-                                <i class="fa-solid fa-trash"></i> Eliminar
-                            </a>
-                        </td>
-                    </tr>
+                                </td>
+                                <td>@item.desde</td>
+                                <td>@item.hasta</td>
+                                <td>@item.meses</td>
+                                <td>@item.monto</td>
+                                <td>
+                                    <!-- Enlace para editar -->
+                                    <a href="#" class="btn btn-primary">
+                                        <i class="fa-solid fa-pen-to-square"></i> Editar
+                                    </a>
+                                    <!-- Enlace para eliminar -->
+                                    <a href="#" class="btn btn-danger">
+                                        <i class="fa-solid fa-trash"></i> Eliminar
+                                    </a>
+                                </td>                     
+
+                            </tr>
             }
-            }
-            else
-{
-    <tr>
-        <td colspan="8">No hay datos disponibles</td>
-    </tr>
-}
         </tbody>
     </table>
 </div>

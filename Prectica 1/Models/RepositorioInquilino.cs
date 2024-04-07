@@ -216,8 +216,8 @@ public class RepositorioInquilino
         {
             var sql = @$"SELECT {nameof(Inquilino.id_inquilino)}, {nameof(Inquilino.dni)}, {nameof(Inquilino.apellido)}, {nameof(Inquilino.nombre)}, {nameof(Inquilino.telefono)}, {nameof(Inquilino.email)}, {nameof(Inquilino.estado)}
             FROM inquilino
-            WHERE {nameof(Inquilino.estado)} = 0
-            ORDER BY {nameof(Inquilino.apellido)}"; // 0=Activo
+            WHERE {nameof(Inquilino.estado)} = 1
+            ORDER BY {nameof(Inquilino.apellido)}"; // 1=Activo
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();

@@ -68,17 +68,6 @@ public List<Contrato> GetContratos()
     return contratos;
 }
 
-
-
-
-
-
-
-
-
-
-
-
     public void GuardarContrato(Contrato contrato)
     {
         using (var connection = new MySqlConnection(ConnectionString))

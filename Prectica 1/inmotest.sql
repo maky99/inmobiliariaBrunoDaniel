@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-04-2024 a las 16:23:48
+-- Tiempo de generación: 08-04-2024 a las 23:50:59
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -33,13 +33,20 @@ CREATE TABLE `contrato` (
   `meses` int(20) NOT NULL,
   `hasta` date NOT NULL,
   `detalle` varchar(50) NOT NULL,
-  `finalizacionAnticipada` date NOT NULL,
+  `finalizacionAnticipada` date DEFAULT NULL,
   `monto` double NOT NULL,
-  `multa` double NOT NULL,
+  `multa` double DEFAULT NULL,
   `estado` int(20) NOT NULL,
   `id_inquilino` int(11) NOT NULL,
   `id_inmueble` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `contrato`
+--
+
+INSERT INTO `contrato` (`id_contrato`, `desde`, `meses`, `hasta`, `detalle`, `finalizacionAnticipada`, `monto`, `multa`, `estado`, `id_inquilino`, `id_inmueble`) VALUES
+(6, '2024-04-07', 2, '2024-06-06', 'Terreno aptoj', NULL, 21, NULL, 0, 11, 37);
 
 -- --------------------------------------------------------
 
@@ -51,13 +58,35 @@ CREATE TABLE `inmueble` (
   `id_inmueble` int(11) NOT NULL,
   `tipoDebien` varchar(50) NOT NULL,
   `tipoDeUso` varchar(50) NOT NULL,
-  `ubicacion` varchar(100) NOT NULL,
+  `direccion` varchar(100) NOT NULL,
   `condicion` varchar(50) NOT NULL,
   `costo` double NOT NULL,
   `detalle` text NOT NULL,
   `estado` int(11) NOT NULL,
   `id_propietario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `inmueble`
+--
+
+INSERT INTO `inmueble` (`id_inmueble`, `tipoDebien`, `tipoDeUso`, `direccion`, `condicion`, `costo`, `detalle`, `estado`, `id_propietario`) VALUES
+(37, 'Terreno', 'Residencial', 'La Carolina', 'Regular', 800000, 'sin cerrar', 0, 17),
+(38, 'Terreno', 'Educativo', 'San Luis', 'Buena', 500000, 'Terreno aptoj', 1, 20),
+(39, 'Casa', 'Residencial', 'Calle Principal 123', 'Buena', 150000, 'Casa de dos pisos con jardín', 1, 12),
+(40, 'Apartamento', 'Residencial', 'Avenida Central 456', 'Excelente', 120000, 'Apartamento de un dormitorio con balcón', 0, 13),
+(41, 'Terreno', 'Comercial', 'Avenida Comercial 789', 'Regular', 80000, 'Terreno plano de 500m²', 0, 14),
+(42, 'Local comercial', 'Comercial', 'Plaza Principal', 'Excelente', 200000, 'Local amplio en zona comercial', 2, 15),
+(43, 'Oficina', 'Comercial', 'Centro Empresarial 101', 'Buena', 100000, 'Oficina con vista panorámica', 0, 16),
+(44, 'Casa', 'Residencial', 'Calle Secundaria 234', 'Regular', 90000, 'Casa con patio trasero', 2, 17),
+(45, 'Apartamento', 'Residencial', 'Avenida Principal 567', 'Buena', 110000, 'Apartamento de dos dormitorios con piscina', 0, 18),
+(46, 'Terreno', 'Residencial', 'Avenida Residencial 890', 'Excelente', 180000, 'Terreno con vista al mar', 1, 19),
+(47, 'Local comercial', 'Comercial', 'Centro Comercial', 'Regular', 50000, 'Local pequeño en planta baja', 1, 20),
+(48, 'Oficina', 'Comercial', 'Torre Empresarial', 'Buena', 80000, 'Oficina en piso alto con vista', 1, 21),
+(49, 'Casa', 'Residencial', 'Calle Tranquila 345', 'Regular', 95000, 'Casa con jardín y garaje', 0, 22),
+(50, 'Apartamento', 'Residencial', 'Calle Privada 678', 'Excelente', 130000, 'Apartamento con terraza y piscina comunitaria', 1, 23),
+(51, 'Terreno', 'Residencial', 'Avenida Tranquila 901', 'Buena', 75000, 'Terreno con arboles frutales', 0, 24),
+(52, 'Local comercial', 'Comercial', 'Calle Comercial', 'Regular', 60000, 'Local en esquina con buena visibilidad', 0, 25);
 
 -- --------------------------------------------------------
 
@@ -80,11 +109,7 @@ CREATE TABLE `inquilino` (
 --
 
 INSERT INTO `inquilino` (`id_inquilino`, `dni`, `apellido`, `nombre`, `telefono`, `email`, `estado`) VALUES
-(1, 12345678, 'García', 'Juan', 555123456, 'juan.garcia@example.com', 1),
-(2, 23456789, 'Martínez', 'María', 555234567, 'maria.martinez@example.com', 0),
-(3, 34567890, 'López', 'José', 555345678, 'jose.lopez@example.com', 1),
-(4, 45678901, 'Rodríguez', 'Ana', 555456789, 'ana.rodriguez@example.com', 0),
-(5, 56789012, 'Pérez', 'Luis', 555567890, 'luis.perez@example.com', 1);
+(11, 76789870, 'Pig', 'Pepa', 3232, 'pepa@mala.com', 1);
 
 -- --------------------------------------------------------
 
@@ -147,8 +172,8 @@ INSERT INTO `propietario` (`id_propietario`, `dni`, `apellido`, `nombre`, `telef
 --
 ALTER TABLE `contrato`
   ADD PRIMARY KEY (`id_contrato`),
-  ADD UNIQUE KEY `id_inquilino` (`id_inquilino`),
-  ADD KEY `fk_contrato_inmueble` (`id_inmueble`);
+  ADD KEY `fk_contrato_inmueble` (`id_inmueble`),
+  ADD KEY `id_inquilino_2` (`id_inquilino`);
 
 --
 -- Indices de la tabla `inmueble`
@@ -184,19 +209,19 @@ ALTER TABLE `propietario`
 -- AUTO_INCREMENT de la tabla `contrato`
 --
 ALTER TABLE `contrato`
-  MODIFY `id_contrato` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_contrato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `inmueble`
 --
 ALTER TABLE `inmueble`
-  MODIFY `id_inmueble` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_inmueble` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `inquilino`
 --
 ALTER TABLE `inquilino`
-  MODIFY `id_inquilino` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_inquilino` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
@@ -218,8 +243,8 @@ ALTER TABLE `propietario`
 -- Filtros para la tabla `contrato`
 --
 ALTER TABLE `contrato`
-  ADD CONSTRAINT `contrato_ibfk_1` FOREIGN KEY (`id_inquilino`) REFERENCES `inquilino` (`id_inquilino`),
-  ADD CONSTRAINT `fk_contrato_inmueble` FOREIGN KEY (`id_inmueble`) REFERENCES `inmueble` (`id_inmueble`);
+  ADD CONSTRAINT `contrato_ibfk_1` FOREIGN KEY (`id_inquilino`) REFERENCES `inquilino` (`id_inquilino`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_contrato_inmueble` FOREIGN KEY (`id_inmueble`) REFERENCES `inmueble` (`id_inmueble`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `inmueble`

@@ -62,7 +62,7 @@ public class RepositorioInquilino
                             dni = reader.GetInt32("dni"),
                             apellido = reader.GetString("apellido"),
                             nombre = reader.GetString("nombre"),
-                            telefono = reader.GetInt32("telefono"),
+                            telefono = reader.GetString("telefono"),
                             email = reader.GetString("email"),
                             estado = reader.GetInt32("estado")
                         });
@@ -112,7 +112,7 @@ public class RepositorioInquilino
                                 dni = reader.GetInt32("dni"),
                                 apellido = reader.GetString("apellido"),
                                 nombre = reader.GetString("nombre"),
-                                telefono = reader.GetInt32("telefono"),
+                                telefono = reader.GetString("telefono"),
                                 email = reader.GetString("email"),
                                 estado = reader.GetInt32("estado")
                             });
@@ -125,7 +125,7 @@ public class RepositorioInquilino
                                 dni = 99,
                                 apellido = "apellido",
                                 nombre = "nombre",
-                                telefono = 99,
+                                telefono = "99",
                                 email = "email",
                                 estado = 0
                             });
@@ -160,7 +160,7 @@ public class RepositorioInquilino
                             dni = reader.GetInt32("dni"),
                             apellido = reader.GetString("apellido"),
                             nombre = reader.GetString("nombre"),
-                            telefono = reader.GetInt32("telefono"),
+                            telefono = reader.GetString("telefono"),
                             email = reader.GetString("email"),
                             estado = reader.GetInt32("estado")
                         });
@@ -189,23 +189,24 @@ public class RepositorioInquilino
             }
         }
     }
-    public void eliminarInquilino(Inquilino inquilino){
-    using (var connection = new MySqlConnection(connectionString))
+    public void eliminarInquilino(Inquilino inquilino)
     {
-        var sql = $@"UPDATE inquilino 
+        using (var connection = new MySqlConnection(connectionString))
+        {
+            var sql = $@"UPDATE inquilino 
                  SET dni = '{inquilino.dni}', apellido = '{inquilino.apellido}', 
                      nombre = '{inquilino.nombre}', telefono = '{inquilino.telefono}', 
                      email = '{inquilino.email}',
                      estado = '{inquilino.estado}' 
                  WHERE id_inquilino = {inquilino.id_inquilino}";
-        using (var comando = new MySqlCommand(sql, connection))
-        {
-            connection.Open();
-            comando.ExecuteNonQuery();
-            connection.Close();
+            using (var comando = new MySqlCommand(sql, connection))
+            {
+                connection.Open();
+                comando.ExecuteNonQuery();
+                connection.Close();
+            }
         }
     }
-}
 
     public IList<Inquilino> InquilinosAptos()
     {
@@ -229,7 +230,7 @@ public class RepositorioInquilino
                             dni = reader.GetInt32("dni"),
                             apellido = reader.GetString("apellido"),
                             nombre = reader.GetString("nombre"),
-                            telefono = reader.GetInt32("telefono"),
+                            telefono = reader.GetString("telefono"),
                             email = reader.GetString("email"),
                             estado = reader.GetInt32("estado")
                         });

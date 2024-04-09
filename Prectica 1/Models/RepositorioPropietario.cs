@@ -40,7 +40,7 @@ public class RepositorioPropietario
                             dni = reader.GetInt32("dni"),
                             apellido = reader.GetString("apellido"),
                             nombre = reader.GetString("nombre"),
-                            telefono = reader.GetInt32("telefono"),
+                            telefono = reader.GetString("telefono"),
                             email = reader.GetString("email"),
                             estado = reader.GetInt32("estado")
                         });
@@ -51,26 +51,26 @@ public class RepositorioPropietario
         }
         return propietario;
     }
-public void GuardarPropietario(Propietario propietario)
-{
-    using (var connection = new MySqlConnection(ConnectionString))
+    public void GuardarPropietario(Propietario propietario)
     {
-        var sql = $"INSERT INTO propietario(dni,apellido,nombre,telefono,email,estado) VALUES  (@Dni,@Apellido,@Nombre,@Telefono,@Email,@Estado)";
-        using (var command = new MySqlCommand(sql, connection))
+        using (var connection = new MySqlConnection(ConnectionString))
         {
-            command.Parameters.AddWithValue("@Dni", propietario.dni);
-            command.Parameters.AddWithValue("@Apellido", propietario.apellido);
-            command.Parameters.AddWithValue("@Nombre", propietario.nombre);
-            command.Parameters.AddWithValue("@Telefono", propietario.telefono);
-            command.Parameters.AddWithValue("@Email", propietario.email);
-            command.Parameters.AddWithValue("@Estado", propietario.estado);
+            var sql = $"INSERT INTO propietario(dni,apellido,nombre,telefono,email,estado) VALUES  (@Dni,@Apellido,@Nombre,@Telefono,@Email,@Estado)";
+            using (var command = new MySqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@Dni", propietario.dni);
+                command.Parameters.AddWithValue("@Apellido", propietario.apellido);
+                command.Parameters.AddWithValue("@Nombre", propietario.nombre);
+                command.Parameters.AddWithValue("@Telefono", propietario.telefono);
+                command.Parameters.AddWithValue("@Email", propietario.email);
+                command.Parameters.AddWithValue("@Estado", propietario.estado);
 
-            connection.Open();
-            command.ExecuteNonQuery();
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
     }
-}
-       public Propietario ObtenerPropietarioPorId(int id)
+    public Propietario ObtenerPropietarioPorId(int id)
     {
         var prop = new Propietario();
         using (var connection = new MySqlConnection(ConnectionString))
@@ -91,7 +91,7 @@ public void GuardarPropietario(Propietario propietario)
                             dni = reader.GetInt32("dni"),
                             apellido = reader.GetString("apellido"),
                             nombre = reader.GetString("nombre"),
-                            telefono = reader.GetInt32("telefono"),
+                            telefono = reader.GetString("telefono"),
                             email = reader.GetString("email"),
                             estado = reader.GetInt32("estado")
                         });
@@ -144,7 +144,7 @@ public void GuardarPropietario(Propietario propietario)
                                 dni = reader.GetInt32("dni"),
                                 apellido = reader.GetString("apellido"),
                                 nombre = reader.GetString("nombre"),
-                                telefono = reader.GetInt32("telefono"),
+                                telefono = reader.GetString("telefono"),
                                 email = reader.GetString("email"),
                                 estado = reader.GetInt32("estado")
                             });
@@ -157,7 +157,7 @@ public void GuardarPropietario(Propietario propietario)
                                 dni = 99,
                                 apellido = "apellido",
                                 nombre = "nombre",
-                                telefono = 99,
+                                telefono = "99",
                                 email = "email",
                                 estado = 0
                             });
@@ -193,7 +193,7 @@ public void GuardarPropietario(Propietario propietario)
                             dni = reader.GetInt32("dni"),
                             apellido = reader.GetString("apellido"),
                             nombre = reader.GetString("nombre"),
-                            telefono = reader.GetInt32("telefono"),
+                            telefono = reader.GetString("telefono"),
                             email = reader.GetString("email"),
                             estado = reader.GetInt32("estado")
                         });

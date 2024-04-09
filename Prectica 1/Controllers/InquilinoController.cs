@@ -89,7 +89,7 @@ public class InquilinoController : Controller
 
     public IActionResult bajaDeInquilino(Inquilino inquilino){
         RepositorioInquilino ri = new RepositorioInquilino();
-        ri.elimiarInquilino(inquilino);
+        ri.eliminarInquilino(inquilino);
         return RedirectToAction(nameof(Index));
     } 
 

@@ -8,6 +8,6 @@ public class Propietario
     public string? nombre { get; set; }
     public int? telefono { get; set; }
     public string? email { get; set; }
-    public int? estado { get; set; }
+    public int estado { get; set; }
 
 }

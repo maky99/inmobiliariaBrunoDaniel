@@ -189,26 +189,24 @@ public class RepositorioInquilino
             }
         }
     }
-    public void elimiarInquilino(Inquilino inquilino)
+    public void eliminarInquilino(Inquilino inquilino){
+    using (var connection = new MySqlConnection(connectionString))
     {
+        var sql = $@"UPDATE inquilino 
+                 SET dni = '{inquilino.dni}', apellido = '{inquilino.apellido}', 
+                     nombre = '{inquilino.nombre}', telefono = '{inquilino.telefono}', 
+                     email = '{inquilino.email}',
+                     estado = '{inquilino.estado}' 
+                 WHERE id_inquilino = {inquilino.id_inquilino}";
+        using (var comando = new MySqlCommand(sql, connection))
         {
-            using (var connection = new MySqlConnection(connectionString))
-            {
-                var sql = $@"UPDATE inquilino 
-             SET dni = '{inquilino.dni}', apellido = '{inquilino.apellido}', 
-                 nombre = '{inquilino.nombre}', telefono = '{inquilino.telefono}', 
-                 email = '{inquilino.email}',
-                 estado = '{inquilino.estado}
-             WHERE id_inquilino = {inquilino.id_inquilino}";
-                using (var comando = new MySqlCommand(sql, connection))
-                {
-                    connection.Open();
-                    comando.ExecuteNonQuery();
-                    connection.Close();
-                }
-            }
+            connection.Open();
+            comando.ExecuteNonQuery();
+            connection.Close();
         }
     }
+}
+
     public IList<Inquilino> InquilinosAptos()
     {
         var inquilinos = new List<Inquilino>();

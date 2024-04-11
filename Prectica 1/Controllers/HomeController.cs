@@ -2,8 +2,10 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Prectica_1.Models;
 
-namespace Prectica_1.Controllers;
+using Microsoft.AspNetCore.Authorization;
 
+namespace Prectica_1.Controllers;
+[Authorize]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;

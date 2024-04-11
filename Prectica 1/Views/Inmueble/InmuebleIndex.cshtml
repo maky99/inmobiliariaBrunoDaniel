@@ -18,11 +18,11 @@
                     @* <th>ID</th> *@
                     <th>TIPO DE BIEN</th>
                     <th>TIPO DE USO</th>
-                    <th>DiIRECCION</th>
+                    <th>DIIRECCION</th>
                     <th>CONDICION</th>
-                    <th>COSTO</th>
-                    <th>DETALLE</th>
+                    <th>AMBIENTE</th>
                     <th>ESTADO</th>
+                    <th>COSTO</th>
                     <th>PROPIETARIO</th>
                     <th>Accion</th>
                 </tr>
@@ -36,8 +36,7 @@
                         <td>@item.tipoDeUso</td>
                         <td>@item.direccion</td>
                         <td>@item.condicion</td>
-                        <td>@item.costo</td>
-                        <td>@item.detalle</td>
+                        <td>@item.ambiente</td>
                         <td>
                             @switch (item.estado)
                             {
@@ -52,6 +51,8 @@
                                     break;
                             }
                         </td>
+                        <td>@item.costo</td>
+                        
                         <td>@(item.dueno?.apellido + " " + item.dueno?.nombre)</td>
 
                         <td>

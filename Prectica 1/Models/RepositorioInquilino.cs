@@ -207,7 +207,20 @@ public class RepositorioInquilino
             }
         }
     }
-
+     public void CambioEstado(int id)
+    {
+        using (var connection = new MySqlConnection(connectionString))
+        {
+            var sql = $@"UPDATE inquilino set estado=0 where id_inquilino = @Id";
+            using (var comando = new MySqlCommand(sql, connection))
+            {
+                comando.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                comando.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+    }
     public IList<Inquilino> InquilinosAptos()
     {
         var inquilinos = new List<Inquilino>();

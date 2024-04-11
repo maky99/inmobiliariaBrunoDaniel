@@ -8,7 +8,7 @@ public class Inmueble
     public string? direccion { get; set; }
     public string? condicion { get; set; }
     public double? costo { get; set; }
-    public string? detalle { get; set; }
+    public int? ambiente { get; set; }
     public int? estado { get; set; }
     public int id_propietario { get; set; }
     public Propietario? dueno { get; set; }

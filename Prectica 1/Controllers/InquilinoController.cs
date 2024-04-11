@@ -78,14 +78,11 @@ public class InquilinoController : Controller
         }
     }
 
-
-
-
-    public IActionResult EliminarInquilino(int numero){
+    public IActionResult eliminarInquilino(int numero){
         RepositorioInquilino ri = new RepositorioInquilino();
-        var inquilino = ri.ObtenerInquilinoPorId(numero);
-        return View(inquilino);
-    }    
+       ri.CambioEstado(numero);
+        return RedirectToAction(nameof(Index));
+    }  
 
     public IActionResult bajaDeInquilino(Inquilino inquilino){
         RepositorioInquilino ri = new RepositorioInquilino();
@@ -97,13 +94,6 @@ public class InquilinoController : Controller
     public IActionResult NuevoInquilino(){
         return View();
     }
-
-
-
-
-
-
-
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

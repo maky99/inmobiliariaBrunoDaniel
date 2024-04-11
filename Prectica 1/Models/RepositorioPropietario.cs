@@ -119,6 +119,26 @@ public class RepositorioPropietario
             }
         }
     }
+
+
+    public void CambioEstado(int id)
+    {
+        using (var connection = new MySqlConnection(ConnectionString))
+        {
+            var sql = $@"UPDATE propietario set estado=0 where id_propietario = @Id";
+            using (var comando = new MySqlCommand(sql, connection))
+            {
+                comando.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                comando.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+    }
+
+
+
+
     public Propietario BuscaNuevaPropietarioDNI(int dni)
     {
         var propi = new Propietario();

@@ -83,7 +83,6 @@ public List<Contrato> GetContratos()
                 command.Parameters.AddWithValue("@detalle", contrato.detalle);
                 command.Parameters.AddWithValue("@monto", contrato.monto);
                 command.Parameters.AddWithValue("@estado", contrato.estado);
-
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();

@@ -49,9 +49,9 @@
                             <i class="fa-solid fa-pen-to-square"></i> Editar
                         </a>
                         <!-- Enlace para eliminar -->
-                        <a href="EliminaPropietario?numero=@item.id_propietario" class="btn btn-danger">
-                            <i class="fa-solid fa-trash"></i> Eliminar
-                        </a>
+                            <a href="EliminaPropietario?numero=@item.id_propietario" onclick="return confirm('¿Estás seguro de que deseas eliminar a @item.apellido @item.nombre?')" class="btn btn-danger">
+                    <i class="fa-solid fa-trash"></i> Eliminar
+                    </a>
                     </td>
                 </tr>
             }

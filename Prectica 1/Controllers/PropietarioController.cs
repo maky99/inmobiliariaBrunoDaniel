@@ -51,9 +51,9 @@ public class PropietarioController : Controller
     public IActionResult EliminaPropietario(int numero)
     {
         RepositorioPropietario rp = new RepositorioPropietario();
-        var propietario = rp.ObtenerPropietarioPorId(numero);
+        rp.CambioEstado(numero);
 
-        return View(propietario);
+        return RedirectToAction(nameof(PropietarioIndex));
     }
     public IActionResult EditaEstado(Propietario propietario)
     {

@@ -22,7 +22,7 @@ public class RepositorioInmueble
         var inmueble = new List<Inmueble>();
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            var sql = @$"SELECT i.{nameof(Inmueble.id_inmueble)}, i.{nameof(Inmueble.tipoDebien)}, i.{nameof(Inmueble.tipoDeUso)}, i.{nameof(Inmueble.direccion)}, i.{nameof(Inmueble.condicion)}, i.{nameof(Inmueble.costo)}, i.{nameof(Inmueble.detalle)}, i.{nameof(Inmueble.estado)}, i.{nameof(Inmueble.id_propietario)},
+            var sql = @$"SELECT i.{nameof(Inmueble.id_inmueble)}, i.{nameof(Inmueble.tipoDebien)}, i.{nameof(Inmueble.tipoDeUso)}, i.{nameof(Inmueble.direccion)}, i.{nameof(Inmueble.condicion)}, i.{nameof(Inmueble.costo)}, i.{nameof(Inmueble.ambiente)}, i.{nameof(Inmueble.estado)}, i.{nameof(Inmueble.id_propietario)},
                      p.apellido AS propietario_apellido, p.nombre AS propietario_nombre
                     FROM inmueble i
                     INNER JOIN propietario p ON i.{nameof(Inmueble.id_propietario)} = p.{nameof(Propietario.id_propietario)}";
@@ -43,7 +43,7 @@ public class RepositorioInmueble
                             direccion = reader.GetString("direccion"),
                             condicion = reader.GetString("condicion"),
                             costo = reader.GetDouble("costo"),
-                            detalle = reader.GetString("detalle"),
+                            ambiente = reader.GetInt32("ambiente"),
                             estado = reader.GetInt32("estado"),
                             id_propietario = reader.GetInt32("id_propietario"),
                             dueno = new Propietario
@@ -66,7 +66,7 @@ public class RepositorioInmueble
     {
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            var sql = $"INSERT INTO inmueble(tipoDebien, tipoDeUso, direccion, condicion, costo, detalle, estado, id_propietario) VALUES (@tipoDebien, @tipoDeUso, @direccion, @condicion, @costo, @detalle, @estado, @id_propietario)";
+            var sql = $"INSERT INTO inmueble(tipoDebien, tipoDeUso, direccion, condicion, costo, ambiente, estado, id_propietario) VALUES (@tipoDebien, @tipoDeUso, @direccion, @condicion, @costo, @ambiente, @estado, @id_propietario)";
             using (var command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.AddWithValue("@tipoDebien", inmueble.tipoDebien);
@@ -74,7 +74,7 @@ public class RepositorioInmueble
                 command.Parameters.AddWithValue("@direccion", inmueble.direccion);
                 command.Parameters.AddWithValue("@condicion", inmueble.condicion);
                 command.Parameters.AddWithValue("@costo", inmueble.costo);
-                command.Parameters.AddWithValue("@detalle", inmueble.detalle);
+                command.Parameters.AddWithValue("@ambiente", inmueble.ambiente);
                 command.Parameters.AddWithValue("@estado", inmueble.estado);
                 command.Parameters.AddWithValue("@id_propietario", inmueble.id_propietario);
 
@@ -104,7 +104,7 @@ public class RepositorioInmueble
         using (var connection = new MySqlConnection(ConnectionString))
         {
             connection.Open();
-            var sql = @$"SELECT i.{nameof(Inmueble.id_inmueble)}, i.{nameof(Inmueble.tipoDebien)}, i.{nameof(Inmueble.tipoDeUso)}, i.{nameof(Inmueble.direccion)}, i.{nameof(Inmueble.condicion)}, i.{nameof(Inmueble.costo)}, i.{nameof(Inmueble.detalle)}, i.{nameof(Inmueble.estado)}, i.{nameof(Inmueble.id_propietario)},
+            var sql = @$"SELECT i.{nameof(Inmueble.id_inmueble)}, i.{nameof(Inmueble.tipoDebien)}, i.{nameof(Inmueble.tipoDeUso)}, i.{nameof(Inmueble.direccion)}, i.{nameof(Inmueble.condicion)}, i.{nameof(Inmueble.costo)}, i.{nameof(Inmueble.ambiente)}, i.{nameof(Inmueble.estado)}, i.{nameof(Inmueble.id_propietario)},
                      p.apellido AS propietario_apellido, p.nombre AS propietario_nombre
                     FROM inmueble i
                     INNER JOIN propietario p ON i.{nameof(Inmueble.id_propietario)} = p.{nameof(Propietario.id_propietario)}
@@ -125,7 +125,7 @@ public class RepositorioInmueble
                             direccion = reader.GetString("direccion"),
                             condicion = reader.GetString("condicion"),
                             costo = reader.GetDouble("costo"),
-                            detalle = reader.GetString("detalle"),
+                            ambiente = reader.GetInt32("ambiente"),
                             estado = reader.GetInt32("estado"),
                             id_propietario = reader.GetInt32("id_propietario"),
                             dueno = new Propietario
@@ -150,7 +150,7 @@ public class RepositorioInmueble
             var sql = $@"UPDATE inmueble
              SET tipoDebien = '{inmueble.tipoDebien}', tipoDeUso = '{inmueble.tipoDeUso}',
                 direccion = '{inmueble.direccion}', condicion = '{inmueble.condicion}', 
-                costo = '{inmueble.costo}', detalle = '{inmueble.detalle}', estado = '{inmueble.estado}',
+                costo = '{inmueble.costo}', ambiente = '{inmueble.ambiente}', estado = '{inmueble.estado}',
                 id_propietario='{inmueble.id_propietario}'   
              WHERE id_inmueble = {inmueble.id_inmueble} ";
             using (var comando = new MySqlCommand(sql, connection))
@@ -182,7 +182,7 @@ public List<Inmueble> InmuebleLibre()
     var inmueble = new List<Inmueble>();
     using (var connection = new MySqlConnection(ConnectionString))
     {
-        var sql = @$"SELECT i.{nameof(Inmueble.id_inmueble)}, i.{nameof(Inmueble.tipoDebien)}, i.{nameof(Inmueble.tipoDeUso)}, i.{nameof(Inmueble.direccion)}, i.{nameof(Inmueble.condicion)}, i.{nameof(Inmueble.costo)}, i.{nameof(Inmueble.detalle)}, i.{nameof(Inmueble.estado)}, i.{nameof(Inmueble.id_propietario)},
+        var sql = @$"SELECT i.{nameof(Inmueble.id_inmueble)}, i.{nameof(Inmueble.tipoDebien)}, i.{nameof(Inmueble.tipoDeUso)}, i.{nameof(Inmueble.direccion)}, i.{nameof(Inmueble.condicion)}, i.{nameof(Inmueble.costo)}, i.{nameof(Inmueble.ambiente)}, i.{nameof(Inmueble.estado)}, i.{nameof(Inmueble.id_propietario)},
                      p.apellido AS propietario_apellido, p.nombre AS propietario_nombre
                     FROM inmueble i
                     INNER JOIN propietario p ON i.{nameof(Inmueble.id_propietario)} = p.{nameof(Propietario.id_propietario)}
@@ -203,7 +203,7 @@ public List<Inmueble> InmuebleLibre()
                         direccion = reader.GetString("direccion"),
                         condicion = reader.GetString("condicion"),
                         costo = reader.GetDouble("costo"),
-                        detalle = reader.GetString("detalle"),
+                        ambiente = reader.GetInt32("ambiente"),
                         estado = reader.GetInt32("estado"),
                         id_propietario = reader.GetInt32("id_propietario"),
                         dueno = new Propietario

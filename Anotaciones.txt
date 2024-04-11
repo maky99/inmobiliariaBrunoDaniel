@@ -1,0 +1,3 @@
+El administrador puede hacer abm de usuario y darle el rol
+
+puede ver todas las solapas el usuario comun no

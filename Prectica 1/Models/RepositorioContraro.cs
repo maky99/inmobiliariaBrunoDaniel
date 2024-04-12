@@ -87,7 +87,7 @@ public class RepositorioContraro
         using (var connection = new MySqlConnection(ConnectionString))
         {
             var sql = @"SELECT 
-                    c.id_contrato, c.id_inquilino, c.id_inmueble, c.desde, c.meses, c.hasta, c.detalle, c.monto, c.estado,
+                    c.id_contrato, c.id_inquilino, c.id_inmueble, c.desde, c.meses, c.hasta, c.detalle,c.finalizacionAnticipada, c.monto,c.multa, c.estado,
                     i.apellido AS inquilino_apellido, i.nombre AS inquilino_nombre,
                     im.direccion AS direccion_inmueble,
                     p.apellido AS propietario_apellido, p.nombre AS propietario_nombre,
@@ -120,6 +120,10 @@ public class RepositorioContraro
                             meses = reader.GetInt32("meses"),
                             hasta = reader.GetDateTime("hasta"),
                             detalle = reader.GetString("detalle"),
+                            finalizacionAnticipada = !reader.IsDBNull(reader.GetOrdinal("finalizacionAnticipada"))
+            ? reader.GetDateTime("finalizacionAnticipada")
+            : default(DateTime),
+                            multa = reader.GetDouble("multa"),
                             monto = reader.GetDouble("monto"),
                             estado = reader.GetInt32("estado"),
                             inquilino = new Inquilino
@@ -142,8 +146,6 @@ public class RepositorioContraro
                             {
                                 cantidad_pagos = reader.IsDBNull(reader.GetOrdinal("cantidad_pagos")) ? 0 : reader.GetInt32("cantidad_pagos"),
                                 importe = reader.IsDBNull(reader.GetOrdinal("importe_pagos")) ? 0 : reader.GetDouble("importe_pagos")
-                                // cantidad_pagos = reader.GetInt32("cantidad_pagos"),
-                                // importe = reader.GetDouble("importe_pagos")
                             }
                         });
                     }

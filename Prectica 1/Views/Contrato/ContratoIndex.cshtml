@@ -96,8 +96,10 @@ else if (item.estado == 3)
                 <th>HASTA</th>
                 <th>MESES</th>
                 <th>MONTO</th>
-                <th>IMPORTE</th>
+                <th>CUOTAS PAGAS</th>
                 <th>cuotas</th>
+                <th>multa</th>
+                <th>anticipada</th>
                 <th>ACCIONES</th>
             </tr>
         </thead>
@@ -126,12 +128,23 @@ else if (item.estado == 3)
                             <span>Desalojado</span>
                         }
                     </td>
-                    <td>@item.desde</td>
-                    <td>@item.hasta</td>
+                    <td>@item.desde.ToString("dd/MM/yyyy")</td>
+                    <td>@item.hasta.ToString("dd/MM/yyyy")</td>
                     <td>@item.meses</td>
                     <td>@item.monto</td>
-                    <td>@item.pago.importe</td>
+                    <td>@item.pago.cantidad_pagos / @item.meses</td>
                     <td>@item.pago.cantidad_pagos</td>
+                    <td>@item.multa</td>
+                    <td>
+                        @if (item.finalizacion_anticipada.ToString("dd/MM/yyyy") == "01/01/0001")
+                        {
+                            @:no
+                        }
+                        else
+                        {
+                            @item.finalizacion_anticipada.ToString("dd/MM/yyyy")
+                        }
+                    </td>
                     <td>
                         <!-- Enlace para editar -->
                         <a href="#" class="btn btn-primary">

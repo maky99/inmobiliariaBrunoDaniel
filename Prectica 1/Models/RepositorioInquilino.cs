@@ -48,7 +48,8 @@ public class RepositorioInquilino
         using (var connection = new MySqlConnection(connectionString))
         {
             var sql = @$"SELECT {nameof(Inquilino.id_inquilino)}, {nameof(Inquilino.dni)},{nameof(Inquilino.apellido)},{nameof(Inquilino.nombre)},{nameof(Inquilino.telefono)},{nameof(Inquilino.email)},{nameof(Inquilino.estado)}
-            FROM inquilino";
+            FROM inquilino  WHERE {nameof(Inquilino.estado)} = 1
+             ORDER BY {nameof(Inquilino.apellido)}";
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();
@@ -207,7 +208,7 @@ public class RepositorioInquilino
             }
         }
     }
-     public void CambioEstado(int id)
+    public void CambioEstado(int id)
     {
         using (var connection = new MySqlConnection(connectionString))
         {

@@ -19,48 +19,53 @@ public class InquilinoController : Controller
         return View(lista);
     }
 
-    public IActionResult agregar(){
+    public IActionResult agregar()
+    {
         return View();
     }
 
-    public  IActionResult altaInquilino(Inquilino inquilino){
+    public IActionResult altaInquilino(Inquilino inquilino)
+    {
         RepositorioInquilino ri = new RepositorioInquilino();
         ri.guardarInquilino(inquilino);
         return RedirectToAction(nameof(Index));
     }
 
- public IActionResult EditarInquilino2(int numero)
+    public IActionResult EditarInquilino2(int numero)
     {
         RepositorioInquilino ri = new RepositorioInquilino();
-        var inquilino= ri.ObtenerInquilinoPorId;
+        var inquilino = ri.ObtenerInquilinoPorId(numero);
 
         return View(inquilino);
     }
 
-    public IActionResult EditarInquilino(int numero){
+    public IActionResult EditarInquilino(int numero)
+    {
         RepositorioInquilino rp = new RepositorioInquilino();
         var inquilino = rp.ObtenerInquilinoPorId(numero);
 
-        return  View(inquilino);
+        return View(inquilino);
     }
 
-     public IActionResult Editada(Inquilino inquilino)
+    public IActionResult Editada(Inquilino inquilino)
     {
         RepositorioInquilino rp = new RepositorioInquilino();
         rp.EditaDatos(inquilino);
         return RedirectToAction(nameof(Index));
     }
-    
-    
 
-    public  IActionResult Buscar(){
+
+
+    public IActionResult Buscar()
+    {
         return View();
     }
 
-    public IActionResult buscarDNI(int dni){
-        RepositorioInquilino ri =  new RepositorioInquilino();
+    public IActionResult buscarDNI(int dni)
+    {
+        RepositorioInquilino ri = new RepositorioInquilino();
         var inquilino = ri.BuscaNuevoInquilinoPorDNI(dni);
-        
+
         if (inquilino.dni == 99)
         {
             return RedirectToAction(nameof(NuevoInquilino));
@@ -78,20 +83,23 @@ public class InquilinoController : Controller
         }
     }
 
-    public IActionResult eliminarInquilino(int numero){
+    public IActionResult eliminarInquilino(int numero)
+    {
         RepositorioInquilino ri = new RepositorioInquilino();
-       ri.CambioEstado(numero);
+        ri.CambioEstado(numero);
         return RedirectToAction(nameof(Index));
-    }  
+    }
 
-    public IActionResult bajaDeInquilino(Inquilino inquilino){
+    public IActionResult bajaDeInquilino(Inquilino inquilino)
+    {
         RepositorioInquilino ri = new RepositorioInquilino();
         ri.eliminarInquilino(inquilino);
         return RedirectToAction(nameof(Index));
-    } 
+    }
 
-    
-    public IActionResult NuevoInquilino(){
+
+    public IActionResult NuevoInquilino()
+    {
         return View();
     }
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

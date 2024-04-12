@@ -27,7 +27,6 @@ public class RepositorioInmueble
                     FROM inmueble i
                     INNER JOIN propietario p ON i.{nameof(Inmueble.id_propietario)} = p.{nameof(Propietario.id_propietario)}";
 
-
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();
@@ -84,19 +83,6 @@ public class RepositorioInmueble
             }
         }
     }
-    // public void GuardarsInmueble(Inmueble inmueble)
-    // {
-    //     using (var connection = new MySqlConnection(ConnectionString))
-    //     {
-    //         var sql = $"INSERT INTO inmueble(tipoDebien,tipoDeUso,direccion,condicion,costo,detalle,estado,id_propietario) VALUES  ('{inmueble.tipoDebien}','{inmueble.tipoDeUso}','{inmueble.direccion}','{inmueble.condicion}','{inmueble.costo}','{inmueble.detalle}','{inmueble.estado}','{inmueble.id_propietario}')";
-    //         using (var command = new MySqlCommand(sql, connection))
-    //         {
-    //             connection.Open();
-    //             command.ExecuteNonQuery();
-    //             connection.Close();
-    //         }
-    //     }
-    // }
 
     public Inmueble ObtenerInmueblePorId(int id)
     {
@@ -163,20 +149,22 @@ public class RepositorioInmueble
 
     }
 
+    
     public void EliminarInmueblePorId(int id)
+{
+    using (var connection = new MySqlConnection(ConnectionString))
     {
-        using (var connection = new MySqlConnection(ConnectionString))
+        var sql = "UPDATE inmueble SET estado = 3 WHERE id_inmueble = @Id";
+        using (var comando = new MySqlCommand(sql, connection))
         {
-            var sql = "DELETE FROM inmueble WHERE id_inmueble = @Id";
-            using (var comando = new MySqlCommand(sql, connection))
-            {
-                comando.Parameters.AddWithValue("@Id", id); // Agregar el parámetro @Id y asignarle el valor id
-                connection.Open();
-                comando.ExecuteNonQuery();
-                connection.Close();
-            }
+            comando.Parameters.AddWithValue("@Id", id);
+            connection.Open();
+            comando.ExecuteNonQuery();
+            connection.Close();
         }
     }
+}
+
 public List<Inmueble> InmuebleLibre()
 {
     var inmueble = new List<Inmueble>();

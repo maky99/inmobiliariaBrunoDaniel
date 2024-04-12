@@ -18,10 +18,25 @@ public class PagoController : Controller
 
     public IActionResult PagoIndex()
     {
-       RepositorioPago rp=new RepositorioPago();
-       var lista = rp.GetPagos();
+        RepositorioPago rp = new RepositorioPago();
+        var lista = rp.GetPagos();
         return View(lista);
     }
-    
+    public IActionResult PagoNuevo()
+    {
+        RepositorioPago rc = new RepositorioPago();
+        var contratosVigentes = rc.GetContratosVigentes();
+        ViewData["ContratosVigentes"] = contratosVigentes;
+
+        return View();
+    }
+
+    public IActionResult PagoGuardar(Pago pago)
+    {
+        RepositorioPago rp = new RepositorioPago();
+        rp.GuardarPago(pago);
+        return  RedirectToAction(nameof(PagoIndex));
+            }
+
 
 }

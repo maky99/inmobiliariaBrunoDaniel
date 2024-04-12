@@ -24,7 +24,8 @@
                 <th>MONTO</th>
                 <th>CUOTAS PAGAS</th>
                 <th>MONTO MULTA</th>
-                <th>anticipada</th>
+                <th>BAJA CONTRATO</th>
+                <th>ACCION</th>
             </tr>
         </thead>
 
@@ -68,9 +69,14 @@
                             @item.finalizacion_anticipada.ToString("dd/MM/yyyy")
                         }
                     </td>
+                    <td>
+                        <!-- Enlace para editar -->
+                        <a href="InmuebleEditar?numero=@item.id_inmueble" class="btn btn-primary">
+                            <i class="fa-solid fa-pen-to-square"></i> MULTA/BAJA
+                        </a>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-

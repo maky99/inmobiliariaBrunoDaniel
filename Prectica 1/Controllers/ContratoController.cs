@@ -31,16 +31,23 @@ public class ContratoController : Controller
         return View(contrato);
     }
 
+
+
+
+
+
+
     public IActionResult ContratoNuevo()
     {
-        RepositorioInmueble ri = new RepositorioInmueble();
-        var inmueble = ri.InmuebleLibre();
-        ViewData["inmueble"] = inmueble;
-        RepositorioInquilino rInqui = new RepositorioInquilino();
-        var inquilino = rInqui.InquilinosAptos();
-        ViewData["inquilino"] = inquilino;
+        RepositorioContraro rc = new RepositorioContraro();
+        var inquilinosSinContrato = rc.inquilinosSinContrato();
+        var inmueblesSinContrato = rc.inmueblesSinContrato();
+        ViewData["inquilino"] = inquilinosSinContrato;
+        ViewData["inmueble"] = inmueblesSinContrato;
+
         return View();
     }
+
 
 
 

@@ -10,76 +10,6 @@ public class RepositorioContraro
 
     public RepositorioContraro() { }
 
-    // public List<Contrato> GetContratos()
-    // {
-    //     var contratos = new List<Contrato>();
-
-    //     using (var connection = new MySqlConnection(ConnectionString))
-    //     {
-    //         var sql = @"SELECT 
-    //                     c.id_contrato, c.id_inquilino, c.id_inmueble, c.desde, c.meses, c.hasta, c.detalle, c.monto, c.estado,
-    //                     i.apellido AS inquilino_apellido, i.nombre AS inquilino_nombre,
-    //                     im.direccion AS direccion_inmueble,
-    //                     p.apellido AS propietario_apellido, p.nombre AS propietario_nombre,
-    //                     pg.id_pago, pg.concepto, pg.importe, pg.fecha AS fecha_pago, pg.estado AS estado_pago
-    //                 FROM contrato c
-    //                 INNER JOIN inquilino i ON c.id_inquilino = i.id_inquilino
-    //                 INNER JOIN inmueble im ON c.id_inmueble = im.id_inmueble
-    //                 INNER JOIN propietario p ON im.id_propietario = p.id_propietario
-    //                 LEFT JOIN pago pg ON c.id_contrato = pg.id_contrato";
-
-    //         using (var command = new MySqlCommand(sql, connection))
-    //         {
-    //             connection.Open();
-    //             using (var reader = command.ExecuteReader())
-    //             {
-    //                 while (reader.Read())
-    //                 {
-    //                     contratos.Add(new Contrato
-    //                     {
-    //                         id_contrato = reader.GetInt32("id_contrato"),
-    //                         id_inquilino = reader.GetInt32("id_inquilino"),
-    //                         id_inmueble = reader.GetInt32("id_inmueble"),
-    //                         desde = reader.GetDateTime("desde"),
-    //                         meses = reader.GetInt32("meses"),
-    //                         hasta = reader.GetDateTime("hasta"),
-    //                         detalle = reader.GetString("detalle"),
-    //                         monto = reader.GetDouble("monto"),
-    //                         estado = reader.GetInt32("estado"),
-    //                         inquilino = new Inquilino
-    //                         {
-    //                             id_inquilino = reader.GetInt32("id_inquilino"),
-    //                             apellido = reader.GetString("inquilino_apellido"),
-    //                             nombre = reader.GetString("inquilino_nombre")
-    //                         },
-    //                         inmueble = new Inmueble
-    //                         {
-    //                             id_inmueble = reader.GetInt32("id_inmueble"),
-    //                             direccion = reader.GetString("direccion_inmueble"),
-    //                             dueno = new Propietario
-    //                             {
-    //                                 apellido = reader.GetString("propietario_apellido"),
-    //                                 nombre = reader.GetString("propietario_nombre")
-    //                             }
-    //                         },
-    //                         pago = new Pago
-    //                         {
-    //                             id_pago = reader.GetInt32("id_pago"),
-    //                             concepto = reader.GetString("concepto"),
-    //                             importe = reader.GetDouble("importe"),
-    //                             fecha = reader.GetDateTime("fecha_pago"),
-    //                             estado = reader.GetInt32("estado_pago")
-    //                         }
-    //                     });
-    //                 }
-    //             }
-    //             connection.Close();
-    //         }
-    //     }
-    //     return contratos;
-    // }
-
-    // GetContratos method
     public List<Contrato> GetContratos()
     {
         var contratos = new List<Contrato>();
@@ -120,8 +50,8 @@ public class RepositorioContraro
                             meses = reader.GetInt32("meses"),
                             hasta = reader.GetDateTime("hasta"),
                             detalle = reader.GetString("detalle"),
-                           finalizacion_anticipada = !reader.IsDBNull(reader.GetOrdinal("finalizacionAnticipada")) ? reader.GetDateTime("finalizacionAnticipada") : default(DateTime),
-                           multa = !reader.IsDBNull(reader.GetOrdinal("multa")) ? reader.GetDouble("multa") : 0.0,
+                            finalizacion_anticipada = !reader.IsDBNull(reader.GetOrdinal("finalizacionAnticipada")) ? reader.GetDateTime("finalizacionAnticipada") : default(DateTime),
+                            multa = !reader.IsDBNull(reader.GetOrdinal("multa")) ? reader.GetDouble("multa") : 0.0,
                             monto = reader.GetDouble("monto"),
                             estado = reader.GetInt32("estado"),
                             inquilino = new Inquilino
@@ -153,6 +83,86 @@ public class RepositorioContraro
         }
         return contratos;
     }
+    public List<Inquilino> inquilinosSinContrato()
+    {
+        List<Inquilino> inquilinosSinContrato = new List<Inquilino>();
+        using (var connection = new MySqlConnection(ConnectionString))
+        {
+            var sql = @"SELECT inquilino.*
+                FROM inquilino
+                LEFT JOIN contrato ON inquilino.id_inquilino = contrato.id_inquilino
+                WHERE contrato.id_contrato IS NULL";
+
+            using (var command = new MySqlCommand(sql, connection))
+            {
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        inquilinosSinContrato.Add(new Inquilino
+                        {
+                            // Asigna los valores de las columnas del inquilino desde el resultado de la consulta
+                            id_inquilino = reader.GetInt32("id_inquilino"),
+                            dni = reader.GetInt32("dni"),
+                            apellido = reader.GetString("apellido"),
+                            nombre = reader.GetString("nombre"),
+                            telefono = reader.GetString("telefono"),
+                            email = reader.GetString("email"),
+                            estado = reader.IsDBNull(reader.GetOrdinal("estado")) ? default(int) : reader.GetInt32("estado")
+                        });
+                    }
+                }
+                connection.Close();
+            }
+        }
+        return inquilinosSinContrato;
+    }
+
+
+
+    public List<Inmueble> inmueblesSinContrato()
+    {
+        List<Inmueble> inmueblesSinContrato = new List<Inmueble>();
+        using (var connection = new MySqlConnection(ConnectionString))
+        {
+            var sql = @"SELECT inmueble.*
+                    FROM inmueble
+                    LEFT JOIN contrato ON inmueble.id_inmueble = contrato.id_inmueble
+                    WHERE contrato.id_contrato IS NULL";
+
+            using (var command = new MySqlCommand(sql, connection))
+            {
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        inmueblesSinContrato.Add(new Inmueble
+                        {
+                            id_inmueble = reader.GetInt32("id_inmueble"),
+                            tipoDebien = reader.GetString("tipoDebien"),
+                            tipoDeUso = reader.GetString("tipoDeUso"),
+                            direccion = reader.GetString("direccion"),
+                            condicion = reader.GetString("condicion"),
+                            costo = reader.GetDouble("costo"),
+                            ambiente = reader.GetInt32("ambiente"),
+                            estado = reader.GetInt32("estado"),
+                            id_propietario = reader.GetInt32("id_propietario"),
+                           
+                        });
+                    }
+                }
+                connection.Close();
+            }
+        }
+        return inmueblesSinContrato;
+    }
+
+
+
+
+
 
     public void GuardarContrato(Contrato contrato)
     {

@@ -1,80 +1,4 @@
-﻿@* @{
-ViewData["Title"] = "Lista de Contratos";
-}
-<div class="text-center">
-<h1 class="display-3">Contratos</h1>
-<div class="mb-3">
-<a asp-action="ContratoNuevo" class="btn btn-success">Nuevo Contrato</a>
-</div>
-<div class="mb-3">
-<!-- Campo de búsqueda -->
-<input type="text" id="inputBusqueda" placeholder="Buscar..." onkeyup="filtrarTabla()">
-</div>
-<table class="table">
-<thead>
-<tr>
-<th>INQUILINO</th>
-<th>DUEÑO</th>
-<th>ESTADO</th>
-<th>DESDE</th>
-<th>HASTA</th>
-<th>MESES</th>
-using Microsoft.AspNetCore.Http.Features;
-<th>MONTO</th>
-<th>IMPORTE</th>
-<th>cuotas</th>
-<th>ACCIONES</th>
-</tr>
-</thead>
-
-<tbody>
-@foreach (var item in Model)
-{
-<tr>
-<td>@item.inquilino?.apellido</td>
-<td>@item.inmueble.dueno?.apellido</td>
-<td>
-@if (item.estado == 0)
-{
-<span>Vigente</span>
-}
-else if (item.estado == 1)
-{
-<span>Renovado</span>
-}
-else if (item.estado == 2)
-{
-<span>algo</span>
-}
-else if (item.estado == 3)
-{
-<span>Desalojado</span>
-}
-</td>
-<td>@item.desde</td>
-<td>@item.hasta</td>
-<td>@item.meses</td>
-<td>@item.monto</td>
-<td>@item.pago.importe</td>
-<td>pongo</td>
-<td>
-<!-- Enlace para editar -->
-<a href="#" class="btn btn-primary">
-<i class="fa-solid fa-pen-to-square"></i> Editar
-</a>
-<!-- Enlace para eliminar -->
-<a href="#" class="btn btn-danger">
-<i class="fa-solid fa-trash"></i> Eliminar
-</a>
-</td>
-
-</tr>
-}
-</tbody>
-</table>
-</div> *@
-
-@{
+﻿@{
     ViewData["Title"] = "Lista de Contratos";
 }
 <div class="text-center">
@@ -86,6 +10,8 @@ else if (item.estado == 3)
         <!-- Campo de búsqueda -->
         <input type="text" id="inputBusqueda" placeholder="Buscar..." onkeyup="filtrarTabla()">
     </div>
+</div>
+<div class="table-left">
     <table class="table">
         <thead>
             <tr>
@@ -97,10 +23,8 @@ else if (item.estado == 3)
                 <th>MESES</th>
                 <th>MONTO</th>
                 <th>CUOTAS PAGAS</th>
-                <th>cuotas</th>
-                <th>multa</th>
+                <th>MONTO MULTA</th>
                 <th>anticipada</th>
-                <th>ACCIONES</th>
             </tr>
         </thead>
 
@@ -108,8 +32,8 @@ else if (item.estado == 3)
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.inquilino?.apellido</td>
-                    <td>@item.inmueble.dueno?.apellido</td>
+                    <td>@item.inquilino.apellido, @item.inquilino.nombre</td>
+                    <td>@item.inmueble.dueno.apellido, @item.inmueble.dueno.nombre</td>
                     <td>
                         @if (item.estado == 0)
                         {
@@ -131,10 +55,9 @@ else if (item.estado == 3)
                     <td>@item.desde.ToString("dd/MM/yyyy")</td>
                     <td>@item.hasta.ToString("dd/MM/yyyy")</td>
                     <td>@item.meses</td>
-                    <td>@item.monto</td>
+                    <td>$ @item.monto</td>
                     <td>@item.pago.cantidad_pagos / @item.meses</td>
-                    <td>@item.pago.cantidad_pagos</td>
-                    <td>@item.multa</td>
+                    <td>$ @item.multa</td>
                     <td>
                         @if (item.finalizacion_anticipada.ToString("dd/MM/yyyy") == "01/01/0001")
                         {
@@ -145,19 +68,9 @@ else if (item.estado == 3)
                             @item.finalizacion_anticipada.ToString("dd/MM/yyyy")
                         }
                     </td>
-                    <td>
-                        <!-- Enlace para editar -->
-                        <a href="#" class="btn btn-primary">
-                            <i class="fa-solid fa-pen-to-square"></i> Editar
-                        </a>
-                        <!-- Enlace para eliminar -->
-                        <a href="#" class="btn btn-danger">
-                            <i class="fa-solid fa-trash"></i> Eliminar
-                        </a>
-                    </td>
-
                 </tr>
             }
         </tbody>
     </table>
+</div>
 </div>

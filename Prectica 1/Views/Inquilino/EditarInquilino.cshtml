@@ -39,17 +39,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="estado" class="control-label">ESTADO</label>
-                <select asp-for="estado" class="form-control" disabled>
+                <select asp-for="estado" class="form-control" >
                     <option value="0">Inactivo</option>
                     <option value="1">Activo</option>
-                    <option value="2">Moroso</option>
-                    <option value="3">Desalojado</option>
+                    <option value="2">Inactivo/Moroso</option>
+                    <option value="3">Inactivo/Desalojado</option>
                 </select>
                 <input type="hidden" asp-for="estado" />
                 <span asp-validation-for="estado" class="text-danger"></span>
             </div>
             <div class="mt-3">
-                <button type="submit " value="EditaEstado" class="btn btn-primary btn-sm">Guardar</button>
+                <button type="submit " value="Editada" class="btn btn-primary btn-sm">Guardar</button>
                 <a href="Index" class="btn btn-primary btn-sm">Cancelar</a>
             </div>
         </form>

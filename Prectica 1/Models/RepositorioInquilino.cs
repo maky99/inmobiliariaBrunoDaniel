@@ -179,7 +179,7 @@ public class RepositorioInquilino
             var sql = $@"UPDATE inquilino 
              SET dni = '{inquilino.dni}', apellido = '{inquilino.apellido}', 
                  nombre = '{inquilino.nombre}', telefono = '{inquilino.telefono}', 
-                 email = '{inquilino.email}'
+                 email = '{inquilino.email}', estado = '{inquilino.estado}'
              WHERE id_inquilino = {inquilino.id_inquilino}";
             using (var comando = new MySqlCommand(sql, connection))
             {

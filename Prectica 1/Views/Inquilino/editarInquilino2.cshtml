@@ -1,4 +1,4 @@
-@model Prectica_1.Models.Propietario;
+@model Prectica_1.Models.Inquilino;
 @{
     ViewData["Title"] = "Inquilinos editar";
 }
@@ -11,7 +11,7 @@
     <div class="col-md-6 mx-auto">
         <form asp-action="Editada" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="id_propietario" />
+            <input type="hidden" asp-for="id_inquilino" />
             <div class="form-group">
                 <label asp-for="dni" class="control-label">DNI</label>
                 <input asp-for="dni" class="form-control" />

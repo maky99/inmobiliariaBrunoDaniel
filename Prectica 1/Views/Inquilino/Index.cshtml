@@ -45,10 +45,10 @@
                                 <span>Activo</span>
                                 break;
                             case 2:
-                                <span>Moroso</span>
+                                <span>Inactivo/Moroso</span>
                                 break;
                             case 3:
-                                <span>Desalojado</span>
+                                <span>Inactivo/Desalojado</span>
                                 break;
                         }
                     </td>
@@ -59,7 +59,7 @@
                         </a>
                         
                         <!-- Enlace para eliminar -->
-                        <a href="EliminarInquilino?numero=@item.id_inquilino" class="btn btn-danger">
+                        <a href="EliminarInquilino?numero=@item.id_inquilino"onclick="return confirm('¿Estás seguro de que deseas eliminar a @item.apellido @item.nombre?')" class="btn btn-danger">
                             <i class="fa-solid fa-trash"></i> Eliminar
                         </a>
                     </td>

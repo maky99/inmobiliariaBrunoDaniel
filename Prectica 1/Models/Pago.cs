@@ -8,6 +8,7 @@ namespace Prectica_1.Models
         public DateTime fecha { get; set; }
         public int estado { get; set; }
         public int id_contrato { get; set; }
-        
+        public int cantidad_pagos { get; set; }
+
     }
 }

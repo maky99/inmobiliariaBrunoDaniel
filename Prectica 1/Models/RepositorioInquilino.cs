@@ -145,8 +145,6 @@ public class RepositorioInquilino
         {
             connection.Open();
             var sql = $"SELECT * FROM inquilino WHERE id_inquilino = '{id}'";
-            //var sql = "SELECT * FROM inquilino WHERE id = @Id";
-            Console.WriteLine("SQL" + sql);
             using (var comando = new MySqlCommand(sql, connection))
             {
                 comando.Parameters.AddWithValue("@Id", id);

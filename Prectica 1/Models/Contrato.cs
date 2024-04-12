@@ -11,7 +11,7 @@ namespace Prectica_1.Models
         public int meses { get; set; }
         public DateTime hasta { get; set; }
         public string detalle { get; set; }
-        public DateTime finalizacionAnticipada { get; set; }
+        public DateTime finalizacion_anticipada { get; set; }
         public double? monto { get; set; }
         public double multa { get; set; }
         public int estado { get; set; }

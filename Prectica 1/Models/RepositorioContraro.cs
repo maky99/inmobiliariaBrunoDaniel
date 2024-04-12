@@ -120,10 +120,8 @@ public class RepositorioContraro
                             meses = reader.GetInt32("meses"),
                             hasta = reader.GetDateTime("hasta"),
                             detalle = reader.GetString("detalle"),
-                            finalizacionAnticipada = !reader.IsDBNull(reader.GetOrdinal("finalizacionAnticipada"))
-            ? reader.GetDateTime("finalizacionAnticipada")
-            : default(DateTime),
-                            multa = reader.GetDouble("multa"),
+                           finalizacion_anticipada = !reader.IsDBNull(reader.GetOrdinal("finalizacionAnticipada")) ? reader.GetDateTime("finalizacionAnticipada") : default(DateTime),
+                           multa = !reader.IsDBNull(reader.GetOrdinal("multa")) ? reader.GetDouble("multa") : 0.0,
                             monto = reader.GetDouble("monto"),
                             estado = reader.GetInt32("estado"),
                             inquilino = new Inquilino
@@ -145,7 +143,7 @@ public class RepositorioContraro
                             pago = new Pago
                             {
                                 cantidad_pagos = reader.IsDBNull(reader.GetOrdinal("cantidad_pagos")) ? 0 : reader.GetInt32("cantidad_pagos"),
-                                importe = reader.IsDBNull(reader.GetOrdinal("importe_pagos")) ? 0 : reader.GetDouble("importe_pagos")
+                                importe = reader.IsDBNull(reader.GetOrdinal("importe_pagos")) ? 0.0 : reader.GetDouble("importe_pagos")
                             }
                         });
                     }

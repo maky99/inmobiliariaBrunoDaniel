@@ -299,47 +299,18 @@ public class RepositorioContraro
     }
 
     public void GuardarContratoFinalizado(Contrato contrato)
-{
-    using (var connection = new MySqlConnection(ConnectionString))
     {
-        var sql = @"
-            UPDATE contrato 
-            SET 
-                id_inquilino = @id_inquilino,
-                id_inmueble = @id_inmueble,
-                desde = @desde,
-                meses = @meses,
-                hasta = @hasta,
-                detalle = @detalle,
-                monto = @monto,
-                finalizacion_anticipada = @finalizacion_anticipada,
-                multa = @multa,
-                estado = @estado 
-            WHERE 
-                id_contrato = @id_contrato";
-
-        using (var command = new MySqlCommand(sql, connection))
+        using (var connection = new MySqlConnection(ConnectionString))
         {
-            // Asignar valores a los parámetros
-            command.Parameters.AddWithValue("@id_inquilino", contrato.inquilino.id_inquilino);
-            command.Parameters.AddWithValue("@id_inmueble", contrato.inmueble.id_inmueble);
-            command.Parameters.AddWithValue("@desde", contrato.desde);
-            command.Parameters.AddWithValue("@meses", contrato.meses);
-            command.Parameters.AddWithValue("@hasta", contrato.hasta);
-            command.Parameters.AddWithValue("@detalle", contrato.detalle);
-            command.Parameters.AddWithValue("@monto", contrato.monto);
-            command.Parameters.AddWithValue("@finalizacion_anticipada", contrato.finalizacion_anticipada);
-            command.Parameters.AddWithValue("@multa", contrato.multa);
-            command.Parameters.AddWithValue("@estado", contrato.estado);
-            command.Parameters.AddWithValue("@id_contrato", contrato.id_contrato);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            var sql = $"UPDATE contrato SET id_inquilino = @id_inquilino,id_inmueble = @id_inmueble,desde = @desde,meses = @meses,hasta = @hasta,detalle = @detalle,   monto = @monto,finalizacion_anticipada = @finalizacion_anticipada, multa = @multa,estado = @estado WHERE id_contrato = @id_contrato";
+            using (var command = new MySqlCommand(sql, connection))
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
     }
-}
-
 
 
 

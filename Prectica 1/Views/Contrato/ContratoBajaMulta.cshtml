@@ -1,20 +1,25 @@
 ﻿@model Prectica_1.Models.Contrato
 @{
     ViewData["Title"] = "Home Page";
-    var inmueble = ViewData["inmueble"] as Prectica_1.Models.Inmueble;
-    var inquilino = ViewData["inquilino"] as Prectica_1.Models.Inquilino;
 }
 <div class="text-center">
     <h1 class="display-3">Baja Contrato</h1>
 </div>
 <div class="container">
     <div class="col-md-6 mx-auto">
-        <form asp-action="Finalizacion" method="post">
-             <div class="form-group">
-                <label asp-for="inquilino.id_inquilino">Inquilino</label>
-                <input asp-for="inquilino.id_inquilino" class="form-control" disabled />
-                <span asp-validation-for="inquilino.id_inquilino" class="text-danger"></span>
-            </div>            
+        <form asp-action="Finalizacion" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="@Model.inmueble.id_inmueble" />
+            <input type="hidden" asp-for="@Model.inquilino.id_inquilino" />
+            <input type="hidden" asp-for="@Model.id_contrato" />
+
+
+
+            <div class="form-group">
+                <label asp-for="inquilino.apellido">Inquilino</label>
+                <input asp-for="inquilino.apellido" class="form-control" disabled />
+                <span asp-validation-for="inquilino.apellido" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="inmueble.direccion">Direccion del Inmueble</label>
                 <input asp-for="inmueble.direccion" class="form-control" disabled />
@@ -29,7 +34,7 @@
                 <label asp-for="meses">Cantidad de meses</label>
                 <input id="meses" asp-for="meses" class="form-control" type="number" min="1"
                     onchange="calcularFechaFinal()" disabled />
-                    <input type="hidden" asp-for="meses" />
+                <input type="hidden" asp-for="meses" />
                 <span asp-validation-for="meses" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -75,9 +80,9 @@
 
     </div>
 </div>
-<script>
-    // Función para obtener la fecha de hoy y establecerla en el campo finalizacion_anticipada
-</script>
+
+
+
 <script>
     function calcularMulta() {
         var fechaInicio = new Date("@Model.desde");
@@ -99,10 +104,10 @@
 
         document.getElementById('multa').value = montoMulta.toFixed(2); // Redondear a 2 decimales
     }
-    
+
     // Llamar a la función calcularMulta al cargar la página y al cambiar la fecha de finalización anticipada
     window.onload = function () {
-         var today = new Date();
+        var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var yyyy = today.getFullYear();
@@ -116,24 +121,24 @@
         calcularMulta();
     });
     function calcularMulta() {
-    var fechaInicio = new Date(document.getElementById('desde').value);
-    var fechaFinal = new Date(document.getElementById('finalizacion_anticipada').value);
+        var fechaInicio = new Date(document.getElementById('desde').value);
+        var fechaFinal = new Date(document.getElementById('finalizacion_anticipada').value);
 
-    var tiempoTranscurrido = fechaFinal.getTime() - fechaInicio.getTime();
-    var mesesTranscurridos = tiempoTranscurrido / (1000 * 3600 * 24 * 30); // Convertir de milisegundos a meses
+        var tiempoTranscurrido = fechaFinal.getTime() - fechaInicio.getTime();
+        var mesesTranscurridos = tiempoTranscurrido / (1000 * 3600 * 24 * 30); // Convertir de milisegundos a meses
 
-    var mitadMesesOriginal = @Model.meses / 2;
+        var mitadMesesOriginal = @Model.meses / 2;
 
-    var montoMulta = 0;
-    if (mesesTranscurridos < mitadMesesOriginal) {
-        // Se cumplió menos de la mitad del tiempo original de alquiler
-        montoMulta = @Model.monto * 2; // Pagar 2 meses extra de alquiler
-    } else {
-        // Se cumplió más de la mitad del tiempo original de alquiler
-        montoMulta = @Model.monto; // Pagar solo un mes extra de alquiler
+        var montoMulta = 0;
+        if (mesesTranscurridos < mitadMesesOriginal) {
+            // Se cumplió menos de la mitad del tiempo original de alquiler
+            montoMulta = @Model.monto * 2; // Pagar 2 meses extra de alquiler
+        } else {
+            // Se cumplió más de la mitad del tiempo original de alquiler
+            montoMulta = @Model.monto; // Pagar solo un mes extra de alquiler
+        }
+
+        document.getElementById('multa').value = montoMulta.toFixed(2); // Redondear a 2 decimales
     }
-
-    document.getElementById('multa').value = montoMulta.toFixed(2); // Redondear a 2 decimales
-}
 
 </script>

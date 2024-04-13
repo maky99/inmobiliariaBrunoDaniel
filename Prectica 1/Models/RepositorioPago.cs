@@ -48,8 +48,8 @@ public class RepositorioPago
         var contratosVigentes = new List<Contrato>();
 
         using (var connection = new MySqlConnection(ConnectionString))
-    {
-        var sql = @"SELECT 
+        {
+            var sql = @"SELECT 
                     c.id_contrato, c.id_inquilino, c.id_inmueble, c.desde, c.meses, c.hasta, c.detalle, c.finalizacionAnticipada, c.monto, c.multa, c.estado,
                     i.apellido AS inquilino_apellido, i.nombre AS inquilino_nombre,
                     im.direccion AS direccion_inmueble,
@@ -68,15 +68,15 @@ public class RepositorioPago
                     im.direccion,
                     p.apellido, p.nombre";
 
-        using (var command = new MySqlCommand(sql, connection))
-        {
-            connection.Open();
-            using (var reader = command.ExecuteReader())
+            using (var command = new MySqlCommand(sql, connection))
             {
-                while (reader.Read())
+                connection.Open();
+                using (var reader = command.ExecuteReader())
                 {
-                    contratosVigentes.Add(new Contrato
+                    while (reader.Read())
                     {
+                        contratosVigentes.Add(new Contrato
+                        {
                             id_contrato = reader.GetInt32("id_contrato"),
                             id_inquilino = reader.GetInt32("id_inquilino"),
                             id_inmueble = reader.GetInt32("id_inmueble"),
@@ -120,7 +120,7 @@ public class RepositorioPago
 
     public void GuardarPago(Pago pago)
     {
-         pago.estado = 1;
+        pago.estado = 1;
         using (var connection = new MySqlConnection(ConnectionString))
         {
             var sql = "INSERT INTO pago (concepto, importe, fecha, estado, id_contrato) VALUES (@concepto, @importe, @fecha, @estado, @id_contrato)";
@@ -137,6 +137,52 @@ public class RepositorioPago
                 connection.Close();
             }
         }
+    }
+
+    public Pago BuscarPagoPorId(int idPago)
+    {
+        Pago pago = null;
+        using (var connection = new MySqlConnection(ConnectionString))
+        {
+            connection.Open();
+            var sql = @"SELECT pago.importe, 
+                       inquilino.id_inquilino, 
+                       inquilino.nombre, 
+                       inquilino.apellido, 
+                       inquilino.telefono, 
+                       inquilino.email,
+                       contrato.id_contrato
+                FROM pago
+                JOIN contrato ON pago.id_contrato = contrato.id_contrato
+                JOIN inquilino ON contrato.id_inquilino = inquilino.id_inquilino
+                WHERE contrato.id_contrato = @idPago";
+
+            using (var command = new MySqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@idPago", idPago);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        pago = new Pago
+                        {
+                            importe = reader.GetDouble("importe"),
+                            inquilino = new Inquilino
+                            {
+                                id_inquilino = reader.GetInt32("id_inquilino"),
+                                nombre = reader.GetString("nombre"),
+                                apellido = reader.GetString("apellido"),
+                                telefono = reader.GetString("telefono"),
+                                email = reader.GetString("email")
+                            },
+                            id_contrato = reader.GetInt32("id_contrato") // Asignar el id_contrato
+                        };
+                    }
+                }
+            }
+        }
+        return pago;
     }
 
 

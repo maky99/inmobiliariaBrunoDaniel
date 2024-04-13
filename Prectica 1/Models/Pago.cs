@@ -9,6 +9,8 @@ namespace Prectica_1.Models
         public int estado { get; set; }
         public int id_contrato { get; set; }
         public int cantidad_pagos { get; set; }
+        public Inquilino inquilino { get; set; }
+        public Contrato contrato { get; set; }
 
     }
 }

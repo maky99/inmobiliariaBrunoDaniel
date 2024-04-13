@@ -31,12 +31,6 @@ public class ContratoController : Controller
         return View(contrato);
     }
 
-
-
-
-
-
-
     public IActionResult ContratoNuevo()
     {
         RepositorioContraro rc = new RepositorioContraro();
@@ -48,18 +42,13 @@ public class ContratoController : Controller
         return View();
     }
 
+    public IActionResult NuevoContrato(Contrato contrato)
+    {
+        RepositorioContraro rc = new RepositorioContraro();
+        rc.GuardarContrato(contrato);
 
-
-
-
-
-    // public IActionResult NuevoContrato(Contrato contrato)
-    // {
-    //     RepositorioContraro rc = new RepositorioContraro();
-    //     rc.GuardarContrato(contrato);
-
-    //     return RedirectToAction(nameof(ContratoIndex));
-    // }
+        return RedirectToAction(nameof(ContratoIndex));
+    }
 
 
 

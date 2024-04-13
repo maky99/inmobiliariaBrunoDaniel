@@ -35,8 +35,18 @@ public class PagoController : Controller
     {
         RepositorioPago rp = new RepositorioPago();
         rp.GuardarPago(pago);
-        return  RedirectToAction(nameof(PagoIndex));
-            }
+        return RedirectToAction(nameof(PagoIndex));
+    }
+    public IActionResult PagoNuevoDirecto(int numid)
+    {
+        //RepositorioPago rp = new RepositorioPago();
+        //var datos = rp.BuscarPagoPorId(numid);
+        RepositorioContraro rc = new RepositorioContraro();
+        var contrato = rc.ContratoMonto(numid);
+        ViewData["contrato"] = contrato;
+
+        return View();
+    }
 
 
 }

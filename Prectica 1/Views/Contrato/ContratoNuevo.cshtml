@@ -8,7 +8,7 @@
 <div class="container">
     <div class="col-md-6 mx-auto">
         <form asp-action="NuevoContrato" method="post">
-             <div class="form-group">
+            <div class="form-group">
                 <label asp-for="id_inquilino" class="control-label">Inquilino</label>
                 <select asp-for="id_inquilino" class="form-control">
                     <option value="" disabled selected>Seleccione un Inquilino</option>
@@ -22,7 +22,7 @@
                 </select>
                 <span asp-validation-for="id_inquilino" class="text-danger"></span>
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <label asp-for="id_inmueble" class="control-label">Inmueble</label>
                 <select asp-for="id_inmueble" class="form-control">
                     <option value="" disabled selected>Seleccione un Inmueble</option>
@@ -57,7 +57,7 @@
                 <input asp-for="detalle" class="form-control" />
                 <span asp-validation-for="detalle" class="text-danger"></span>
             </div>
-           
+
             <div class="form-group">
                 <label asp-for="monto">Monto</label>
                 <input asp-for="monto" class="form-control" type="number" step="any" />
@@ -74,13 +74,13 @@
                 </select>
                 <span asp-validation-for="estado" class="text-danger"></span>
             </div>
-             <div class="mt-3">
-            <button type="submit" value="create"class="btn btn-primary btn-sm">Guardar</button>
-             <a href="ContratoIndex" class="btn btn-primary btn-sm">Cancelar</a>
-        </div>
+            <div class="mt-3">
+                <button type="submit" value="create" class="btn btn-primary btn-sm">Guardar</button>
+                <a href="ContratoIndex" class="btn btn-primary btn-sm">Cancelar</a>
+            </div>
 
         </form>
-       
+
     </div>
 </div>
 

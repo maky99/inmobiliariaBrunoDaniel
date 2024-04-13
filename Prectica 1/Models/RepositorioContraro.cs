@@ -118,9 +118,6 @@ public class RepositorioContraro
         }
         return inquilinosSinContrato;
     }
-
-
-
     public List<Inmueble> inmueblesSinContrato()
     {
         List<Inmueble> inmueblesSinContrato = new List<Inmueble>();
@@ -149,7 +146,7 @@ public class RepositorioContraro
                             ambiente = reader.GetInt32("ambiente"),
                             estado = reader.GetInt32("estado"),
                             id_propietario = reader.GetInt32("id_propietario"),
-                           
+
                         });
                     }
                 }
@@ -158,12 +155,6 @@ public class RepositorioContraro
         }
         return inmueblesSinContrato;
     }
-
-
-
-
-
-
     public void GuardarContrato(Contrato contrato)
     {
         using (var connection = new MySqlConnection(ConnectionString))
@@ -184,6 +175,47 @@ public class RepositorioContraro
                 connection.Close();
             }
         }
+    }
+    public Contrato ContratoMonto(int numid)
+    {
+        Contrato contrato = null;
+
+        using (var connection = new MySqlConnection(ConnectionString))
+        {
+            var sql = @"SELECT 
+                        inquilino.id_inquilino, 
+                        inquilino.nombre AS nombre_inquilino, 
+                        inquilino.apellido AS apellido_inquilino, 
+                        contrato.monto AS monto_contrato
+                    FROM contrato
+                    JOIN inquilino ON contrato.id_inquilino = inquilino.id_inquilino
+                    WHERE contrato.estado IN (0, 1)
+                    AND contrato.id_contrato = @numid";
+
+            using (var command = new MySqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@numid", numid);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        contrato = new Contrato
+                        {
+                            inquilino = new Inquilino
+                            {
+                                id_inquilino = reader.GetInt32("id_inquilino"),
+                                nombre = reader.GetString("nombre_inquilino"),
+                                apellido = reader.GetString("apellido_inquilino"),
+                            },
+                            monto = reader.GetDouble("monto_contrato")
+                        };
+                    }
+                }
+                connection.Close();
+            }
+        }
+        return contrato;
     }
 
 

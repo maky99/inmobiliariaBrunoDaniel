@@ -12,36 +12,33 @@
     <div class="col-md-6 mx-auto">
         <form asp-action="PagoGuardar" method="post">
             <div class="form-group">
+                <label asp-for="id_contrato" class="control-label">ID Contrato</label>
+                <select asp-for="id_contrato" class="form-control" id="id_contrato_select">
+                    <option value="" disabled selected>Seleccione un Contrato</option>
+                    @foreach (var contrato in (List<Contrato>)ViewData["ContratosVigentes"])
+                    {
+                        <option value="@contrato.id_contrato" data-monto="@contrato.monto">
+                            @contrato.inquilino.apellido, @contrato.inquilino.nombre
+                        </option>
+                    }
+                </select>
+                <span asp-validation-for="id_contrato" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="importe" class="control-label">Importe</label>
+                <input asp-for="importe" class="form-control" type="number" step="any" id="importe" readonly />
+                <span asp-validation-for="importe" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="concepto" class="control-label">Concepto</label>
                 <input asp-for="concepto" class="form-control" />
                 <span asp-validation-for="concepto" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="importe" class="control-label">Importe</label>
-                <input asp-for="importe" class="form-control" type="number" step="any" />
-                <span asp-validation-for="importe" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="fecha" class="control-label">Fecha</label>
                 <input asp-for="fecha" class="form-control" type="date" />
                 <span asp-validation-for="fecha" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="estado" class="control-label">Estado</label>
-                <input asp-for="estado" class="form-control" type="number" />
-                <span asp-validation-for="estado" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="id_contrato" class="control-label">ID Contrato</label>
-                <select asp-for="id_contrato" class="form-control">
-                    <option value="" disabled selected>Seleccione un Contrato</option>
-                    @foreach (var contrato in (List<Contrato>)ViewData["ContratosVigentes"])
-                    {
-                        <option value="@contrato.id_contrato">@contrato.inquilino.apellido, @contrato.inquilino.nombre
-                        </option>
-                    }
-                </select>
-                <span asp-validation-for="id_contrato" class="text-danger"></span>
             </div>
             <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Guardar Pago</button>
@@ -50,3 +47,19 @@
         </form>
     </div>
 </div>
+<script>
+    // Obtener el select de ID de contrato
+    var idContratoSelect = document.getElementById('id_contrato_select');
+
+    // Obtener el campo de importe
+    var importeInput = document.getElementById('importe');
+
+    // Agregar un listener de cambio al select
+    idContratoSelect.addEventListener('change', function() {
+        // Obtener el valor del monto del contrato seleccionado
+        var montoContrato = this.options[this.selectedIndex].getAttribute('data-monto');
+        
+        // Asignar el valor del monto al campo de importe
+        importeInput.value = montoContrato;
+    });
+</script>

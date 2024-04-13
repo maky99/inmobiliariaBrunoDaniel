@@ -120,6 +120,7 @@ public class RepositorioPago
 
     public void GuardarPago(Pago pago)
     {
+         pago.estado = 1;
         using (var connection = new MySqlConnection(ConnectionString))
         {
             var sql = "INSERT INTO pago (concepto, importe, fecha, estado, id_contrato) VALUES (@concepto, @importe, @fecha, @estado, @id_contrato)";

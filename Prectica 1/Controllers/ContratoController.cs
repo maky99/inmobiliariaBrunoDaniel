@@ -53,13 +53,13 @@ public class ContratoController : Controller
 
 
 
-    public IActionResult NuevoContrato(Contrato contrato)
-    {
-        RepositorioContraro rc = new RepositorioContraro();
-        rc.GuardarContrato(contrato);
+    // public IActionResult NuevoContrato(Contrato contrato)
+    // {
+    //     RepositorioContraro rc = new RepositorioContraro();
+    //     rc.GuardarContrato(contrato);
 
-        return RedirectToAction(nameof(ContratoIndex));
-    }
+    //     return RedirectToAction(nameof(ContratoIndex));
+    // }
 
 
 

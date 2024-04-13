@@ -84,7 +84,7 @@ public class RepositorioPago
                             meses = reader.GetInt32("meses"),
                             hasta = reader.GetDateTime("hasta"),
                             detalle = reader.GetString("detalle"),
-                            finalizacion_anticipada = !reader.IsDBNull(reader.GetOrdinal("finalizacionAnticipada")) ? reader.GetDateTime("finalizacionAnticipada") : default(DateTime),
+                            finalizacionAnticipada = !reader.IsDBNull(reader.GetOrdinal("finalizacionAnticipada")) ? reader.GetDateTime("finalizacionAnticipada") : default(DateTime),
                             multa = !reader.IsDBNull(reader.GetOrdinal("multa")) ? reader.GetDouble("multa") : 0.0,
                             monto = reader.GetDouble("monto"),
                             estado = reader.GetInt32("estado"),

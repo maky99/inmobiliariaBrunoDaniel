@@ -1,5 +1,5 @@
-namespace Prectica_1.Models
-{
+namespace Prectica_1.Models;
+
     public class Pago
     {
         public int id_pago { get; set; }
@@ -13,4 +13,4 @@ namespace Prectica_1.Models
         public Contrato contrato { get; set; }
 
     }
-}
+

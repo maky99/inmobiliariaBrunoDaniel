@@ -9,11 +9,21 @@
     <div class="col-md-6 mx-auto">
         <form asp-action="Finalizacion" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="@Model.inmueble.id_inmueble" />
-            <input type="hidden" asp-for="@Model.inquilino.id_inquilino" />
+            @* <input type="hidden" asp-for="@Model.inmueble.id_inmueble" />
+            <input type="hidden" asp-for="@Model.inquilino.id_inquilino" />  *@
             <input type="hidden" asp-for="@Model.id_contrato" />
 
+            <div class="form-group">
+                <label asp-for="id_inquilino">Inquilino</label>
+                <input asp-for="id_inquilino" class="form-control" disabled />
+                <span asp-validation-for="id_inquilino" class="readonly"></span>
+            </div>
 
+             <div class="form-group">
+                <label asp-for="id_inmueble">Inquilino</label>
+                <input asp-for="id_inmueble" class="form-control" disabled />
+                <span asp-validation-for="id_inmueble" class="readonly"></span>
+            </div>
 
             <div class="form-group">
                 <label asp-for="inquilino.apellido">Inquilino</label>
@@ -54,10 +64,10 @@
                 <span asp-validation-for="monto" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="finalizacion_anticipada">Finalización Anticipada</label>
-                <input id="finalizacion_anticipada" asp-for="finalizacion_anticipada" class="form-control"
+                <label asp-for="finalizacionAnticipada">Finalización Anticipada</label>
+                <input id="finalizacionAnticipada" asp-for="finalizacionAnticipada" class="form-control"
                     type="date" />
-                <span asp-validation-for="finalizacion_anticipada" class="text-danger"></span>
+                <span asp-validation-for="finalizacionAnticipada" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="multa">Multa</label>
@@ -72,7 +82,7 @@
                 <span asp-validation-for="estado" class="text-danger"></span>
             </div>
             <div class="mt-3">
-                <button type="submit" value="create" class="btn btn-primary btn-sm">Guardar</button>
+                <button type="submit" value="Finalizacion" class="btn btn-primary btn-sm">Guardar</button>
                 <a href="ContratoIndex" class="btn btn-primary btn-sm">Cancelar</a>
             </div>
 
@@ -86,7 +96,7 @@
 <script>
     function calcularMulta() {
         var fechaInicio = new Date("@Model.desde");
-        var fechaFinal = new Date(document.getElementById('finalizacion_anticipada').value);
+        var fechaFinal = new Date(document.getElementById('finalizacionAnticipada').value);
 
         var tiempoTranscurrido = fechaFinal.getTime() - fechaInicio.getTime();
         var mesesTranscurridos = tiempoTranscurrido / (1000 * 3600 * 24 * 30); // Convertir de milisegundos a meses
@@ -113,16 +123,16 @@
         var yyyy = today.getFullYear();
 
         today = yyyy + '-' + mm + '-' + dd;
-        document.getElementById('finalizacion_anticipada').value = today;
+        document.getElementById('finalizacionAnticipada').value = today;
         calcularMulta();
     };
 
-    document.getElementById('finalizacion_anticipada').addEventListener('change', function () {
+    document.getElementById('finalizacionAnticipada').addEventListener('change', function () {
         calcularMulta();
     });
     function calcularMulta() {
         var fechaInicio = new Date(document.getElementById('desde').value);
-        var fechaFinal = new Date(document.getElementById('finalizacion_anticipada').value);
+        var fechaFinal = new Date(document.getElementById('finalizacionAnticipada').value);
 
         var tiempoTranscurrido = fechaFinal.getTime() - fechaInicio.getTime();
         var mesesTranscurridos = tiempoTranscurrido / (1000 * 3600 * 24 * 30); // Convertir de milisegundos a meses

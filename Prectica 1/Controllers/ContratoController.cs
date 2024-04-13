@@ -59,8 +59,10 @@ public class ContratoController : Controller
     }
     public IActionResult Finalizacion(Contrato contrato)
     {
-        RepositorioContraro rc = new RepositorioContraro();
-        rc.GuardarContratoFinalizado(contrato);
+        RepositorioContrato2 rc = new RepositorioContrato2();
+       // rc.GuardarContratoFinalizado(contrato);
+
+        rc.modifiContra(contrato);
 
         return RedirectToAction(nameof(ContratoIndex));
     }

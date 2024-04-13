@@ -2,7 +2,8 @@
 using MySql.Data.MySqlClient;
 using Prectica_1.Models;
 
-namespace System.Configuration;
+//namespace System.Configuration;
+namespace Prectica_1.Models;
 
 public class RepositorioContraro
 {
@@ -50,7 +51,7 @@ public class RepositorioContraro
                             meses = reader.GetInt32("meses"),
                             hasta = reader.GetDateTime("hasta"),
                             detalle = reader.GetString("detalle"),
-                            finalizacion_anticipada = !reader.IsDBNull(reader.GetOrdinal("finalizacionAnticipada")) ? reader.GetDateTime("finalizacionAnticipada") : default(DateTime),
+                            finalizacionAnticipada = !reader.IsDBNull(reader.GetOrdinal("finalizacionAnticipada")) ? reader.GetDateTime("finalizacionAnticipada") : default(DateTime),
                             multa = !reader.IsDBNull(reader.GetOrdinal("multa")) ? reader.GetDouble("multa") : 0.0,
                             monto = reader.GetDouble("monto"),
                             estado = reader.GetInt32("estado"),
@@ -264,7 +265,7 @@ public class RepositorioContraro
                             meses = reader.GetInt32("meses"),
                             hasta = reader.GetDateTime("hasta"),
                             detalle = reader.GetString("detalle"),
-                            finalizacion_anticipada = !reader.IsDBNull(reader.GetOrdinal("finalizacionAnticipada")) ? reader.GetDateTime("finalizacionAnticipada") : default(DateTime),
+                            finalizacionAnticipada = !reader.IsDBNull(reader.GetOrdinal("finalizacionAnticipada")) ? reader.GetDateTime("finalizacionAnticipada") : default(DateTime),
                             multa = !reader.IsDBNull(reader.GetOrdinal("multa")) ? reader.GetDouble("multa") : 0.0,
                             monto = reader.GetDouble("monto"),
                             estado = reader.GetInt32("estado"),
@@ -298,20 +299,41 @@ public class RepositorioContraro
         return contrato;
     }
 
-    public void GuardarContratoFinalizado(Contrato contrato)
-    {
-        using (var connection = new MySqlConnection(ConnectionString))
-        {
-            var sql = $"UPDATE contrato SET id_inquilino = @id_inquilino,id_inmueble = @id_inmueble,desde = @desde,meses = @meses,hasta = @hasta,detalle = @detalle,   monto = @monto,finalizacion_anticipada = @finalizacion_anticipada, multa = @multa,estado = @estado WHERE id_contrato = @id_contrato";
-            using (var command = new MySqlCommand(sql, connection))
-            {
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-        }
-    }
+    // public Contrato GuardarContratoFinalizado(Contrato contrato)
+    // {
+    //     using (var connection = new MySqlConnection(ConnectionString))
+    //     {
+    //         var sql = $"UPDATE contrato SET id_inquilino = @id_inquilino,id_inmueble = @id_inmueble,desde = @desde,meses = @meses,hasta = @hasta,detalle = @detalle,   monto = @monto,finalizacionAnticipada = @finalizacionAnticipada, multa = @multa,estado = @estado WHERE id_contrato = @id_contrato";
+
+    //         var sql2 = @$"UPDATE contrato SET {nameof(Contrato.id_contrato)}={nameof(Contrato.id_contrato)}, 
 
 
+    //         {nameof(Contrato.id_inquilino) id_inquilino = @id_inquilino,id_inmueble = @id_inmueble,desde = @desde,meses = @meses,hasta = @hasta,detalle = @detalle,   monto = @monto,finalizacionAnticipada = @finalizacionAnticipada, multa = @multa,estado = @estado WHERE id_contrato = @id_contrato";
+    //         using (var command = new MySqlCommand(sql2, connection))
+    //         {
+    //             connection.Open();
+    //             command.ExecuteNonQuery();
+    //             connection.Close();
+    //         }
+    //     }
+    //     return contrato;
 
+    //     }
+    //     }
+    //     }
+
+    // public Contrato GuardarCon(Contrato con)
+    // {
+    //     using (var connection = new MySqlConnection(ConnectionString))
+    //     {
+
+    //         var ssql= @$"UPDATE contrato SET {nameof(Contrato.id_contrato)}=@{nameof(contrato.id_contrato)}";
+    //         var sql2 = $"UPDATE contrato SET {nameof(Contrato.id_contrato)}=@{nameof(contrato.id_contrato)}"; 
+
+    //      var sql = @$"UPDATE contratos SET {nameof(Contrato.idinmueble)} =@{nameof(Contrato.idinmueble)},
+    //          {nameof(Contrato.idinquilino)} =@{nameof(Contrato.idinquilino)},
+    //          {nameof(Contrato.importe)} =@{nameof(Contrato.importe)}
+    //           WHERE {nameof(Contrato.idcontrato)} =@{nameof(Contrato.idcontrato)}";
+    //     return contrato;
+    //     }
 }

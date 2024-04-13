@@ -1,5 +1,5 @@
-namespace Prectica_1.Models
-{
+namespace Prectica_1.Models;
+
     public class Inquilino
     {
         public int id_inquilino { get; set; }
@@ -10,4 +10,4 @@ namespace Prectica_1.Models
         public string email { get; set; }
         public int estado { get; set; }
     }
-}
+

@@ -60,13 +60,13 @@
                     <td>@item.pago.cantidad_pagos / @item.meses</td>
                     <td>$ @item.multa</td>
                     <td>
-                        @if (item.finalizacion_anticipada.ToString("dd/MM/yyyy") == "01/01/0001")
+                        @if (item.finalizacionAnticipada.ToString("dd/MM/yyyy") == "01/01/0001")
                         {
                             @:no
                         }
                         else
                         {
-                            @item.finalizacion_anticipada.ToString("dd/MM/yyyy")
+                            @item.finalizacionAnticipada.ToString("dd/MM/yyyy")
                         }
                     </td>
                     <td>

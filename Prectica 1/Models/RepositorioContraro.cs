@@ -183,14 +183,15 @@ public class RepositorioContraro
         using (var connection = new MySqlConnection(ConnectionString))
         {
             var sql = @"SELECT 
-                        inquilino.id_inquilino, 
-                        inquilino.nombre AS nombre_inquilino, 
-                        inquilino.apellido AS apellido_inquilino, 
-                        contrato.monto AS monto_contrato
-                    FROM contrato
-                    JOIN inquilino ON contrato.id_inquilino = inquilino.id_inquilino
-                    WHERE contrato.estado IN (0, 1)
-                    AND contrato.id_contrato = @numid";
+                    contrato.id_contrato,
+                    inquilino.id_inquilino, 
+                    inquilino.nombre AS nombre_inquilino, 
+                    inquilino.apellido AS apellido_inquilino, 
+                    contrato.monto AS monto_contrato
+                FROM contrato
+                JOIN inquilino ON contrato.id_inquilino = inquilino.id_inquilino
+                WHERE contrato.estado IN (0, 1)
+                AND contrato.id_contrato = @numid";
 
             using (var command = new MySqlCommand(sql, connection))
             {
@@ -202,6 +203,7 @@ public class RepositorioContraro
                     {
                         contrato = new Contrato
                         {
+                            id_contrato = reader.GetInt32("id_contrato"),
                             inquilino = new Inquilino
                             {
                                 id_inquilino = reader.GetInt32("id_inquilino"),
@@ -217,6 +219,7 @@ public class RepositorioContraro
         }
         return contrato;
     }
+
 
 
 }

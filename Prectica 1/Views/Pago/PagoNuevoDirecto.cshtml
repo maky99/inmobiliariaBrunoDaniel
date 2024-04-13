@@ -2,27 +2,29 @@
 
 @{
     ViewData["Title"] = "Agregar Nuevo ddeee";
+    var contrato = ViewData["contra"] as Prectica_1.Models.Contrato;
 }
 
 <div class="text-center">
     <h1 class="display-3">Agregar Nuevo Pago</h1>
 </div>
-
 <div class="container">
     <div class="col-md-6 mx-auto">
         <form asp-action="PagoGuardar" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="contrato.id_contrato" />
+            <input type="hidden" asp-for="id_contrato" value="@contrato.id_contrato" />
             <div class="form-group">
-                <label asp-for="inquilino" class="control-label">Nombre del Inquilino</label>
-                <input type="text" class="form-control" value="contrato.inquilino.apellido" readonly />
-                <span asp-validation-for="inquilino" class="text-danger"></span>
+                <label class="control-label">Nombre del Inquilino</label>
+                <input type="text" class="form-control" value="@contrato.inquilino.apellido @contrato.inquilino.nombre"
+                    readonly />
+                <span class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="contrato.monto" class="control-label">Importe</label>
-                <input asp-for="contrato.monto" class="form-control" type="number" step="any" id="importe" readonly />
-                <span asp-validation-for="contrato.monto" class="text-danger"></span>
+                <label class="control-label">Importe</label>
+                <input asp-for="importe" class="form-control" value="@contrato.monto" readonly />
+                <span asp-validation-for="importe" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="concepto" class="control-label">Concepto</label>
                 <input asp-for="concepto" class="form-control" />
@@ -35,8 +37,8 @@
             </div>
 
             <div class="mt-3">
-                <button type="submit" class="btn btn-primary">Guardar Pago</button>
-                <a href="PagoIndex" class="btn btn-secondary">Cancelar</a>
+                <a href="#" class="btn btn-primary" onclick="document.forms[0].submit(); return false;">Guardar Pago</a>
+                <a href="../Contrato/ContratoIndex" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>

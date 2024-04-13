@@ -43,7 +43,7 @@ public class PagoController : Controller
         //var datos = rp.BuscarPagoPorId(numid);
         RepositorioContraro rc = new RepositorioContraro();
         var contrato = rc.ContratoMonto(numid);
-        ViewData["contrato"] = contrato;
+        ViewData["contra"] = contrato;
 
         return View();
     }

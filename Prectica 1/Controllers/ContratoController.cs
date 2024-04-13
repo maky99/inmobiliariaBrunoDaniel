@@ -49,6 +49,28 @@ public class ContratoController : Controller
 
         return RedirectToAction(nameof(ContratoIndex));
     }
+    public IActionResult ContratoBajaMulta(int numid)
+{
+    RepositorioInmueble ri = new RepositorioInmueble();
+    var inmueble = ri.InmuebleLibre();
+    ViewData["inmueble"] = inmueble;
+
+    RepositorioInquilino rInqui = new RepositorioInquilino();
+    var inquilino = rInqui.InquilinosAptos();
+    ViewData["inquilino"] = inquilino;
+
+    RepositorioContraro rc = new RepositorioContraro();
+    var contrato = rc.Contrato(numid);
+
+    return View(contrato); 
+}
+public IActionResult Finalizacion(Contrato contrato)
+    {
+        RepositorioContraro rc = new RepositorioContraro();
+        rc.GuardarContratoFinalizado(contrato);
+
+        return RedirectToAction(nameof(ContratoIndex));
+    }
 
 
 

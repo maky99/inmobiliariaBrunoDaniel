@@ -21,6 +21,8 @@ namespace Prectica_1.Models
         public Inmueble inmueble { get; set; }
         public Inquilino inquilino { get; set; }
         public Pago pago { get; set; }
+        
 
     }
+    
 }

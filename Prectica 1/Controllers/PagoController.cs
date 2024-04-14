@@ -39,13 +39,18 @@ public class PagoController : Controller
     }
     public IActionResult PagoNuevoDirecto(int numid)
     {
-        //RepositorioPago rp = new RepositorioPago();
-        //var datos = rp.BuscarPagoPorId(numid);
         RepositorioContraro rc = new RepositorioContraro();
         var contrato = rc.ContratoMonto(numid);
         ViewData["contra"] = contrato;
 
         return View();
+    }
+    public IActionResult PagoEditar(int numid)
+    {
+        RepositorioPago rp = new RepositorioPago();
+        var traepago = rp.BuscarPagoPorId(numid);
+
+        return View(traepago);
     }
 
 

@@ -9,31 +9,15 @@
     <div class="col-md-6 mx-auto">
         <form asp-action="Finalizacion" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @* <input type="hidden" asp-for="@Model.inmueble.id_inmueble" />
-            <input type="hidden" asp-for="@Model.inquilino.id_inquilino" />  *@
             <input type="hidden" asp-for="@Model.id_contrato" />
-
             <div class="form-group">
-                <label asp-for="id_inquilino">Inquilino</label>
-                <input asp-for="id_inquilino" class="form-control" disabled />
-                <span asp-validation-for="id_inquilino" class="readonly"></span>
-            </div>
-
-             <div class="form-group">
-                <label asp-for="id_inmueble">Inquilino</label>
-                <input asp-for="id_inmueble" class="form-control" disabled />
-                <span asp-validation-for="id_inmueble" class="readonly"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="inquilino.apellido">Inquilino</label>
-                <input asp-for="inquilino.apellido" class="form-control" disabled />
-                <span asp-validation-for="inquilino.apellido" class="text-danger"></span>
+                <label>Nombre del Inquilino</label>
+                <input class="form-control" disabled
+                    value="@($"{Model.inquilino.apellido} {Model.inquilino.nombre}")" />
             </div>
             <div class="form-group">
-                <label asp-for="inmueble.direccion">Direccion del Inmueble</label>
-                <input asp-for="inmueble.direccion" class="form-control" disabled />
-                <span asp-validation-for="inmueble.direccion" class="text-danger"></span>
+                <label>Direccion del Inmueble</label>
+                <input class="form-control" disabled value="@Model.inmueble.direccion" />
             </div>
             <div class="form-group">
                 <label asp-for="desde">Desde</label>
@@ -65,13 +49,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="finalizacionAnticipada">Finalización Anticipada</label>
-                <input id="finalizacionAnticipada" asp-for="finalizacionAnticipada" class="form-control"
-                    type="date" />
+                <input id="finalizacionAnticipada" asp-for="finalizacionAnticipada" class="form-control" type="date" />
                 <span asp-validation-for="finalizacionAnticipada" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="multa">Multa</label>
-                <input asp-for="multa" class="form-control" type="number" step="any" />
+                <input asp-for="multa" class="form-control" type="number" step="any" readonly />
                 <span asp-validation-for="multa" class="text-danger"></span>
             </div>
             <div class="form-group">

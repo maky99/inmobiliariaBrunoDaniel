@@ -17,7 +17,7 @@ public class RepositorioPago
         {
             var sql = @"SELECT id_pago, concepto, importe, fecha, estado, id_contrato
                     FROM pago
-                    ORDER BY fecha DESC"; // Ordenar los pagos por fecha descendente
+                    ORDER BY fecha DESC";
             using (var command = new MySqlCommand(sql, connection))
             {
                 connection.Open();
@@ -139,23 +139,71 @@ public class RepositorioPago
         }
     }
 
+    public Pago BuscarPagoPorIddd(int idPago)
+    {
+        Pago pago = null;
+        using (var connection = new MySqlConnection(ConnectionString))
+        {
+            connection.Open();
+            var sql = @$"SELECT i.{nameof(Inquilino.id_inquilino)}, 
+                    i.{nameof(Inquilino.dni)}, 
+                    i.{nameof(Inquilino.apellido)} AS inquilino_apellido, 
+                    i.{nameof(Inquilino.nombre)} AS inquilino_nombre, 
+                    i.{nameof(Inquilino.telefono)} AS inquilino_telefono, 
+                    i.{nameof(Inquilino.email)} AS inquilino_email
+             FROM contrato c  
+             INNER JOIN inquilino i ON c.{nameof(Contrato.id_inquilino)} = i.{nameof(Inquilino.id_inquilino)} 
+             INNER JOIN pago p ON c.{nameof(Contrato.id_contrato)} = p.{nameof(Pago.id_contrato)}
+             WHERE p.{nameof(Pago.id_pago)} = @idPago";
+
+            //             var sql = @$"SELECT i.{nameof(Inquilino.id_inquilino)}, i.{nameof(Inquilino.dni)},i.{nameof(Inquilino.apellido)} AS inquilino_apellido,i.{nameof(Inquilino.nombre)} AS inquilino_nombre, i.{nameof(Inquilino.telefono)} AS inquilino_telefono, i.{nameof(Inquilino.email)} AS inquilino_email
+            // FROM   contrato c  INNER JOIN inquilino i ON c.{nameof(Contrato.id_inquilino)} = i.{nameof(Inquilino.id_inquilino)} INNER JOIN pago p ON c.{nameof(Contrato.id_contrato)} = p.{nameof(Pago.id_contrato)}WHERE   p.{nameof(Pago.id_pago)} =@idPago";
+            using (var command = new MySqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@idPago", idPago);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        pago = new Pago
+                        {
+                            importe = reader.GetDouble(reader.GetOrdinal(nameof(Pago.importe))),
+                            inquilino = new Inquilino
+                            {
+                                id_inquilino = reader.GetInt32(reader.GetOrdinal(nameof(Inquilino.id_inquilino))),
+                                nombre = reader.GetString(reader.GetOrdinal(nameof(Inquilino.nombre))),
+                                apellido = reader.GetString(reader.GetOrdinal(nameof(Inquilino.apellido))),
+                                telefono = reader.GetString(reader.GetOrdinal(nameof(Inquilino.telefono))),
+                                email = reader.GetString(reader.GetOrdinal(nameof(Inquilino.email)))
+                            },
+                            id_contrato = reader.GetInt32(reader.GetOrdinal(nameof(Contrato.id_contrato)))
+                        };
+                    }
+                }
+            }
+        }
+        return pago;
+    }
     public Pago BuscarPagoPorId(int idPago)
     {
         Pago pago = null;
         using (var connection = new MySqlConnection(ConnectionString))
         {
             connection.Open();
-            var sql = @"SELECT pago.importe, 
-                       inquilino.id_inquilino, 
-                       inquilino.nombre, 
-                       inquilino.apellido, 
-                       inquilino.telefono, 
-                       inquilino.email,
-                       contrato.id_contrato
-                FROM pago
-                JOIN contrato ON pago.id_contrato = contrato.id_contrato
-                JOIN inquilino ON contrato.id_inquilino = inquilino.id_inquilino
-                WHERE contrato.id_contrato = @idPago";
+            var sql = @$"SELECT 
+                    p.importe, 
+                    p.fecha, -- Agregar la fecha a la consulta
+                    i.{nameof(Inquilino.id_inquilino)}, 
+                    i.{nameof(Inquilino.dni)}, 
+                    i.{nameof(Inquilino.apellido)} AS inquilino_apellido, 
+                    i.{nameof(Inquilino.nombre)} AS inquilino_nombre, 
+                    i.{nameof(Inquilino.telefono)} AS inquilino_telefono, 
+                    i.{nameof(Inquilino.email)} AS inquilino_email
+                FROM contrato c  
+                INNER JOIN inquilino i ON c.{nameof(Contrato.id_inquilino)} = i.{nameof(Inquilino.id_inquilino)} 
+                INNER JOIN pago p ON c.{nameof(Contrato.id_contrato)} = p.{nameof(Pago.id_contrato)}
+                WHERE p.{nameof(Pago.id_pago)} = @idPago";
 
             using (var command = new MySqlCommand(sql, connection))
             {
@@ -167,16 +215,16 @@ public class RepositorioPago
                     {
                         pago = new Pago
                         {
-                            importe = reader.GetDouble("importe"),
+                            importe = reader.GetDouble(reader.GetOrdinal("importe")),
+                            fecha = reader.GetDateTime(reader.GetOrdinal("fecha")), // Obtener la fecha del reader
                             inquilino = new Inquilino
                             {
-                                id_inquilino = reader.GetInt32("id_inquilino"),
-                                nombre = reader.GetString("nombre"),
-                                apellido = reader.GetString("apellido"),
-                                telefono = reader.GetString("telefono"),
-                                email = reader.GetString("email")
-                            },
-                            id_contrato = reader.GetInt32("id_contrato") // Asignar el id_contrato
+                                id_inquilino = reader.GetInt32(reader.GetOrdinal(nameof(Inquilino.id_inquilino))),
+                                nombre = reader.GetString(reader.GetOrdinal("inquilino_nombre")),
+                                apellido = reader.GetString(reader.GetOrdinal("inquilino_apellido")),
+                                telefono = reader.GetString(reader.GetOrdinal("inquilino_telefono")),
+                                email = reader.GetString(reader.GetOrdinal("inquilino_email"))
+                            }
                         };
                     }
                 }
@@ -184,6 +232,7 @@ public class RepositorioPago
         }
         return pago;
     }
+
 
 
 }

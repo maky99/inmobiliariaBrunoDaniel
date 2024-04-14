@@ -21,22 +21,22 @@ public class RepositorioContrato2
 
     public Contrato modifiContra(Contrato contrato)
     {
-        using (var connection = new MySqlConnection(ConnectionString)) 
+        using (var connection = new MySqlConnection(ConnectionString))
         {
 
-        var sql = @$"UPDATE contrato SET {nameof(Contrato.finalizacionAnticipada)} =@{nameof(Contrato.finalizacionAnticipada)},{nameof(Contrato.multa)} =@{nameof(Contrato.multa)}=@{nameof(Contrato.multa)}
+            var sql = @$"UPDATE contrato SET {nameof(Contrato.finalizacionAnticipada)} =@{nameof(Contrato.finalizacionAnticipada)},{nameof(Contrato.multa)} =@{nameof(Contrato.multa)}
             WHERE {nameof(Contrato.id_contrato)} =@{nameof(Contrato.id_contrato)}";
 
-        using (var command = new MySqlCommand(sql, connection))
-        {
-            command.Parameters.AddWithValue($"@{nameof(Contrato.id_contrato)}", contrato.id_contrato);
-            command.Parameters.AddWithValue($"@{nameof(Contrato.finalizacionAnticipada)}", contrato.finalizacionAnticipada);
-            command.Parameters.AddWithValue($"@{nameof(Contrato.multa)}", contrato.multa);
+            using (var command = new MySqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue($"@{nameof(Contrato.id_contrato)}", contrato.id_contrato);
+                command.Parameters.AddWithValue($"@{nameof(Contrato.finalizacionAnticipada)}", contrato.finalizacionAnticipada);
+                command.Parameters.AddWithValue($"@{nameof(Contrato.multa)}", contrato.multa);
 
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
-        }
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
         return new Contrato();
     }

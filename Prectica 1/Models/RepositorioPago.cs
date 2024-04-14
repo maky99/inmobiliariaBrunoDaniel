@@ -192,8 +192,11 @@ public class RepositorioPago
         {
             connection.Open();
             var sql = @$"SELECT 
-                    p.importe, 
-                    p.fecha, -- Agregar la fecha a la consulta
+                    p.{nameof(Pago.id_pago)},
+                    p.{nameof(Pago.importe)},
+                    p.{nameof(Pago.concepto)}, 
+                    p.{nameof(Pago.fecha)},
+                    p.{nameof(Pago.estado)}, 
                     i.{nameof(Inquilino.id_inquilino)}, 
                     i.{nameof(Inquilino.dni)}, 
                     i.{nameof(Inquilino.apellido)} AS inquilino_apellido, 
@@ -215,8 +218,11 @@ public class RepositorioPago
                     {
                         pago = new Pago
                         {
+                            id_pago = reader.GetInt32(reader.GetOrdinal("id_pago")),
                             importe = reader.GetDouble(reader.GetOrdinal("importe")),
-                            fecha = reader.GetDateTime(reader.GetOrdinal("fecha")), // Obtener la fecha del reader
+                            fecha = reader.GetDateTime(reader.GetOrdinal("fecha")),
+                            concepto = reader.GetString(reader.GetOrdinal("concepto")),
+                            estado = reader.GetInt32(reader.GetOrdinal("estado")),
                             inquilino = new Inquilino
                             {
                                 id_inquilino = reader.GetInt32(reader.GetOrdinal(nameof(Inquilino.id_inquilino))),
@@ -234,5 +240,23 @@ public class RepositorioPago
     }
 
 
+    public void modifiConcepto(int pagid, string concep)
+    {
+        using (var connection = new MySqlConnection(ConnectionString))
+        {
+
+            var sql = $"UPDATE pago SET {nameof(Pago.concepto)} = @concep WHERE {nameof(Pago.id_pago)} = @pagid";
+
+            using (var command = new MySqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@concep", concep);
+                command.Parameters.AddWithValue("@pagid", pagid);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+    }
 
 }

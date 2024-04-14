@@ -52,6 +52,13 @@ public class PagoController : Controller
 
         return View(traepago);
     }
+    public IActionResult PagoEditarCocnepto(int id_pago, string concepto)
+    {
+        RepositorioPago rp = new RepositorioPago();
+        rp.modifiConcepto(id_pago, concepto);
+
+        return RedirectToAction(nameof(PagoIndex));
+    }
 
 
 }

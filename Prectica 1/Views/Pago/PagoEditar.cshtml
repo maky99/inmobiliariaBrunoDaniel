@@ -5,7 +5,17 @@
 <div class="text-center">
     <h1 class="display-3">Editar Pago</h1>
 </div>
-<form>
+<form asp-action="PagoEditarCocnepto" method="post" enctype="multipart/form-data">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="id_pago" />
+
+    @* <div class="form-group">
+    <label asp-for="id_pago" class="control-label">id_pago</label>
+    <input asp-for="id_pago" class="form-control" />
+    <span asp-validation-for="id_pago" class="text-danger"></span>
+    </div> *@
+
     <div class="form-group">
         <label for="nombreCompleto">Nombre Completo</label>
         <input type="text" class="form-control" id="nombreCompleto"
@@ -24,105 +34,18 @@
         <input type="text" class="form-control" id="importe" value="@Model.importe" readonly>
     </div>
     <div class="form-group">
-        <label for="concepto">Concepto</label>
-        <input type="text" class="form-control" id="concepto" value="@Model.concepto" readonly>
+        <label asp-for="concepto">Concepto</label>
+        <input asp-for="concepto" class="form-control" id="concepto" value="@Model.concepto">
+        <span asp-validation-for="concepto" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label for="estado">Estado</label>
-        <input type="text" class="form-control" id="estado" value="@Model.estado" readonly>
+        <input type="estado" class="form-control" value="@Model.estado" readonly>
     </div>
     <div class="form-group">
         <label for="fecha">Fecha</label>
         <input type="text" class="form-control" id="fecha" value="@Model.fecha.ToString("dd/MM/yyyy")" readonly>
-
     </div>
+    <button type="submit" value="PagoEditarCocnepto" class="btn btn-primary btn-sm mt-3">Aceptar boton</button>
+
 </form>
-
-
-
-@*
-
-<div class="container">
-<div class="col-md-6 mx-auto">
-<form asp-action="PagoGuardar" method="post">
-<form>
-<div class="form-group">
-<label for="nombreCompleto">Nombre Completo</label>
-<input type="text" class="form-control" id="nombreCompleto" value="@($"{Model.inquilino.nombre}
-{Model.inquilino.apellido}")" readonly>
-</div>
-<div class="form-group">
-<label for="telefono">Teléfono</label>
-<input type="text" class="form-control" id="telefono" value="@Model.inquilino.telefono" readonly>
-</div>
-<div class="form-group">
-<label for="email">Email</label>
-<input type="email" class="form-control" id="email" value="@Model.inquilino.email" readonly>
-</div>
-</form>
-
-</div>
-</div>
-
-
-
-
-@* <div class="form-group">
-<label asp-for="id_contrato" class="control-label">ID Contrato</label>
-<select asp-for="id_contrato" class="form-control" id="id_contrato_select">
-<option value="" disabled selected>Seleccione un Contrato</option>
-@foreach (var contrato in (List<Contrato>)ViewData["ContratosVigentes"])
-{
-<option value="@contrato.id_contrato" data-monto="@contrato.monto">
-@contrato.inquilino.apellido, @contrato.inquilino.nombre
-</option>
-}
-</select>
-<span asp-validation-for="id_contrato" class="text-danger"></span>
-</div>
-
-<div class="form-group">
-<label asp-for="importe" class="control-label">Importe</label>
-<input asp-for="importe" class="form-control" type="number" step="any" id="importe" readonly />
-<span asp-validation-for="importe" class="text-danger"></span>
-</div>
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-<input type="hidden" asp-for="id_contrato" value="" />
-<div class="form-group">
-<label class="control-label">Nombre del Inquilino</label>
-<input type="text" class="form-control" value="" readonly />
-<span class="text-danger"></span>
-</div>
-<div class="form-group">
-<label class="control-label">Importe</label>
-<input asp-for="importe" class="form-control" value="" readonly />
-<span asp-validation-for="importe" class="text-danger"></span>
-</div>
-
-<div class="form-group">
-<label asp-for="concepto" class="control-label">Concepto</label>
-<input asp-for="concepto" class="form-control" />
-<span asp-validation-for="concepto" class="text-danger"></span>
-</div>
-<div class="form-group">
-<label asp-for="fecha" class="control-label">Fecha</label>
-<input asp-for="fecha" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
-<span asp-validation-for="fecha" class="text-danger"></span>
-</div>
-<div class="form-group">
-<label asp-for="estado" class="control-label">ESTADO</label>
-<select asp-for="estado" class="form-control">
-<option value="1">Paga</option>
-<option value="2">Anulada</option>
-</select>
-<input type="hidden" asp-for="estado"   />
-<span asp-validation-for="estado" class="text-danger"></span>
-</div>
-
-<div class="mt-3">
-<a href="#" class="btn btn-primary" onclick="document.forms[0].submit(); return false;">Guardar Pago</a>
-<a href="../Contrato/ContratoIndex" class="btn btn-secondary">Cancelar</a>
-</div>
-</form>
-</div>
-</div> *@

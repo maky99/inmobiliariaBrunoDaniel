@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-04-2024 a las 04:15:28
+-- Tiempo de generación: 12-04-2024 a las 20:47:48
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -46,10 +46,8 @@ CREATE TABLE `contrato` (
 --
 
 INSERT INTO `contrato` (`id_contrato`, `desde`, `meses`, `hasta`, `detalle`, `finalizacionAnticipada`, `monto`, `multa`, `estado`, `id_inquilino`, `id_inmueble`) VALUES
-(34, '2024-04-01', 4, '2024-07-31', 'no se que iba ak', '2024-04-13', 3500, 7000, 0, 32, 93),
-(35, '2024-04-13', 6, '2024-10-12', 'sin cerrar', '2024-04-13', 69000, 138000, 0, 30, 94),
-(36, '2024-04-13', 8, '2024-12-12', 'Terreno aptoj', NULL, 78000, 0, 0, 38, 96),
-(37, '2024-04-29', 4, '2024-08-28', 'sin piso', '2024-04-13', 6090, 12180, 0, 31, 97);
+(6, '2024-04-07', 2, '2024-06-06', 'Terreno aptoj', '2024-04-01', 21, 12, 0, 11, 37),
+(21, '2024-04-19', 4, '2024-08-18', 'minas antiguas ', NULL, 654, NULL, 0, 14, 40);
 
 -- --------------------------------------------------------
 
@@ -74,26 +72,22 @@ CREATE TABLE `inmueble` (
 --
 
 INSERT INTO `inmueble` (`id_inmueble`, `tipoDebien`, `tipoDeUso`, `direccion`, `condicion`, `costo`, `ambiente`, `estado`, `id_propietario`) VALUES
-(93, 'Terreno', 'Residencial', 'Calle 1234', 'Buena', 1000, 2, 1, 26),
-(94, 'Edificio', 'Comercial', 'Avenida Principal 567', 'Excelente', 1200, 3, 1, 27),
-(95, 'Apartamento', 'Industrial', 'Calle Central 890', 'Regular', 1500, 4, 1, 28),
-(96, 'Casa', 'Educativo', 'Avenida Central 1111', 'Muy Buena', 2000, 2, 1, 29),
-(97, 'Fábrica', 'Salud', 'Calle Principal 2222', 'Buena', 1800, 3, 1, 30),
-(98, 'Local', 'Recreacional', 'Avenida Norte 3333', 'Regular', 2200, 2, 1, 31),
-(99, 'Mina', 'Hotelero/Turístico', 'Calle Sur 4444', 'Excelente', 1700, 4, 1, 32),
-(100, 'Parcela', 'Religioso', 'Avenida Oeste 5555', 'Muy Buena', 1900, 2, 1, 33),
-(101, 'Terreno', 'Agrícola', 'Calle Este 6666', 'Buena', 2100, 3, 1, 34),
-(102, 'Edificio', 'Gobierno/Administrativo', 'Avenida Este 7777', 'Regular', 2300, 2, 1, 35),
-(103, 'Terreno', 'Residencial', 'Calle 8 8888', 'Muy Buena', 2400, 4, 1, 26),
-(104, 'Edificio', 'Comercial', 'Avenida 9 9999', 'Excelente', 2600, 3, 1, 27),
-(105, 'Apartamento', 'Industrial', 'Calle 10 10101', 'Buena', 2800, 2, 1, 28),
-(106, 'Casa', 'Educativo', 'Avenida 11 11111', 'Regular', 3000, 4, 1, 29),
-(107, 'Fábrica', 'Salud', 'Calle 12 12121', 'Muy Buena', 3200, 3, 1, 30),
-(108, 'Local', 'Recreacional', 'Avenida 13 13131', 'Buena', 3500, 2, 1, 31),
-(109, 'Mina', 'Hotelero/Turístico', 'Calle 14 14141', 'Regular', 3300, 4, 1, 32),
-(110, 'Parcela', 'Religioso', 'Avenida 15 15151', 'Muy Buena', 3600, 3, 1, 33),
-(111, 'Terreno', 'Agrícola', 'Calle 16 16161', 'Buena', 3800, 2, 1, 34),
-(112, 'Edificio', 'Gobierno/Administrativo', 'Avenida 17 17171', 'Excelente', 4000, 4, 1, 35);
+(37, 'Terreno', 'Residencial', 'La Carolina', 'Regular', 800000, 1, 3, 17),
+(38, 'Terreno', 'Educativo', 'San Luis', 'Buena', 500000, 1, 3, 20),
+(39, 'Casa', 'Residencial', 'Calle Principal 123', 'Buena', 150000, 4, 1, 12),
+(40, 'Apartamento', 'Residencial', 'Avenida Central 456', 'Excelente', 120000, 0, 0, 13),
+(41, 'Terreno', 'Comercial', 'Avenida Comercial 789', 'Regular', 80000, 2, 0, 14),
+(42, '', 'Comercial', 'Plaza Principal', 'Excelente', 200000, 1, 2, 15),
+(43, 'Oficina', 'Comercial', 'Centro Empresarial 101', 'Buena', 100000, 5, 0, 16),
+(44, 'Casa', 'Residencial', 'Calle Secundaria 234', 'Regular', 90000, 0, 2, 17),
+(45, 'Apartamento', 'Residencial', 'Avenida Principal 567', 'Buena', 110000, 2, 0, 18),
+(46, 'Terreno', 'Residencial', 'Avenida Residencial 890', 'Excelente', 180000, 0, 1, 19),
+(47, 'Local comercial', 'Comercial', 'Centro Comercial', 'Regular', 50000, 0, 1, 20),
+(48, 'Oficina', 'Comercial', 'Torre Empresarial', 'Buena', 80000, 0, 1, 21),
+(49, 'Casa', 'Residencial', 'Calle Tranquila 345', 'Regular', 95000, 6, 0, 22),
+(50, 'Apartamento', 'Residencial', 'Calle Privada 678', 'Excelente', 130000, 0, 1, 23),
+(51, 'Terreno', 'Residencial', 'Avenida Tranquila 901', 'Buena', 75000, 0, 0, 24),
+(52, 'Local comercial', 'Comercial', 'Calle Comercial', 'Regular', 60000, 4, 0, 25);
 
 -- --------------------------------------------------------
 
@@ -116,16 +110,20 @@ CREATE TABLE `inquilino` (
 --
 
 INSERT INTO `inquilino` (`id_inquilino`, `dni`, `apellido`, `nombre`, `telefono`, `email`, `estado`) VALUES
-(30, 12345678, 'González', 'María', '11111111', 'maria@example.com', 1),
-(31, 23456789, 'Rodríguez', 'Juan', '22222222', 'juan@example.com', 1),
-(32, 34567890, 'López', 'Luis', '33333333', 'luis@example.com', 1),
-(33, 45678901, 'Martínez', 'Ana', '44444444', 'ana@example.com', 1),
-(34, 56789012, 'Pérez', 'Diego', '55555555', 'diego@example.com', 1),
-(35, 67890123, 'Gómez', 'Laura', '66666666', 'laura@example.com', 1),
-(36, 78901234, 'Sánchez', 'Pedro', '77777777', 'pedro@example.com', 1),
-(37, 89012345, 'Romero', 'Lucía', '88888888', 'lucia@example.com', 1),
-(38, 90123456, 'Díaz', 'Carlos', '99999999', 'carlos@example.com', 1),
-(39, 11223344, 'Fernández', 'Marta', '10101010', 'marta@example.com', 1);
+(11, 76789870, 'Big Pig', 'Pepa', '5555', 'pepa@malapig.com', 0),
+(12, 123, 'Cerutti', 'Bruno', '22222', 'brunocerutti88@gmail.com', 1),
+(13, 333, 'Senna', 'Ayrton', '121212', 'senna@gmail.com', 1),
+(14, 888, 'perez', 'josefina', '343', 'j@gmail.com', 0),
+(15, 12345678, 'García', 'Juan', '123-456-7890', 'juan.garcia@example.com', 1),
+(16, 23456789, 'Martínez', 'Ana', '234-567-8901', 'ana.martinez@example.com', 1),
+(17, 34567890, 'López', 'María', '345-678-9012', 'maria.lopez@example.com', 1),
+(18, 45678901, 'Rodríguez', 'Luis', '456-789-0123', 'luis.rodriguez@example.com', 1),
+(19, 56789012, 'Sánchez', 'Laura', '567-890-1234', 'laura.sanchez@example.com', 1),
+(20, 67890123, 'Pérez', 'Carlos', '678-901-2345', 'carlos.perez@example.com', 1),
+(21, 78901234, 'Gómez', 'Andrea', '789-012-3456', 'andrea.gomez@example.com', 1),
+(22, 89012345, 'Díaz', 'Pablo', '890-123-4567', 'pablo.diaz@example.com', 1),
+(23, 90123456, 'Fernández', 'Marta', '901-234-5678', 'marta.fernandez@example.com', 1),
+(24, 1234567, 'Ruiz', 'Javier', '012-345-6789', 'javier.ruiz@example.com', 1);
 
 -- --------------------------------------------------------
 
@@ -147,15 +145,7 @@ CREATE TABLE `pago` (
 --
 
 INSERT INTO `pago` (`id_pago`, `concepto`, `importe`, `fecha`, `estado`, `id_contrato`) VALUES
-(5, 'me en curso', 3500, '2024-05-01', 2, 34),
-(11, 'popo', 3500, '2024-04-18', 2, 34),
-(12, 'sabado', 3500, '2024-04-13', 1, 34),
-(13, 'pedro', 3500, '2024-04-13', 1, 34),
-(14, 'Curso', 69000, '2024-04-13', 1, 35),
-(22, 'alguno', 6090, '2024-04-13', 1, 37),
-(23, 'posible', 6090, '2024-04-13', 1, 37),
-(24, 'popo', 3500, '2024-04-13', 1, 34),
-(25, 'enero', 3500, '2024-04-14', 1, 34);
+(1, 'fsd', 44, '2024-04-12', 1, 21);
 
 -- --------------------------------------------------------
 
@@ -178,16 +168,21 @@ CREATE TABLE `propietario` (
 --
 
 INSERT INTO `propietario` (`id_propietario`, `dni`, `apellido`, `nombre`, `telefono`, `email`, `estado`) VALUES
-(26, 12345678, 'López', 'Juan', '11111111', 'juan@example.com', 1),
-(27, 23456789, 'Martínez', 'María', '22222222', 'maria@example.com', 1),
-(28, 34567890, 'González', 'Pedro', '33333333', 'pedro@example.com', 1),
-(29, 45678901, 'Fernández', 'Laura', '44444444', 'laura@example.com', 1),
-(30, 56789012, 'Rodríguez', 'Diego', '55555555', 'diego@example.com', 1),
-(31, 67890123, 'Pérez', 'Ana', '66666666', 'ana@example.com', 1),
-(32, 78901234, 'Sánchez', 'Lucía', '77777777', 'lucia@example.com', 1),
-(33, 89012345, 'Díaz', 'Carlos', '88888888', 'carlos@example.com', 1),
-(34, 90123456, 'Romero', 'Marta', '99999999', 'marta@example.com', 1),
-(35, 11223344, 'Gómez', 'Pablo', '10101010', 'pablo@example.com', 1);
+(1, 76789870, 'Pig', 'Pepa', '13326', 'pepa@mala.com', 1),
+(12, 12345678, 'López', 'Juan', '11223344', 'juan.lopez@example.com', 1),
+(13, 23456789, 'Martínez', 'María', '22334455', 'maria.martinez@example.com', 1),
+(14, 34567890, 'García', 'Carlos', '33445566', 'carlos.garcia@example.com', 0),
+(15, 45678901, 'Rodríguez', 'Laura', '44556677', 'laura.rodriguez@example.com', 1),
+(16, 56789012, 'González', 'Pedro', '55667788', 'pedro.gonzalez@example.com', 1),
+(17, 67890123, 'Sánchez', 'Ana', '66778899', 'ana.sanchez@example.com', 1),
+(18, 78901234, 'Pérez', 'Luis', '77889900', 'luis.perez@example.com', 1),
+(19, 89012345, 'Gómez', 'Marta', '88990011', 'marta.gomez@example.com', 0),
+(20, 90123456, 'Martín', 'David', '99001122', 'david.martin@example.com', 1),
+(21, 1234567, 'Fernández', 'Julia', '11223344', 'julia.fernandez@example.com', 0),
+(22, 76789870, 'Pig', 'Pepa', '9899654', 'pepa@mala.com', 0),
+(23, 1234423, 'Pig', 'Jeorch', '8888888', 'jor@pepa.com', 0),
+(24, 34543, 'Alfonzo', 'Daniel', '543345', 'asapo@gmail.com', 0),
+(25, 76789870, 'Alfonzo', 'Daniel', '3453', 'asapo@gmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -266,31 +261,31 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `contrato`
 --
 ALTER TABLE `contrato`
-  MODIFY `id_contrato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_contrato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `inmueble`
 --
 ALTER TABLE `inmueble`
-  MODIFY `id_inmueble` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id_inmueble` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `inquilino`
 --
 ALTER TABLE `inquilino`
-  MODIFY `id_inquilino` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_inquilino` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `propietario`
 --
 ALTER TABLE `propietario`
-  MODIFY `id_propietario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_propietario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -319,7 +314,7 @@ ALTER TABLE `inmueble`
 -- Filtros para la tabla `pago`
 --
 ALTER TABLE `pago`
-  ADD CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`id_contrato`) REFERENCES `contrato` (`id_contrato`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`id_contrato`) REFERENCES `contrato` (`id_contrato`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

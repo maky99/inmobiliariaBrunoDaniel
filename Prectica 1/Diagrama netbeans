@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="IMNO">
+  <ClassDiagramComponents>
+    <Class name="Propietario" package="" visibility="public" xPosition="12.0" yPosition="338.0">
+      <Fields>
+        <Field name="id_contrato" type="int" visibility="private"/>
+        <Field name="dni" type="String" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="telefono" type="String" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+        <Field name="estado" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="GetPropietario" returnType="int" visibility="public">
+          <Argument type="int" name="numero"/>
+        </Method>
+        <Method name="GuardarPropietario" returnType="Propietario" visibility="public">
+          <Argument type="Propietario" name="propietario"/>
+        </Method>
+        <Method name="ObtenerPropietarioPorId" returnType="int" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="EditaDatos" returnType="Propietario" visibility="public">
+          <Argument type="Propietario" name="propietario"/>
+        </Method>
+        <Method name="CambioEstado" returnType="int" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="BuscaNuevaPropietarioDNI" returnType="int" visibility="public">
+          <Argument type="int" name="dni"/>
+        </Method>
+        <Method name="PropietarioMuestra" returnType="List_propietario" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Inmueble" package="" visibility="public" xPosition="439.0" yPosition="49.0">
+      <Fields>
+        <Field name="id_inmueble" type="int" visibility="private"/>
+        <Field name="tipoDebien" type="string" visibility="private"/>
+        <Field name="tipoDeUso" type="string" visibility="private"/>
+        <Field name="direccion" type="string" visibility="private"/>
+        <Field name="condicion" type="string" visibility="private"/>
+        <Field name="costo" type="double" visibility="private"/>
+        <Field name="ambiente" type="int" visibility="private"/>
+        <Field name="estado" type="int" visibility="private"/>
+        <Field name="id_propietario" type="int" visibility="private"/>
+        <Field name="dueno" type="Propietario" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="GetInmueble" returnType="List_inmueble" visibility="public"/>
+        <Method name="GuardarInmueble" returnType="Inmueble" visibility="public">
+          <Argument type="Inmueble" name="inmueble"/>
+        </Method>
+        <Method name="ObtenerInmueblePorId" returnType="int" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="EditaDatosInmueble" returnType="Inmueble" visibility="public">
+          <Argument type="Inmueble" name="inmueble"/>
+        </Method>
+        <Method name="EliminarInmueblePorId" returnType="int" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="InmuebleLibre" returnType="list_Inmueble" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Contrato" package="" visibility="public" xPosition="841.0" yPosition="31.0">
+      <Fields>
+        <Field name="id_contrato" type="int" visibility="private"/>
+        <Field name="desde" type="DateTime" visibility="private"/>
+        <Field name="meses" type="int" visibility="private"/>
+        <Field name="hasta" type="DateTime" visibility="private"/>
+        <Field name="detalle" type="string" visibility="private"/>
+        <Field name="finalizacionAnticipada" type="DateTime" visibility="private"/>
+        <Field name="monto" type="double" visibility="private"/>
+        <Field name="multa" type="double" visibility="private"/>
+        <Field name="estado" type="int" visibility="private"/>
+        <Field name="id_inquilino" type="int" visibility="private"/>
+        <Field name="id_inmueble" type="int" visibility="private"/>
+        <Field name="dueno" type="Propietario" visibility="private"/>
+        <Field name="inmueble" type="Inmueble" visibility="private"/>
+        <Field name="inquilino" type="Inquilino" visibility="private"/>
+        <Field name="pago" type="Pago" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="GetContratos" returnType="list_Contrato" visibility="public"/>
+        <Method name="inquilinosSinContrato" returnType="list_Inquilino" visibility="public"/>
+        <Method name="inmueblesSinContrato" returnType="list_Inmueble" visibility="public"/>
+        <Method name="GuardarContrato" returnType="Contrato" visibility="public">
+          <Argument type="Contrato" name="contrato"/>
+        </Method>
+        <Method name="ContratoMonto" returnType="int" visibility="public">
+          <Argument type="int" name="numid"/>
+        </Method>
+        <Method name="Contrato" returnType="int" visibility="public">
+          <Argument type="int" name="idContrato"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Inquilino" package="" visibility="public" xPosition="1192.0" yPosition="418.0">
+      <Fields>
+        <Field name="id_inquilino" type="int" visibility="private"/>
+        <Field name="nombre" type="string" visibility="private"/>
+        <Field name="apellido" type="string" visibility="private"/>
+        <Field name="dni" type="int" visibility="private"/>
+        <Field name="telefono" type="string" visibility="private"/>
+        <Field name="email" type="string" visibility="private"/>
+        <Field name="estado" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="GetInquilinos" returnType="ilist_inquilino" visibility="public"/>
+        <Method name="guardarInquilino" returnType="Inquilino" visibility="public">
+          <Argument type="Inquilino" name="inquilino"/>
+        </Method>
+        <Method name="BuscaNuevoInquilinoPorDNI" returnType="int" visibility="public">
+          <Argument type="int" name="dni"/>
+        </Method>
+        <Method name="ObtenerInquilinoPorId" returnType="int" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="EditaDatos" returnType="Inquilino" visibility="public">
+          <Argument type="Inquilino" name="inquilino"/>
+        </Method>
+        <Method name="eliminarInquilino" returnType="Inquilino" visibility="public">
+          <Argument type="Inquilino" name="inquilino"/>
+        </Method>
+        <Method name="CambioEstado" returnType="int" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="InquilinosAptos" returnType="ilist_Inquilino" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Pago" package="" visibility="public" xPosition="1332.0" yPosition="1.0">
+      <Fields>
+        <Field name="id_pago" type="int" visibility="private"/>
+        <Field name="concepto" type="string" visibility="private"/>
+        <Field name="importe" type="double" visibility="private"/>
+        <Field name="fecha" type="DateTime" visibility="private"/>
+        <Field name="estado" type="int" visibility="private"/>
+        <Field name="id_contrato" type="int" visibility="private"/>
+        <Field name="cantidad_pagos" type="int" visibility="private"/>
+        <Field name="inquilino" type="Inquilino" visibility="private"/>
+        <Field name="contrato" type="Contrato" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="GetPagos" returnType="list_Pago" visibility="public"/>
+        <Method name="GetContratosVigentes" returnType="list_Contratos" visibility="public"/>
+        <Method name="GuardarPago" returnType="Pago" visibility="public">
+          <Argument type="Pago" name="pago"/>
+        </Method>
+        <Method name="BuscarPagoPorIddd" returnType="int" visibility="public">
+          <Argument type="int" name="idPago"/>
+        </Method>
+        <Method name="BuscarPagoPorId" returnType="int" visibility="public">
+          <Argument type="int" name="idPago"/>
+        </Method>
+        <Method name="modifiConcepto" returnType="string" visibility="public">
+          <Argument type="int" name="pagid"/>
+          <Argument type="string" name="concep"/>
+        </Method>
+        <Method name="modifiEstado" returnType="int" visibility="public">
+          <Argument type="int" name="pagid"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation name="" source="Contrato" target="Inquilino" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation name="tiene" source="Contrato" target="Inmueble" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation name="" source="Contrato" target="Pago" sourceCardinality="1..*" targetCardinality="1..*"/>
+    <HasRelation name="Tiene" source="Propietario" target="Inmueble" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

@@ -4,7 +4,7 @@
 <div class="text-center">
     <h1 class="display-3">Pagos</h1>
     <div class="mb-3">
-        <a asp-action="PagoNuevo" class="btn btn-success">Nuevo Pago</a>
+        <a asp-action="PagoNuevo" class="btn btn-success">Nuevo Pago </a>
     </div>
     <div class="mb-3">
         <!-- Campo de búsqueda -->
@@ -28,7 +28,7 @@
                 <tr>
                     <td>@item.concepto</td>
                     <td>@item.importe</td>
-                    <td>@item.fecha</td>
+                    <td>@item.fecha.ToString("dd/MM/yyyy")</td>
                     <td>
                         @switch (item.estado)
                         {
@@ -47,8 +47,10 @@
                             <i class="fa-solid fa-pen-to-square"></i> Editar
                         </a>
                         <!-- Enlace para eliminar -->
-                        <a href="#" class="btn btn-danger">
-                            <i class="fa-solid fa-trash"></i> Eliminar
+                        <a href="AnulaPago?id_pago=@item.id_pago"
+                            onclick="return confirm('¿Estás seguro de que deseas anular el pago?')" class="btn btn-danger">
+                            <i class="fa-solid fa-ban"></i>Anular
+
                         </a>
                     </td>
                 </tr>

@@ -59,6 +59,13 @@ public class PagoController : Controller
 
         return RedirectToAction(nameof(PagoIndex));
     }
+    public IActionResult AnulaPago(int id_pago)
+    {
+        RepositorioPago rp = new RepositorioPago();
+        rp.modifiEstado(id_pago);
+
+        return RedirectToAction(nameof(PagoIndex));
+    }
 
 
 }

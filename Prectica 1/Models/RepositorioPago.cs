@@ -259,4 +259,23 @@ public class RepositorioPago
         }
     }
 
+    public void modifiEstado(int pagid)
+    {
+        using (var connection = new MySqlConnection(ConnectionString))
+        {
+
+            var sql = $"UPDATE pago SET {nameof(Pago.estado)} = 2 WHERE {nameof(Pago.id_pago)} = @pagid";
+
+            using (var command = new MySqlCommand(sql, connection))
+            {
+
+                command.Parameters.AddWithValue("@pagid", pagid);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+    }
+
 }

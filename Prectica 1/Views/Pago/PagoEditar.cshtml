@@ -40,8 +40,20 @@
     </div>
     <div class="form-group">
         <label for="estado">Estado</label>
-        <input type="estado" class="form-control" value="@Model.estado" readonly>
+        @{
+            string estadoText = "";
+            if (@Model.estado == 1)
+            {
+                estadoText = "Paga";
+            }
+            else
+            {
+                estadoText = "Anulada";
+            }
+        }
+        <input type="text" class="form-control" id="estado" value="@estadoText" readonly>
     </div>
+
     <div class="form-group">
         <label for="fecha">Fecha</label>
         <input type="text" class="form-control" id="fecha" value="@Model.fecha.ToString("dd/MM/yyyy")" readonly>

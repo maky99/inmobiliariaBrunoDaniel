@@ -6,17 +6,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-.AddCookie(options =>{
+.AddCookie(options =>
+{
     options.LoginPath = "/Usuario/Login";
-	options.LogoutPath = "/Usuarios/Logout";
-	options.AccessDeniedPath = "/Home/Privacy";
+    options.LogoutPath = "/Usuarios/Logout";
+    options.AccessDeniedPath = "/Home/Privacy";
     options.ExpireTimeSpan = TimeSpan.FromMinutes(20);//tiempo de duracion de la cookie
 });
 
 builder.Services.AddAuthorization(options =>
 {
-	//options.AddPolicy("Empleado", policy => policy.RequireClaim(ClaimTypes.Role, "Administrador", "Empleado"));
-	options.AddPolicy("Administrador", policy => policy.RequireRole("Administrador", "Empleado"));
+    //options.AddPolicy("Empleado", policy => policy.RequireClaim(ClaimTypes.Role, "Administrador", "Empleado"));
+    options.AddPolicy("Administrador", policy => policy.RequireRole("Administrador", "Empleado"));
 });
 
 var app = builder.Build();
@@ -30,10 +31,10 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles();//archivos css, jpg.js,etc
 
 app.UseRouting();
-
+//se habilita la autenticacion
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -21,20 +21,44 @@ public class UsuarioController : Controller
     }
 
     [HttpPost]
-    public IActionResult Login(string Clave, string  Email)
+    // public IActionResult Login(string Clave, string  Email)
+    // {
+    //     if(Email != null){
+    //         RepositorioUsuario ru =  new RepositorioUsuario();
+    //         var usuario = ru.ObtenerPorEmail(Email);
+    //         if(usuario.Clave == Clave){
+    //             return RedirectToAction("Index", "Inquilino");
+    //         }else{
+    //             return RedirectToAction("Login","Usuario");
+    //         }
+    //     }else{
+    //         return RedirectToAction("Login","Usuario");
+    //     }
+
+    // }
+
+    public IActionResult Login(string Clave, string Email)
     {
-        if(Email != null){
-            RepositorioUsuario ru =  new RepositorioUsuario();
+        if (Email != null && Clave != null)
+        {
+            RepositorioUsuario ru = new RepositorioUsuario();
             var usuario = ru.ObtenerPorEmail(Email);
-            if(usuario.Clave == Clave){
+            string claveBase = usuario.Clave;
+            string claveEntra = ru.HashPassword(Clave);
+            if (claveBase.Equals(claveEntra))
+            {
                 return RedirectToAction("Index", "Inquilino");
-            }else{
-                return RedirectToAction("Login","Usuario");
             }
-        }else{
-            return RedirectToAction("Login","Usuario");
+            else
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
         }
-        
+        else
+        {
+            return RedirectToAction("Login", "Usuario");
+        }
+
     }
 
     [HttpPost]
@@ -70,60 +94,61 @@ public class UsuarioController : Controller
     }
 
 
-  
-  /*  //logIn
-    
-[HttpPost]
-[AllowAnonymous]
-[ValidateAntiForgeryToken]
-public async Task<IActionResult> Login(Login login)
-{
-    try
+
+    /*  //logIn
+
+  [HttpPost]
+  [AllowAnonymous]
+  [ValidateAntiForgeryToken]
+  public async Task<IActionResult> Login(Login login)
+  {
+      try
+      {
+          var returnUrl = string.IsNullOrEmpty(TempData["returnUrl"] as string) ? "/Inquilino/Index" : TempData["returnUrl"].ToString();
+
+          //var returnUrl = string.IsNullOrEmpty(TempData["returnUrl"] as string) ? "/Home" : TempData["returnUrl"].ToString();
+          if (ModelState.IsValid)
+          {
+              RepositorioUsuario ru = new RepositorioUsuario();
+              var usuario = ru.ObtenerPorEmail(login.Email);
+              if (usuario == null)
+              {
+                  ModelState.AddModelError("", "El email o la clave no son correctos");
+                  TempData["returnUrl"] = returnUrl;
+                  return View();
+              }
+
+              var claims = new List<Claim>
+              {
+                  new Claim(ClaimTypes.Name, usuario.Email),
+                  new Claim("FullName", usuario.Nombre + " " + usuario.Apellido),
+                  new Claim(ClaimTypes.Role, usuario.RolNombre),
+              };
+
+              var claimsIdentity = new ClaimsIdentity(
+                      claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+              await HttpContext.SignInAsync(
+                      CookieAuthenticationDefaults.AuthenticationScheme,
+                      new ClaimsPrincipal(claimsIdentity));
+              TempData.Remove("returnUrl");
+              return Redirect(returnUrl);
+          }
+          TempData["returnUrl"] = returnUrl;
+          return View();
+      }
+      catch (Exception ex)
+      {
+          ModelState.AddModelError("", ex.Message);
+          return View();
+      }
+  }
+
+  */
+
+    public IActionResult salir()
     {
-        var returnUrl = string.IsNullOrEmpty(TempData["returnUrl"] as string) ? "/Inquilino/Index" : TempData["returnUrl"].ToString();
-
-        //var returnUrl = string.IsNullOrEmpty(TempData["returnUrl"] as string) ? "/Home" : TempData["returnUrl"].ToString();
-        if (ModelState.IsValid)
-        {
-            RepositorioUsuario ru = new RepositorioUsuario();
-            var usuario = ru.ObtenerPorEmail(login.Email);
-            if (usuario == null)
-            {
-                ModelState.AddModelError("", "El email o la clave no son correctos");
-                TempData["returnUrl"] = returnUrl;
-                return View();
-            }
-
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, usuario.Email),
-                new Claim("FullName", usuario.Nombre + " " + usuario.Apellido),
-                new Claim(ClaimTypes.Role, usuario.RolNombre),
-            };
-
-            var claimsIdentity = new ClaimsIdentity(
-                    claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-            await HttpContext.SignInAsync(
-                    CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(claimsIdentity));
-            TempData.Remove("returnUrl");
-            return Redirect(returnUrl);
-        }
-        TempData["returnUrl"] = returnUrl;
-        return View();
-    }
-    catch (Exception ex)
-    {
-        ModelState.AddModelError("", ex.Message);
-        return View();
-    }
-}
-
-*/
-
-    public IActionResult salir(){
-        return RedirectToAction("Login","Usuario");
+        return RedirectToAction("Login", "Usuario");
     }
 }
 

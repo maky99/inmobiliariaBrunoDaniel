@@ -50,14 +50,30 @@ namespace Prectica_1.Models
             return roles;
         }
 
+        // public static string HashPassword(string password)
+        // {
+        //     // Generar una sal aleatoria
+        //     byte[] salt = new byte[128 / 8];
+        //     using (var rng = RandomNumberGenerator.Create())
+        //     {
+        //         rng.GetBytes(salt);
+        //     }
+
+        //     // Hashear la contraseña
+        //     string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+        //         password: password,
+        //         salt: salt,
+        //         prf: KeyDerivationPrf.HMACSHA256,
+        //         iterationCount: 10000,
+        //         numBytesRequested: 256 / 8));
+
+        //     // Devolver la sal y la contraseña hasheada como un único string
+        //     return $"{Convert.ToBase64String(salt)}.{hashed}";
+        // }
         public static string HashPassword(string password)
         {
             // Generar una sal aleatoria
             byte[] salt = new byte[128 / 8];
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(salt);
-            }
 
             // Hashear la contraseña
             string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
@@ -68,7 +84,7 @@ namespace Prectica_1.Models
                 numBytesRequested: 256 / 8));
 
             // Devolver la sal y la contraseña hasheada como un único string
-            return $"{Convert.ToBase64String(salt)}.{hashed}";
+            return hashed;
         }
     }
 }

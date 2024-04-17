@@ -284,7 +284,7 @@ public class RepositorioPago
         var pagos = new List<Pago>();
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            var sql = $"SELECT {nameof(Pago.concepto)},{nameof(Pago.importe)},{nameof(Pago.fecha)},{nameof(Pago.id_pago)},{nameof(Pago.estado)},{nameof(Pago.id_contrato)} FROM pago WHERE {nameof(Pago.id_contrato)}=@idcontra";
+            var sql = $"SELECT {nameof(Pago.concepto)},{nameof(Pago.importe)},{nameof(Pago.fecha)},{nameof(Pago.id_pago)},{nameof(Pago.estado)},{nameof(Pago.id_contrato)} FROM pago WHERE {nameof(Pago.id_contrato)}=@idcontra ORDER BY {nameof(Pago.fecha)}";
 
             using (var command = new MySqlCommand(sql, connection))
             {

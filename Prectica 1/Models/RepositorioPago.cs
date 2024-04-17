@@ -278,4 +278,37 @@ public class RepositorioPago
         }
     }
 
+
+    public List<Pago> listadoPagos(int idcontra)
+    {
+        var pagos = new List<Pago>();
+        using (var connection = new MySqlConnection(ConnectionString))
+        {
+            var sql = $"SELECT {nameof(Pago.concepto)},{nameof(Pago.importe)},{nameof(Pago.fecha)},{nameof(Pago.id_pago)},{nameof(Pago.estado)},{nameof(Pago.id_contrato)} FROM pago WHERE {nameof(Pago.id_contrato)}=@idcontra";
+
+            using (var command = new MySqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@idcontra", idcontra);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        pagos.Add(new Pago
+                        {
+                            id_pago = reader.GetInt32("id_pago"),
+                            concepto = reader.IsDBNull(reader.GetOrdinal("concepto")) ? null : reader.GetString("concepto"),
+                            importe = reader.GetDouble("importe"),
+                            fecha = reader.GetDateTime("fecha"),
+                            estado = reader.GetInt32("estado"),
+                            id_contrato = reader.GetInt32("id_contrato"),
+                        });
+
+                    }
+                }
+            }
+        }
+        return pagos;
+    }
+
 }

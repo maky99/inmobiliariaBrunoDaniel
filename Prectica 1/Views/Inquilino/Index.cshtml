@@ -17,12 +17,12 @@
             <tr>
                 @* <th>ID</th> *@
                 <th>DNI</th>
-                <th>Apellido</th>
-                <th>Nombre</th>
-                <th>Teléfono</th>
-                <th>Email</th>
-                <th>Estado</th>
-                <th>Accion</th>
+                <th>APELLDO</th>
+                <th>NOMBRE</th>
+                <th>TELEFONO</th>
+                <th>EMAIL</th>
+                <th>ESTADO</th>
+                <th>ACCION</th>
             </tr>
         </thead>
         <tbody>
@@ -57,9 +57,11 @@
                         <a href="EditarInquilino?numero=@item.id_inquilino" class="btn btn-primary">
                             <i class="fa-solid fa-pen-to-square"></i> Editar
                         </a>
-                        
+
                         <!-- Enlace para eliminar -->
-                        <a href="EliminarInquilino?numero=@item.id_inquilino"onclick="return confirm('¿Estás seguro de que deseas eliminar a @item.apellido @item.nombre?')" class="btn btn-danger">
+                        <a href="EliminarInquilino?numero=@item.id_inquilino"
+                            onclick="return confirm('¿Estás seguro de que deseas eliminar a @item.apellido @item.nombre?')"
+                            class="btn btn-danger">
                             <i class="fa-solid fa-trash"></i> Eliminar
                         </a>
                     </td>

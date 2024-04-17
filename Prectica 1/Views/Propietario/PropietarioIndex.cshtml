@@ -4,6 +4,7 @@
 <div class="text-center">
     <h1 class="display-3">Propietario</h1>
     <div class="mb-3">
+
         <a asp-action="BuscaNuevaPropietario" class="btn btn-success">Nuevo Registro</a>
     </div>
     <div class="mb-3">
@@ -15,11 +16,11 @@
             <tr>
                 @* <th>ID</th> *@
                 <th>DNI</th>
-                <th>Apellido</th>
-                <th>Nombre</th>
-                <th>Teléfono</th>
-                <th>Email</th>
-                <th>Estado</th>
+                <th>APELLIDO</th>
+                <th>NOMBRE</th>
+                <th>TELEFONO</th>
+                <th>EMAIL</th>
+                <th>EESTADO</th>
                 <th>Accion</th>
             </tr>
         </thead>
@@ -49,9 +50,11 @@
                             <i class="fa-solid fa-pen-to-square"></i> Editar
                         </a>
                         <!-- Enlace para eliminar -->
-                            <a href="EliminaPropietario?numero=@item.id_propietario" onclick="return confirm('¿Estás seguro de que deseas eliminar a @item.apellido @item.nombre?')" class="btn btn-danger">
-                    <i class="fa-solid fa-trash"></i> Eliminar
-                    </a>
+                        <a href="EliminaPropietario?numero=@item.id_propietario"
+                            onclick="return confirm('¿Estás seguro de que deseas eliminar a @item.apellido @item.nombre?')"
+                            class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i> Eliminar
+                        </a>
                     </td>
                 </tr>
             }

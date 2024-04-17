@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj": {}
+    "C:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj": {}
   },
   "projects": {
-    "c:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj": {
+    "C:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj",
+        "projectUniqueName": "C:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj",
         "projectName": "Prectica 1",
-        "projectPath": "c:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj",
+        "projectPath": "C:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj",
         "packagesPath": "C:\\Users\\MAKY\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\obj\\",
+        "outputPath": "C:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -66,6 +66,12 @@ public class PagoController : Controller
 
         return RedirectToAction(nameof(PagoIndex));
     }
+    public IActionResult PagoXComtrato(int idcont)
+    {
+        RepositorioPago rp = new RepositorioPago();
+        var lista = rp.listadoPagos(idcont);
+        return View(lista);
+    }
 
 
 }

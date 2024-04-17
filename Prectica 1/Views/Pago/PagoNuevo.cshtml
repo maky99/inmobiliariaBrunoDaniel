@@ -12,7 +12,7 @@
     <div class="col-md-6 mx-auto">
         <form asp-action="PagoGuardar" method="post">
             <div class="form-group">
-                <label asp-for="id_contrato" class="control-label">ID Contrato</label>
+                <label asp-for="id_contrato" class="control-label">Inquilino</label>
                 <select asp-for="id_contrato" class="form-control" id="id_contrato_select">
                     <option value="" disabled selected>Seleccione un Contrato</option>
                     @foreach (var contrato in (List<Contrato>)ViewData["ContratosVigentes"])
@@ -55,10 +55,10 @@
     var importeInput = document.getElementById('importe');
 
     // Agregar un listener de cambio al select
-    idContratoSelect.addEventListener('change', function() {
+    idContratoSelect.addEventListener('change', function () {
         // Obtener el valor del monto del contrato seleccionado
         var montoContrato = this.options[this.selectedIndex].getAttribute('data-monto');
-        
+
         // Asignar el valor del monto al campo de importe
         importeInput.value = montoContrato;
     });

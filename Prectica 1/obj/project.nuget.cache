@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4hGnD83Egb0qhv4J7NcaS+paC2pBagI7Cc/WoUmVnOvTMws8Y3WFPEOs72iJ6k7zcfc16yFmxFWUsDUBtmfyxg==",
+  "dgSpecHash": "cDe1+GHMRhyxp3B4H6L4bIhuZqnzzgdVufOaDtp0waQKgE8MqbT6CtsbKzOrdmMzKydvmwPuE4TeRjXJ6D2x3w==",
   "success": true,
-  "projectFilePath": "c:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj",
+  "projectFilePath": "C:\\Users\\MAKY\\Documents\\GitHub\\inmobiliariaBrunoDaniel\\Prectica 1\\Prectica 1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MAKY\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\MAKY\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",

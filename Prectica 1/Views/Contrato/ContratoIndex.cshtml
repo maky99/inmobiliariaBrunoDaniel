@@ -22,10 +22,10 @@
                 <th>HASTA</th>
                 <th>MESES</th>
                 <th>MONTO</th>
-                <th>CUOTAS PAGAS</th>
-                <th>MONTO MULTA</th>
-                <th>BAJA CONTRATO</th>
-                <th>ACCION</th>
+                <th>C/PAGAS</th>
+                <th>MULTA</th>
+                <th>BAJA</th>
+                <th class="center">ACCION</th>
             </tr>
         </thead>
 
@@ -70,9 +70,12 @@
                         }
                     </td>
                     <td>
+                        <a href="../Pago/PagoXComtrato?idcont=@item.id_contrato" class="btn btn-info">
+                            <i class="fa-solid fa-receipt"></i> Pagos
+                        </a>
                         <!-- Enlace para editar -->
                         <a href="ContratoBajaMulta?numid=@item.id_contrato" class="btn btn-danger">
-                            <i class="fa-solid fa-pen-to-square"></i> MULTA/BAJA
+                            <i class="fa-solid fa-pen-to-square"></i> Baja
                         </a>
                         <a href="../Pago/PagoNuevoDirecto?numid=@item.id_contrato" class="btn btn-success">
                             <i class="fa-regular fa-credit-card"></i>Pagar

@@ -32,34 +32,34 @@
         <tbody>
                 @foreach (var item in Model)
                 {
-                        <tr>
-                            <td>@item.inquilino.apellido, @item.inquilino.nombre</td>
-                            <td>@item.inmueble.dueno.apellido, @item.inmueble.dueno.nombre</td>
-                            <td>
+                                    <tr>
+                                        <td>@item.inquilino.apellido, @item.inquilino.nombre</td>
+                                        <td>@item.inmueble.dueno.apellido, @item.inmueble.dueno.nombre</td>
+                                        <td>
                             @if (item.estado == 0)
                             {
-                                            <span>Vigente</span>
+                                                                    <span>Vigente</span>
                             }
                             else if (item.estado == 1)
                             {
-                                            <span>Renovado</span>
+                                                                    <span>Renovado</span>
                             }
                             else if (item.estado == 2)
                             {
-                                            <span>algo</span>
+                                                                    <span>algo</span>
                             }
                             else if (item.estado == 3)
                             {
-                                            <span>Desalojado</span>
+                                                                    <span>Desalojado</span>
                             }
-                            </td>
-                            <td>@item.desde.ToString("dd/MM/yyyy")</td>
-                            <td>@item.hasta.ToString("dd/MM/yyyy")</td>
-                            <td>@item.meses</td>
-                            <td>$ @item.monto</td>
-                            <td>@item.pago.cantidad_pagos / @item.meses</td>
-                            <td>$ @item.multa</td>
-                            <td>
+                                        </td>
+                                        <td>@item.desde.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.hasta.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.meses</td>
+                                        <td>$ @item.monto</td>
+                                        <td>@item.pago.cantidad_pagos / @item.meses</td>
+                                        <td>$ @item.multa</td>
+                                        <td>
                             @if (item.finalizacionAnticipada.ToString("dd/MM/yyyy") == "01/01/0001")
                             {
                                 @:no
@@ -68,9 +68,9 @@
                             {
                                 @item.finalizacionAnticipada.ToString("dd/MM/yyyy")
                             }
-                            </td>
-                            <td>
-                                <a href=" ../Pago/PagoXComtrato?idcont=@item.id_contrato" class="btn btn-info">
+                                        </td>
+                                        <td>
+                                            <a href=" ../Pago/PagoXComtrato?idcont=@item.id_contrato" class="btn btn-info">
                         <i class="fa-solid fa-receipt"></i> Pagos
                         </a>
                         <!-- Enlace para editar -->
@@ -79,6 +79,9 @@
                         </a>
                         <a href="../Pago/PagoNuevoDirecto?numid=@item.id_contrato" class="btn btn-success">
                             <i class="fa-regular fa-credit-card"></i> Pagar
+                        </a>
+                        <a href="#" class="btn btn-secondary">
+                            <i class="fa-solid fa-file"></i>
                         </a>
 
                         </td>

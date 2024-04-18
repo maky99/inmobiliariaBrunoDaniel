@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-04-2024 a las 04:15:28
+-- Tiempo de generación: 18-04-2024 a las 16:59:50
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -155,7 +155,8 @@ INSERT INTO `pago` (`id_pago`, `concepto`, `importe`, `fecha`, `estado`, `id_con
 (22, 'alguno', 6090, '2024-04-13', 1, 37),
 (23, 'posible', 6090, '2024-04-13', 1, 37),
 (24, 'popo', 3500, '2024-04-13', 1, 34),
-(25, 'enero', 3500, '2024-04-14', 1, 34);
+(25, 'enero', 3500, '2024-04-14', 1, 34),
+(26, 'nuevo ', 3500, '2024-04-17', 1, 34);
 
 -- --------------------------------------------------------
 
@@ -211,7 +212,9 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`Id`, `Nombre`, `Apellido`, `Email`, `Clave`, `Rol`) VALUES
 (2, 'daniel', 'alfonso', 'alfon@gmail.com', '123', 2),
 (3, 'Bruno', 'Cerutti', 'bruno@gmail.com', 'esr2747jDxsp8sKjmyMpvw==.PNrE1WeNM1vYJZz0qjfJeTXrfMDVwCmPlMGdpaU1O1Q=', 1),
-(4, 'pepe', 'alfonso', 'alfonpepe@gmail.com', 'r3XV8Bkr+dEwd1Y7h1nY8w==.fIvgxuiGfpQgO6ppEPffBAnQgCIkZRDgGHqGSmu6+vk=', 2);
+(4, 'pepe', 'alfonso', 'alfonpepe@gmail.com', 'r3XV8Bkr+dEwd1Y7h1nY8w==.fIvgxuiGfpQgO6ppEPffBAnQgCIkZRDgGHqGSmu6+vk=', 2),
+(6, 'pepa', 'sapo', 'elSapo@pepe.com', 'B0D6vEWGpWb8DYzfKhNQrBPc5e340XdyeMqjtEB/5JY=', 1),
+(7, 'Bruno', 'Bruno', 'Bruno@bruno.com', 'dxtD2eQ/4Sj5pGnPqCTiuL6jns5apO1OHkTaJC9DTzw=', 1);
 
 --
 -- Índices para tablas volcadas
@@ -284,7 +287,7 @@ ALTER TABLE `inquilino`
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `propietario`
@@ -296,7 +299,7 @@ ALTER TABLE `propietario`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

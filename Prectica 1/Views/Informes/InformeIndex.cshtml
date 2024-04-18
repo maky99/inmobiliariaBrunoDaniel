@@ -21,11 +21,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in ViewData["inmueble"] as IEnumerable<Inmueble>)
+                        @if (ViewData["inmueble"] is List<Inmueble> inmuebles)
                         {
-                            <tr>
-                                <td>@item</td>
-                            </tr>
+                            foreach (var inmueble in inmuebles)
+                            {
+                                <tr>
+                                    <td>@inmueble.dueno.apellido</td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>

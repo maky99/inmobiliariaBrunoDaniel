@@ -11,11 +11,11 @@ using ZstdSharp.Unsafe;
 //namespace System.Configuration;
 namespace Prectica_1.Models;
 
-public class RepositorioInformes
-{
-    readonly string ConnectionString = "Server = localhost; Port = 3306; Database = inmotest; User=root;";
+// public class RepositorioInformes
+// {
+//     readonly string ConnectionString = "Server = localhost; Port = 3306; Database = inmotest; User=root;";
 
-    public RepositorioInformes() { }
+//     public RepositorioInformes() { }
 
-   
-}
+
+// }

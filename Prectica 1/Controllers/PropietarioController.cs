@@ -30,6 +30,9 @@ public class PropietarioController : Controller
 
     public IActionResult AltaNuevaPropietario(Propietario propietario)
     {
+        if (!ModelState.IsValid){
+            return View(nameof(NuevaPropietario));
+        }
         RepositorioPropietario rp = new RepositorioPropietario();
         rp.GuardarPropietario(propietario);
         return RedirectToAction(nameof(PropietarioIndex));

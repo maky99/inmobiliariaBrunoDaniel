@@ -45,14 +45,14 @@ public class UsuarioController : Controller
             var usuario = ru.ObtenerPorEmail(Email);
             string claveBase = usuario.Clave;
             string claveEntra = ru.HashPassword(Clave);
-            if (claveBase.Equals(claveEntra))
-            {
+           if (claveBase.Equals(claveEntra))
+           {
                 return RedirectToAction("Index", "Inquilino");
-            }
-            else
-            {
-                return RedirectToAction("Login", "Usuario");
-            }
+           }
+           else
+           {
+               return RedirectToAction("Login", "Usuario");
+           }
         }
         else
         {

@@ -55,7 +55,8 @@ public class RepositorioPropietario
     {
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            var sql = $"INSERT INTO propietario(dni,apellido,nombre,telefono,email,estado) VALUES  (@Dni,@Apellido,@Nombre,@Telefono,@Email,@Estado)";
+            var sql =$"INSERT INTO propietario({nameof(Propietario.dni)},{nameof(Propietario.apellido)},{nameof(Propietario.nombre)},{nameof(Propietario.telefono)},{nameof(Propietario.email)},{nameof(Propietario.estado)}) VALUES (@Dni,@Apellido,@Nombre,@Telefono,@Email,@Estado)";
+
             using (var command = new MySqlCommand(sql, connection))
             {
                 command.Parameters.AddWithValue("@Dni", propietario.dni);
@@ -63,7 +64,7 @@ public class RepositorioPropietario
                 command.Parameters.AddWithValue("@Nombre", propietario.nombre);
                 command.Parameters.AddWithValue("@Telefono", propietario.telefono);
                 command.Parameters.AddWithValue("@Email", propietario.email);
-                command.Parameters.AddWithValue("@Estado", propietario.estado);
+                command.Parameters.AddWithValue("@Estado", 1);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -76,7 +77,8 @@ public class RepositorioPropietario
         using (var connection = new MySqlConnection(ConnectionString))
         {
             connection.Open();
-            var sql = "SELECT * FROM propietario WHERE id_propietario = @Id";
+            var sql = $"SELECT * FROM propietario WHERE {nameof(Propietario.id_propietario)} = @Id";
+
             using (var comando = new MySqlCommand(sql, connection))
             {
                 comando.Parameters.AddWithValue("@Id", id);
@@ -125,7 +127,8 @@ public class RepositorioPropietario
     {
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            var sql = $@"UPDATE propietario set estado=0 where id_propietario = @Id";
+            var sql = $@"UPDATE propietario SET estado = 0 WHERE {nameof(Propietario.id_propietario)} = @Id";
+
             using (var comando = new MySqlCommand(sql, connection))
             {
                 comando.Parameters.AddWithValue("@Id", id);
@@ -145,9 +148,8 @@ public class RepositorioPropietario
         using (var connection = new MySqlConnection(ConnectionString))
         {
             connection.Open();
-            var sql = "SELECT * FROM propietario WHERE dni = @dni";
-
-            //pregunto si la consulta no vuelve vacia 
+            var sql = $"SELECT * FROM propietario WHERE {nameof(Propietario.dni)} = @dni";
+ 
             if (!string.IsNullOrWhiteSpace(sql))
             {
                 using (var comando = new MySqlCommand(sql, connection))

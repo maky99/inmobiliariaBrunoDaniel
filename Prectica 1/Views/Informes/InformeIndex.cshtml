@@ -1,0 +1,128 @@
+﻿@{
+    ViewData["Title"] = "Lista de Contratos";
+}
+<div class="text-center">
+    <h1 class="display-3">Informes</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h1 class="display-3">disponibilidad</h1>
+            <div class="table-left">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>INMUEBLE</th>
+                            <th>DUEÑO</th>
+                            <th>ESTADO</th>
+                            <th>DESDE</th>
+                            <th>HASTA</th>
+                            <th class="text-center">ACCION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewData["inmueble"] as IEnumerable<Inmueble>)
+                        {
+                            <tr>
+                                <td>@item</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col text-center">
+            <h1 class="display-3">contratos</h1>
+            <!-- Contenido de la sección de contratos -->
+        </div>
+        <div class="col text-center">
+            <h1 class="display-3">algo</h1>
+            <!-- Contenido de la sección de algo -->
+        </div>
+    </div>
+</div>
+
+@* <div class="mb-3">
+<a asp-action="#" class="btn btn-success">Nuevo Contrato</a>
+</div>
+<div class="mb-3">
+<!-- Campo de búsqueda -->
+<input type="text" id="inputBusqueda" placeholder="Buscar..." onkeyup="filtrarTabla()">
+</div>
+</div> *@
+@* <div class="table-left">
+<table class="table">
+<thead>
+<tr>
+<th>INQUILINO</th>
+<th>DUEÑO</th>
+<th>ESTADO</th>
+<th>DESDE</th>
+<th>HASTA</th>
+<th>MESES</th>
+<th>MONTO</th>
+<th>C/PAGAS</th>
+<th>MULTA</th>
+<th>BAJA</th>
+<th class="text-center">ACCION</th>
+</tr>
+</thead>
+
+<tbody>
+@foreach (var item in Model)
+{
+<tr>
+<td>@item.inquilino.apellido, @item.inquilino.nombre</td>
+<td>@item.inmueble.dueno.apellido, @item.inmueble.dueno.nombre</td>
+<td>
+@if (item.estado == 0)
+{
+<span>Vigente</span>
+}
+else if (item.estado == 1)
+{
+<span>Renovado</span>
+}
+else if (item.estado == 2)
+{
+<span>algo</span>
+}
+else if (item.estado == 3)
+{
+<span>Desalojado</span>
+}
+</td>
+<td>@item.desde.ToString("dd/MM/yyyy")</td>
+<td>@item.hasta.ToString("dd/MM/yyyy")</td>
+<td>@item.meses</td>
+<td>$ @item.monto</td>
+<td>@item.pago.cantidad_pagos / @item.meses</td>
+<td>$ @item.multa</td>
+<td>
+@if (item.finalizacionAnticipada.ToString("dd/MM/yyyy") == "01/01/0001")
+{
+@:no
+}
+else
+{
+@item.finalizacionAnticipada.ToString("dd/MM/yyyy")
+}
+</td>
+<td>
+<a href=" ../Pago/PagoXComtrato?idcont=@item.id_contrato" class="btn btn-info">
+<i class="fa-solid fa-receipt"></i> Pagos
+</a>
+<!-- Enlace para editar -->
+<a href="ContratoBajaMulta?numid=@item.id_contrato" class="btn btn-danger">
+<i class="fa-solid fa-pen-to-square"></i> Baja
+</a>
+<a href="../Pago/PagoNuevoDirecto?numid=@item.id_contrato" class="btn btn-success">
+<i class="fa-regular fa-credit-card"></i> Pagar
+</a>
+
+</td>
+</tr>
+}
+</tbody>
+</table>
+</div> *@

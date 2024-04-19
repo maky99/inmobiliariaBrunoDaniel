@@ -18,7 +18,7 @@
 
     <div class="row mt-5">
       <div class="col-sm-4 offset-sm-4">
-        <form asp-controller="Usuario" asp-action="Login" method="post">
+        <form asp-controller="Usuario" asp-action="Autenticacion" method="post">
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email</label>
             <input type="email" class="form-control" asp-for="Email">
@@ -27,12 +27,17 @@
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input type="password" class="form-control" asp-for="Clave">
           </div>
-
           <button type="submit" class="btn btn-primary">Ingresar</button>
         </form>
+        <h2>@TempData["Msg"] </h2>
+
       </div>
+
+
     </div>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 
 </html>

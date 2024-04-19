@@ -167,3 +167,4 @@ D:\GitHubDiscoMaky\inmobiliariaBrunoDaniel\Prectica 1\obj\Debug\net8.0\Prectica 
 D:\GitHubDiscoMaky\inmobiliariaBrunoDaniel\Prectica 1\obj\Debug\net8.0\Prectica 1.genruntimeconfig.cache
 D:\GitHubDiscoMaky\inmobiliariaBrunoDaniel\Prectica 1\obj\Debug\net8.0\ref\Prectica 1.dll
 C:\Users\Bruno\Desktop\inmobiliariaBrunoDaniel\Prectica 1\bin\Debug\net8.0\DinkToPdf.dll
+C:\Users\MAKY\Documents\GitHub\inmobiliariaBrunoDaniel\Prectica 1\bin\Debug\net8.0\DinkToPdf.dll

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using DinkToPdf;
 using DinkToPdf.Contracts;
+using System.Security.Claims;
 
 
 var builder = WebApplication.CreateBuilder(args);

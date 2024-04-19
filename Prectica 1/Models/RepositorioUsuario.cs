@@ -11,9 +11,15 @@ public class RepositorioUsuario
     {
         using (var conecction = new MySqlConnection(connectionString))
         {
-            var sql = $"INSERT INTO usuarios (Nombre, Apellido, Email, Clave, Rol) VALUES ('{usuario.Nombre}','{usuario.Apellido}','{usuario.Email}','{usuario.Clave}','{usuario.Rol}')";
+            var sql = $"INSERT INTO usuarios ({nameof(Usuario.Nombre)}, {nameof(Usuario.Apellido)}, {nameof(Usuario.Email)}, {nameof(Usuario.Clave)}, {nameof(Usuario.Rol)}) VALUES (@Nombre, @Apellido, @Email, @Clave, @Rol)";
+
             using (var command = new MySqlCommand(sql, conecction))
             {
+                command.Parameters.AddWithValue("@Nombre", usuario.Nombre);
+                command.Parameters.AddWithValue("@Apellido", usuario.Apellido);
+                command.Parameters.AddWithValue("@Email", usuario.Email);
+                command.Parameters.AddWithValue("@Clave", usuario.Clave);
+                command.Parameters.AddWithValue("@Rol", usuario.Rol);
                 conecction.Open();
                 command.ExecuteNonQuery();
                 conecction.Close();
@@ -26,9 +32,7 @@ public class RepositorioUsuario
         using (var connection = new MySqlConnection(connectionString))
         {
             connection.Open();
-            var sql = $"SELECT * FROM usuarios WHERE Email = '{email}'";
-            //var sql = "SELECT * FROM inquilino WHERE id = @Id";
-            // Console.WriteLine("SQL" + sql);
+            var sql = $"SELECT * FROM usuarios WHERE Email = @{nameof(Usuario.Email)}";
             using (var comando = new MySqlCommand(sql, connection))
             {
                 comando.Parameters.AddWithValue("@Email", email);

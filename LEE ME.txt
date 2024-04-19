@@ -1,0 +1,14 @@
+NOTAS:
+
+Para poder bajar los contratos en pdf tuve que bajar la extension nuget manager 
+
+luego tuve que ir a ver/paleta de comandos y escribir nuget manager add
+
+por ultimo tuve que es dinktopdf
+
+
+en program.cs tengo que poner esta linea
+
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+
+

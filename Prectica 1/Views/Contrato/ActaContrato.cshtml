@@ -1,0 +1,101 @@
+@model Prectica_1.Models.Contrato;
+
+
+@{
+    ViewData["Title"] = "Detalle del Contrato de Alquiler";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    
+<div class="container mt-4">
+    <h1 class="display-4">Detalle del Contrato de Alquiler</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Inquilino</h3>
+            <p><strong>Nombre:</strong> @Model.inquilino.nombre</p>
+            <p><strong>Apellido:</strong> @Model.inquilino.apellido</p>
+            <p><strong>DNI:</strong> @Model.inquilino.dni</p>
+            <p><strong>Teléfono:</strong> @Model.inquilino.telefono</p>
+        </div>
+        <div class="col-md-6">
+            <h3>Propietario</h3>
+            <p><strong>Nombre:</strong> @Model.inmueble.dueno.nombre</p>
+            <p><strong>Apellido:</strong> @Model.inmueble.dueno.apellido</p>
+            <p><strong>DNI:</strong> @Model.inmueble.dueno.dni</p>
+            <p><strong>Teléfono:</strong> @Model.inmueble.dueno.telefono</p>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <h3>Información del Inmueble</h3>
+        <p><strong>Dirección:</strong> @Model.inmueble.direccion</p>
+        <p><strong>Tipo de Bien:</strong> @Model.inmueble.tipoDebien</p>
+        <p><strong>Uso del Bien:</strong> @Model.inmueble.tipoDeUso</p>
+        <p><strong>Condición:</strong> @Model.inmueble.condicion</p>
+        <p><strong>Ambientes:</strong> @Model.inmueble.ambiente</p>
+    </div>
+
+    <div class="mt-3">
+        <h3>Detalles del Contrato</h3>
+        <p><strong>Fecha de Inicio:</strong> @Model.desde.ToString("dd/MM/yyyy")</p>
+        <p><strong>Fecha de Fin:</strong> @Model.hasta.ToString("dd/MM/yyyy")</p>
+        <p><strong>Monto del Alquiler:</strong> @Model.monto</p>
+        <p><strong>Multa por retraso:</strong> @Model.multa</p>
+        <p><strong>Clausula de Finalización Anticipada:</strong> @Model.finalizacionAnticipada</p>
+        <p><strong>Detalles Adicionales:</strong> @Model.detalle</p>
+    </div>
+    <button class="btn btn-primary" onclick="descargarPDF()">Descargar PDF</button>
+
+</div>
+<script type="text/javascript">
+    function descargarPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        doc.text('Detalle del Contrato de Alquiler', 14, 20);
+
+        doc.setFontSize(11);
+        doc.text('Inquilino', 14, 30);
+        doc.text(`Nombre: ${'@Model.inquilino.nombre'}`, 14, 40);
+        doc.text(`Apellido: ${'@Model.inquilino.apellido'}`, 14, 45);
+        doc.text(`DNI: ${'@Model.inquilino.dni'}`, 14, 50);
+        doc.text(`Teléfono: ${'@Model.inquilino.telefono'}`, 14, 55);
+
+        doc.text('Propietario', 14, 65);
+        doc.text(`Nombre: ${'@Model.inmueble.dueno.nombre'}`, 14, 75);
+        doc.text(`Apellido: ${'@Model.inmueble.dueno.apellido'}`, 14, 80);
+        doc.text(`DNI: ${'@Model.inmueble.dueno.dni'}`, 14, 85);
+        doc.text(`Teléfono: ${'@Model.inmueble.dueno.telefono'}`, 14, 90);
+
+        doc.text('Información del Inmueble', 14, 100);
+        doc.text(`Dirección: ${'@Model.inmueble.direccion'}`, 14, 110);
+        doc.text(`Tipo de Bien: ${'@Model.inmueble.tipoDebien'}`, 14, 115);
+        doc.text(`Uso del Bien: ${'@Model.inmueble.tipoDeUso'}`, 14, 120);
+        doc.text(`Condición: ${'@Model.inmueble.condicion'}`, 14, 125);
+        doc.text(`Ambientes: ${'@Model.inmueble.ambiente'}`, 14, 130);
+
+        doc.text('Detalles del Contrato', 14, 140);
+        doc.text(`Fecha de Inicio: ${'@Model.desde.ToString("dd/MM/yyyy")'}`, 14, 150);
+        doc.text(`Fecha de Fin: ${'@Model.hasta.ToString("dd/MM/yyyy")'}`, 14, 155);
+        doc.text(`Monto del Alquiler: ${'@Model.monto'}`, 14, 160);
+        doc.text(`Multa por retraso: ${'@Model.multa'}`, 14, 165);
+        doc.text(`Clausula de Finalización Anticipada: ${'@Model.finalizacionAnticipada'}`, 14, 170);
+        doc.text(`Detalles Adicionales: ${'@Model.detalle'}`, 14, 175);
+
+        doc.save('Contrato.pdf');
+    }
+</script>
+</body>
+</html>
+
+
+

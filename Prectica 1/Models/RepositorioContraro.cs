@@ -1,4 +1,5 @@
 
+using Google.Protobuf.Reflection;
 using MySql.Data.MySqlClient;
 using Prectica_1.Models;
 
@@ -336,4 +337,70 @@ public class RepositorioContraro
     //           WHERE {nameof(Contrato.idcontrato)} =@{nameof(Contrato.idcontrato)}";
     //     return contrato;
     //     }
-}
+
+    public Contrato getDetallesContrato(int idc){
+
+        Contrato contrato = null;
+
+        using (var connection = new MySqlConnection(ConnectionString)){
+            var sql = @"SELECT i.nombre as 'Inquilino nombre' , i.apellido as apellido, i.dni as dni, i.telefono as telefono, 
+            inmueble.direccion as direccion, inmueble.tipoDebien as tipo, inmueble.tipoDeUso as uso, inmueble.condicion as condicion, inmueble.ambiente as ambiente,
+            p.nombre as 'Propietario Nombre', p.apellido as apellido, p.dni as dni, p.telefono as telefono, 
+            c.desde,c.hasta,c.monto,c.multa,c.finalizacionAnticipada,c.detalle 
+            FROM contrato c JOIN inquilino i ON i.id_inquilino = c.id_inquilino 
+            JOIN inmueble on inmueble.id_inmueble = c.id_inmueble 
+            JOIN propietario p on p.id_propietario = inmueble.id_propietario WHERE c.id_contrato = @idc";
+
+            using (var command = new MySqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@idc", idc);
+
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        contrato = new Contrato
+                        {
+                           
+                            desde = reader.GetDateTime("desde"),
+                            hasta = reader.GetDateTime("hasta"),
+                            detalle = reader.GetString("detalle"),
+                            finalizacionAnticipada = !reader.IsDBNull(reader.GetOrdinal("finalizacionAnticipada")) ? reader.GetDateTime("finalizacionAnticipada") : default(DateTime),
+                            multa = !reader.IsDBNull(reader.GetOrdinal("multa")) ? reader.GetDouble("multa") : 0.0,
+                            monto = reader.GetDouble("monto"),
+                            
+                            inquilino = new Inquilino
+                            {
+                                
+                                apellido = reader.GetString("apellido"),
+                                nombre = reader.GetString("Inquilino nombre"),
+                                dni = reader.GetInt32("dni"),
+                                telefono = reader.GetString("telefono"),
+                                
+                            },
+                            inmueble = new Inmueble
+                            {
+                                tipoDebien = reader.GetString("tipo"),
+                                tipoDeUso = reader.GetString("uso"),
+                                condicion = reader.GetString("condicion"),
+                                direccion = reader.GetString("direccion"),
+                                ambiente = reader.GetInt32("ambiente"),
+                                dueno = new Propietario
+                                {
+                                    apellido = reader.GetString("apellido"),
+                                    nombre = reader.GetString("Propietario Nombre"),
+                                    dni = reader.GetInt32("dni"),
+                                    telefono =   reader.GetString("telefono")
+                                }
+                            },
+                            
+                        };
+                    }
+                }
+            }
+        }
+       
+        return  contrato;
+    }
+    }

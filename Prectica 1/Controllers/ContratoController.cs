@@ -67,6 +67,18 @@ public class ContratoController : Controller
         return RedirectToAction(nameof(ContratoIndex));
     }
 
+    public IActionResult ActaContrato(int numid){
+        Console.WriteLine("ID CONTRATO " + numid);
+        RepositorioContraro rc = new RepositorioContraro();
+       
+        var resultado = rc.getDetallesContrato(numid);
+        if (resultado == null) {
+            Console.WriteLine("No se encontró ningún contrato con el ID especificado.");
+        }else {
+            Console.WriteLine("Contrato obtenido con éxito.");
+        }
+        return View(resultado);
+    }
 
 
 }

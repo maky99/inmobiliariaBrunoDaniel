@@ -19,11 +19,9 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
 
-                @(!User.Identity.IsAuthenticated)
-                {
+
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
 
-                }else {
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -37,6 +35,10 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Propietario"
                                 asp-action="PropietarioIndex">Propietario</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                asp-action="Index">PropietarioHome</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Contrato"
@@ -60,12 +62,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Usuario"
-                                asp-action="salir">Salir</a>
+                                asp-action="Login">Salir</a>
                         </li>
                     </ul>
                 </div>
 
-                }
+
 
 
             </div>

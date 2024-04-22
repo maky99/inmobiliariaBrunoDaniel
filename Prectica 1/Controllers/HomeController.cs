@@ -19,11 +19,14 @@ public class HomeController : Controller
     {
         return View();
     }
-    public IActionResult Inquilinos()
+    public IActionResult Inquilino()
     {
         return View();
     }
-
+    public IActionResult Propietario()
+    {
+        return View();
+    }
     public IActionResult Privacy()
     {
         return View();

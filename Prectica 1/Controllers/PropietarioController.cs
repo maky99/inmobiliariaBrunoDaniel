@@ -1,12 +1,15 @@
 using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Prectica_1.Models;
 
 
 namespace Prectica_1.Controllers;
 
+
+[Authorize]
 public class PropietarioController : Controller
 {
     private readonly ILogger<PropietarioController> _logger;
@@ -111,6 +114,11 @@ public class PropietarioController : Controller
         var propietario = rp.ObtenerPropietarioPorId(numero);
 
         return View(propietario);
+    }
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
 
